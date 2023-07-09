@@ -2,12 +2,13 @@
 
 We are using to CodeIgniter 4 Framework
 
-Library management system version-1 avaliable in below link 
-(V1 based on core PHP)
+Library management system version-1 avaliable <a href="https://github.com/virtualheart/LMS">here </a>
+ (V1 based on core PHP)
 
-https://github.com/virtualheart/LMS 
-
-- Thanks
- Template by
- Start Bootstrap - SB Admin 2]
- (https://startbootstrap.com/theme/sb-admin-2/
+<br>
+ 
+ <b>Thanks</b>
+ 
+ Template by 🙏 Start Bootstrap - <a href="https://startbootstrap.com/theme/sb-admin-2/">SB Admin 2</a>.
+ 
+ contributors(Welcome to spot my mistake and error's😇).
