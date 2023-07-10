@@ -1,7 +1,7 @@
 <?= view('Admin/Adminsidebar') ?>
 
 	<div class="container-fluid">
-    	<h1 class="h3 mb-4 text-gray-800">Add Book</h1>
+    	<!-- <h1 class="h3 mb-4 text-gray-800">Add Book</h1> -->
 
         <form method="POST" id="bookForm">
             <?php if (session()->getFlashdata('msg') == "New Book Added Successfully.") : ?>
@@ -15,7 +15,14 @@
                 </div>
                 <?php session()->remove('msg'); ?>
             <?php endif; ?>            
-            <div class="row">
+        <div class="card shadow mb-2">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                 <h6 class="m-0 font-weight-bold text-primary">Add Book</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+
    <!--         <div class="form-group col-md-5">
                     <label>Serial No</label>
                     <input type="text" class="form-control" value="< ?php if(isset($Book)){ echo $Book['sno']; } ?>" name="snoid">
@@ -63,5 +70,10 @@
             </form>
         </div>
     </div>
+</div>
+<br>
+<br>
+<br>
+
 
 
