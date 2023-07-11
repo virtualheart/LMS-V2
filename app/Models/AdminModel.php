@@ -27,7 +27,7 @@ class AdminModel extends Model{
         $result = $this->where('id', $id)->set($data)->update();
         // return $this->affectedRows() > 0;
         return $result;
-}
+    }
 
 }
 

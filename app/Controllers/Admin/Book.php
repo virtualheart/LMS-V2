@@ -117,7 +117,7 @@ class Book extends BaseController
             }
 
             $data = [
-                'Book' => $this->booksModel->getBookDetiles($bookId),
+                'Book' => $this->booksModel->getBookDetail($bookId),
             ];
 
 

@@ -29,7 +29,7 @@ class Dashboard extends BaseController
             'totalBooks' => $this->bookModel->getTotalBooks(),
             'totalStudents' => $this->studentModel->getTotalStudents(),
             'totalFine' => $this->barrowBooksModel->getFineAmount($session->get("id"),$session->get("role")),
-            'barrowBooks' => $this->barrowBooksModel->getBarrowedBookbyUser($session->get("id"),$session->get("role")),
+            'books' => $this->barrowBooksModel->getBarrowedBookbyUser($session->get("id"),$session->get("role")),
         ];
 
         echo view('Others/header');

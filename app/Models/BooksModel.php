@@ -35,7 +35,7 @@ class BooksModel extends Model{
         // return $this->findAll();
     }
 
-    public function getBookDetiles($id)
+    public function getBookDetail($id)
     {
         return $this->where('bid',$id)->first();
     }

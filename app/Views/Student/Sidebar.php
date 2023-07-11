@@ -317,12 +317,12 @@ $uri = uri_string();
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$session->get('name')?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="<?php if (false){ } else { echo base_url()."/assets/admin.png"; } ?>">
+                                    src="<?php if ($session->get('image')){ echo base_url().$session->get('image'); } else { echo base_url()."/assets/admin.png"; } ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="<?=site_url('Admin/Profile')?>">
+                                <a class="dropdown-item" href="<?=site_url('Student/Profile')?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

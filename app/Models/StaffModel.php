@@ -12,7 +12,7 @@ class StaffModel extends Model{
         'sname',
         'semail',
         'did',
-        'id',  // designation id(modify database in future)
+        'designid',
         'contact',
         'gender',
         'image',
@@ -26,10 +26,18 @@ class StaffModel extends Model{
     public function getStaffProfile($id){
         $result = $this->where('sid',$id)->first();
         return $result;
-
-        // $query = $this->where('id', $id)->get();
-        // $results = $query->getResultArray();
-
     }
+
+    public function updateProfile($id, $apass, $amail) {
+        $data = [
+            'apass' => $apass,
+            'a_mail' => $amail
+        ];
+
+        $result = $this->where('id', $id)->set($data)->update();
+        // return $this->affectedRows() > 0;
+        return $result;
+    }
+
 
 }

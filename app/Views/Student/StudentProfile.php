@@ -25,7 +25,7 @@
 						<?php endif; ?>
 	
                     <label>Username</label>
-					<input type="text" class="form-control"placeholder='user' value="<?=$profile['aname']?>" name="aname" readonly='yes'>
+					<input type="text" class="form-control"placeholder='user' value="<?=$profile['regno']?>" name="aname" readonly='yes'>
 				</div>
 
                 <div class="form-group">
@@ -40,7 +40,7 @@
 
                 <div class="form-group">
 					<label>mail</label>
-					<input type="text" placeholder="admin@gmail.com" class="form-control"  name="amail" value="<?=$profile['a_mail']?>" required>
+					<input type="text" placeholder="admin@gmail.com" class="form-control"  name="amail" value="<?=$profile['stemail']?>" required>
 				</div>
 
                 <div class=" form-group col-md-5"style="position:relative;top:30px;">

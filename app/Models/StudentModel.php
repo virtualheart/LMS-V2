@@ -25,6 +25,21 @@ class StudentModel extends Model{
         return $this->countAllResults();
     }
 
+   public function getProfile($id){
+        $result = $this->where('st_id',$id)->first();
+        return $result;
+    }
+
+    public function updateProfile($id, $apass, $amail) {
+        $data = [
+            'apass' => $apass,
+            'a_mail' => $amail
+        ];
+
+        $result = $this->where('id', $id)->set($data)->update();
+        // return $this->affectedRows() > 0;
+        return $result;
+    }
 
 
 }   

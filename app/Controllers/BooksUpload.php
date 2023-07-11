@@ -84,8 +84,8 @@ private function processFile($filePath)
             $price = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
             $alamara = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
             $rack = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $status = filter_var($worksheet->getCellByColumnAndRow(10, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $sstatus = filter_var($worksheet->getCellByColumnAndRow(11, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $status = 1;
+            $sstatus = 1;
 
             $data[] = [
                 'sno' => $sno,
@@ -106,7 +106,7 @@ private function processFile($filePath)
 
         return true;
     } catch (Exception $e) {
-        session()->setFlashdata('msg',$e);
+        // session()->setFlashdata('msg',$e);
         return false;
     }
 }

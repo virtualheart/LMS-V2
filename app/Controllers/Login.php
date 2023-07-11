@@ -72,6 +72,7 @@ class Login extends BaseController
                     'name' => $data['sname'],
                     'email' => $data['stemail'],
                     'role' => $data['role'],
+                    'image' => $data['image'],
                     'isLoggedIn' => true
                 ]);
 
@@ -119,9 +120,10 @@ class Login extends BaseController
                 $session->set([
                     'id' => $data['sid'],
                     'regno' => $data['regno'],
-                    'sname' => $data['sname'],
-                    'semail' => $data['semail'],
+                    'name' => $data['sname'],
+                    'email' => $data['semail'],
                     'role' => $data['role'],
+                    'image' => $data['image'],
                     'isLoggedIn' => true
                 ]);
 
