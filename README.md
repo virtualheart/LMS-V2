@@ -4,13 +4,17 @@
 
 We are using to CodeIgniter 4 Framework
 
-first time need to be run composer🪗(install composer from offical <a href="https://getcomposer.org/">site</a>)
+- first time need to be run composer🪗(install composer from offical <a href="https://getcomposer.org/">site</a>)
 
-    composer update
+        composer update
+
+- config(Edit, Like DataBase, ENVIRONMENT) .env file,in your favorite editer
 
 Library management system version-1 avaliable <a href="https://github.com/virtualheart/LMS">here </a>
  (V1 based on core PHP)
 <br>
+
+
  <b>Thanks</b>
  
  Template by 🙏 Start Bootstrap - <a href="https://startbootstrap.com/theme/sb-admin-2/">SB Admin 2</a>.
