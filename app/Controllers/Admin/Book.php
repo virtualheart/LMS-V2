@@ -9,8 +9,6 @@ class Book extends BaseController
     public function __construct()
     {
         $this->booksModel = new BooksModel();
-
-
     }
         
     public function book($activity,$bookId)
@@ -121,7 +119,15 @@ class Book extends BaseController
             echo view('Admin/AdminBook',$data);
             echo view('Others/fooder');
 
-        } 
+        }elseif ($activity=="Ajax") {
+
+            $response = $this->booksModel->getBookDetail($bookId);
+
+            $jsonResponse = json_encode($response);
+
+            return $this->response->setJSON($jsonResponse);
+
+        }
     }
 
 }

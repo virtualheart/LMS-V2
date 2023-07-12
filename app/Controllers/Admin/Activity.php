@@ -6,8 +6,15 @@ use App\Models\BooksModel;
 
 class Activity extends BaseController
 {
+    public function __construct()
+    {
+
+    }
+
     public function Barrow()
     {
+        $session = session();
+
         if ($session->get('role')!="admin") {
             return redirect()->to('/');
         }
@@ -24,6 +31,7 @@ class Activity extends BaseController
 
     public function Return()
     {
+        $session = session();
         if ($session->get('role')!="admin") {
             return redirect()->to('/');
         }

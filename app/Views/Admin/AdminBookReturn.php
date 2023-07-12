@@ -25,61 +25,61 @@
 
                 <div class="form-group col-md-5">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bcode']; } ?>" name="bcode" autocomplete="off"required>
+                    <input type="text" class="form-control" value="<" name="bcode" autocomplete="off"required>
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Reg Number</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bcode']; } ?>" name="bcode" readonly="true">
+                    <input type="text" class="form-control" value="" name="bcode" readonly="true">
                 </div>
                 <div class="form-group col-md-5">
                     <label>Std/Staff Name</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bcode']; } ?>" name="bcode" readonly="true">
+                    <input type="text" class="form-control" value="" name="bcode" readonly="true">
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Book No</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bno']; } ?>" name="bno" readonly="true">
+                    <input type="text" class="form-control" value="" name="bno" readonly="true">
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Title</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['title']; } ?>" name="title" readonly="true">
+                    <input type="text" class="form-control" value="" name="title" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Author Name</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['aname']; } ?>" name="aname" readonly="true">
+                    <input type="text" class="form-control" value="" name="aname" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Publication</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['publication']; } ?>" name="publication" readonly="true">
+                    <input type="text" class="form-control" value="" name="publication" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Fine</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['price']; } ?>" name="price" readonly="true">
+                    <input type="text" class="form-control" value="" name="price" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Alamara</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['alamara']; } ?>" name="alamara" readonly="true">
+                    <input type="text" class="form-control" value="" name="alamara" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Rack</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['rack']; } ?>" name="rack" readonly="true"> 
+                    <input type="text" class="form-control" value="" name="rack" readonly="true"> 
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Request Date</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['rack']; } ?>" name="rack" readonly="true"> 
+                    <input type="text" class="form-control" value="" name="rack" readonly="true"> 
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Returned Date</label>
-                    <input type="text" class="form-control" value="<?php echo date("d-m-Y"); ?>" name="rack" readonly="true"> 
+                    <input type="text" class="form-control" value=""> 
                 </div>
                 
                 <div class=" form-group col-md-5"style="position:relative;top:30px;">

@@ -1,7 +1,7 @@
 <?= view('Admin/Adminsidebar') ?>
 
 	<div class="container-fluid">
-    	<!-- <h1 class="h3 mb-4 text-gray-800">Add Book</h1> -->
+    	<!-- <h1 class="h3 mb-4 text-gray-800">Barrow Book</h1> -->
 
         <form method="POST" id="bookForm">
             <?php if (session()->getFlashdata('msg') == "New Book Added Successfully.") : ?>
@@ -17,7 +17,7 @@
             <?php endif; ?>            
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                 <h6 class="m-0 font-weight-bold text-primary">Add Book</h6>
+                 <h6 class="m-0 font-weight-bold text-primary">Barrow Book</h6>
             </div>
 
             <div class="card-body">
@@ -25,37 +25,37 @@
 
                 <div class="form-group col-md-5">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bcode']; } ?>" name="bcode" required>
+                    <input type="text" class="form-control" value="GACCS20200002" name="bcode" required autocomplete="off" onkeyup="getDetail(this.value)">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Book No</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bno']; } ?>" name="bno" readonly="true">
+                    <input type="text" class="form-control" value="" name="bno" id="bno" readonly="true">
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Title</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['title']; } ?>" name="title" readonly="true">
+                    <input type="text" class="form-control" value="" name="title" id="title" readonly="true">
                 </div>
                 <div class="form-group col-md-5">
                     <label>Author Name</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['aname']; } ?>" name="aname" readonly="true">
+                    <input type="text" class="form-control" value="" name="aname" id="aname" readonly="true">
                 </div>
                 <div class="form-group col-md-5">
                     <label>Publication</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['publication']; } ?>" name="publication" readonly="true">
+                    <input type="text" class="form-control" value="" name="publication" id="publication" readonly="true">
                 </div>
                 <div class="form-group col-md-5">
                     <label>Price</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['price']; } ?>" name="price" readonly="true">
+                    <input type="text" class="form-control" value="" name="price" id="price" readonly="true">
                 </div>
                 <div class="form-group col-md-5">
                     <label>Alamara</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['alamara']; } ?>" name="alamara" readonly="true">
+                    <input type="text" class="form-control" value="" name="alamara" id="alamara" readonly="true">
                 </div>
                 <div class="form-group col-md-5">
                     <label>Rack</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['rack']; } ?>" name="rack" readonly="true"> 
+                    <input type="text" class="form-control" value="" name="rack" id="rack" readonly="true"> 
                 </div>
                 <div class=" form-group col-md-5"style="position:relative;top:30px;">
                     <label></label>

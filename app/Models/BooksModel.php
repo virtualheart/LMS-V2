@@ -35,7 +35,9 @@ class BooksModel extends Model{
 
     public function getBookDetail($id)
     {
-        return $this->where('bid',$id)->first();
+        return $this->where('bid',$id)
+                    ->orWhere('bcode', $id)
+                    ->first();
     }
 
     public function insertBooks($data)

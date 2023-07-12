@@ -139,14 +139,6 @@ $(document).ready(function() {
 //   });
 // });
 
-function showpwd() {
-  var x = document.getElementById("apass");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
 
 // Datatables 
 $(document).ready(function() {
@@ -179,6 +171,49 @@ $(document).ready(function() {
 //     e.preventDefault();
 //   }
 // });
+
+function showpwd() {
+  var x = document.getElementById("apass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+function getDetail(str) {
+    if (str.length !== 13) {
+        clearFormFields();
+        return;
+    }
+
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            const info = JSON.parse(this.responseText);
+            updateFormFields(info);
+        }
+    };
+
+    xmlhttp.open("GET", `<?php echo site_url('Admin/Book/book/Ajax/'); ?>${str}`, true);
+    xmlhttp.send();
+}
+
+function updateFormFields(info) {
+    const fieldIds = ["bno", "title", "aname", "publication","alamara","price","rack"];
+    fieldIds.forEach((fieldId) => {
+        document.getElementById(fieldId).value = info[fieldId];
+    });
+}
+
+function clearFormFields() {
+    const fieldIds = ["bno", "title", "aname", "publication","alamara","price","rack"];
+    fieldIds.forEach((fieldId) => {
+        document.getElementById(fieldId).value = "";
+    });
+}
+
+
 
 </script>
 </body>
