@@ -1,7 +1,7 @@
 <?= view('Admin/Adminsidebar') ?>
 
 	<div class="container-fluid">
-    	<h1 class="h3 mb-4 text-gray-800">List Books</h1>
+    	<h1 class="h3 mb-4 text-gray-800">Status Books</h1>
 
                         <div class="card-body">
                             <div class="table-responsive">
@@ -14,11 +14,9 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Price</th>
                                             <th>Alamara</th>
                                             <th>Rack</th>
-                                            <th>Update</th>
-                                            <!-- <th>Delete</th> -->
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -29,11 +27,9 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Price</th>
                                             <th>Alamara</th>
                                             <th>Rack</th>
-                                            <th>Update</th>
-                                            <!-- <th>Delete</th> -->
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
 
@@ -44,15 +40,20 @@
 
                                         <tr>
                                             <td><?=$i; ?></td>
-                                            <td><?=$books['bno']; ?></td>
                                             <td><?=$books['bcode']; ?></td>
+                                            <td><?=$books['bno']; ?></td>
                                             <td><?=$books['title']; ?></td>
                                             <td><?=$books['aname']; ?></td>
                                             <td><?=$books['publication']; ?></td>
-                                            <td><?=$books['price']; ?></td> 
                                             <td><?=$books['alamara']; ?></td>
-                                            <td><?=$books['rack']; ?></td> 
-                                            <td><a class='btn btn-success' href='<?=site_url("Admin/Book/book/Update/").$books['bid']; ?>' ><i class='fa fa-edit'></i></a></td> 
+                                            <td><?=$books['rack']; ?></td>
+    
+                                            <?php if($books['status'] == 1){ ?>
+                                                <td><a class='btn btn-success' href='#' tooltip="Unavaliable" ><i class='fa fa-check'></i></a></td> 
+                                            <?php } else{ ?>
+                                                <td><a class='btn btn-danger' href='<?=site_url("#").$books['bid']; ?>' title="Book Unavaliable, click to Requested the Holder." ><i class='fa fa-ban'></i></a></td> 
+                                            <?php } ?> 
+    
                                         </tr>         
 
         							<?php $i++; endforeach; ?>

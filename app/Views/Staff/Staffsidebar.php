@@ -51,12 +51,12 @@ $session = session();
                     <i class="fa fa-universal-access"></i>
                     <span>Libary activity</span>
                 </a>
-                <div id="collapseactivity" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="#" || $uri=="#" || $uri=="books/status") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Book Entry:</h6> -->
                         <a class="collapse-item" href="#">Book Barrow</a>
                         <a class="collapse-item" href="#">Book Return</a>
-                        <a class="collapse-item" href="#">Books Status</a>
+                        <a class="collapse-item" href="<?=site_url('books/status') ?>">Books Status</a>
                     </div>
                 </div>
             </li>

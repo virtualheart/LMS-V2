@@ -7,7 +7,6 @@ class BooksModel extends Model{
     protected $primaryKey = 'bid';
     
     protected $allowedFields = [
-        'sno',
         'bno',
         'bcode',
         'title',
@@ -17,7 +16,6 @@ class BooksModel extends Model{
         'alamara',
         'rack',
         'status',
-        'sstatus'
     ];
 
     public function getTotalBooks()
@@ -27,7 +25,7 @@ class BooksModel extends Model{
 
     public function getBooksList()
     {
-        $query = $this->where('status', 0)->limit(500)->get();
+        $query = $this->where('status', 0)->limit(50)->get();
         $results = $query->getResultArray();
 
         return $results;

@@ -24,7 +24,6 @@ class Book extends BaseController
         if ($activity=="Add") {
 
             if ($this->request->getMethod() === 'post') {
-                // $sno
                 $bno = $this->request->getPost('bno');
                 $bcode = $this->request->getPost('bcode');
                 $title = $this->request->getPost('title');
@@ -37,7 +36,6 @@ class Book extends BaseController
                 $validation = \Config\Services::validation();
 
                 $validation->setRules([
-                    'sno' => 'required',
                     'bno' => 'required',
                     'bcode' => 'required',
                     'title' => 'required',
@@ -48,10 +46,8 @@ class Book extends BaseController
                     'rack' => 'required',
                 ]);
 
-                $sno = $this->booksModel->getTotalBooks()+1;
 
                 $data = [
-                    'sno' => $sno,  
                     'bno' => $bno, 
                     'bcode' => $bcode, 
                     'title' => $title, 
@@ -89,7 +85,6 @@ class Book extends BaseController
                 $validation = \Config\Services::validation();
 
                 $validation->setRules([
-                    'sno' => 'required',
                     'bno' => 'required',
                     'bcode' => 'required',
                     'title' => 'required',
@@ -128,10 +123,4 @@ class Book extends BaseController
         } 
     }
 
-    public function Barrow(){
-        echo view('Others/header');
-        echo view('Admin/AdminBarrowBook');
-        echo view('Others/fooder');
-
-    }
 }

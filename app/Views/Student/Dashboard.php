@@ -97,8 +97,8 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Alamara</th>
-                                            <th>Rack</th>
+                                            <!-- <th>Alamara</th> -->
+                                            <!-- <th>Rack</th> -->
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -108,8 +108,8 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Alamara</th>
-                                            <th>Rack</th>
+                                            <!-- <th>Alamara</th> -->
+                                            <!-- <th>Rack</th> -->
                                         </tr>
                                     </tfoot>
 
@@ -124,8 +124,8 @@
                                             <td><?=$books['title']; ?></td>
                                             <td><?=$books['aname']; ?></td>
                                             <td><?=$books['publication']; ?></td>
-                                            <td><?=$books['alamara']; ?></td>
-                                            <td><?=$books['rack']; ?></td> 
+                                            <!-- <td>< ?=$books['alamara']; ?></td> -->
+                                            <!-- <td>< ?=$books['rack']; ?></td>  -->
                                         </tr>         
 
                                     <?php $i++; endforeach; ?>

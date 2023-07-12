@@ -13,7 +13,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total Books</div>
+                                                <a href="<?=site_url('admin/Activity/status');?>" class="text-primary">Total Books</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalBooks ?></div>
                                         </div>
                                         <div class="col-auto">
@@ -31,7 +31,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Barrow</div>
+                                                <a href="<?=site_url('#');?>" class="text-success">Total Barrow</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$barrowBooks?></div>
                                         </div>
                                         <div class="col-auto">
@@ -49,7 +49,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Total Staff</div>
+                                                <a href="<?=site_url('#');?>" class="text-info">Total Staff</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalStaff?></div>
                                         </div>
                                         <div class="col-auto">
@@ -68,7 +68,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Total Students</div>
+                                                <a href="<?=site_url('#');?>" class="text-warning">Total Students</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalStudents?></div>
                                         </div>
                                         <div class="col-auto">

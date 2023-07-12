@@ -19,6 +19,10 @@ class BooksUpload extends BaseController
 
     public function upload()
     {
+        if ($session->get('role')!="admin") {
+            return redirect()->to('/');
+        }
+        
         $file = $this->request->getFile('file');
 
         if ($file->isValid() && !$file->hasMoved()) {
@@ -75,7 +79,6 @@ private function processFile($filePath)
         $data = [];
 
         for ($row = 2; $row <= $higestRow; $row++) {
-            $sno = filter_var($worksheet->getCellByColumnAndRow(1, $row)->getValue(), FILTER_SANITIZE_STRING);
             $bno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
             $bcode = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
             $title = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
@@ -85,10 +88,8 @@ private function processFile($filePath)
             $alamara = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
             $rack = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
             $status = 1;
-            $sstatus = 1;
 
             $data[] = [
-                'sno' => $sno,
                 'bno' => $bno,
                 'bcode' => $bcode,
                 'title' => $title,
@@ -98,7 +99,6 @@ private function processFile($filePath)
                 'alamara' => $alamara,
                 'rack' => $rack,
                 'status' => $status,
-                'sstatus' => $sstatus
             ];
         }
 

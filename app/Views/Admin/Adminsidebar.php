@@ -54,12 +54,12 @@ $uri = uri_string();
                     <i class="fa fa-universal-access"></i>
                     <span>Libary activity</span>
                 </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return" || $uri=="books/status") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Book Barrow</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Book Return</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Books Status</a>
+                        <a class="collapse-item <?php if($uri=="admin/Activity/barrow") echo "active"; ?>" href="<?=site_url('admin/Activity/barrow') ?>">Book Barrow</a>
+                        <a class="collapse-item <?php if($uri=="admin/Activity/return") echo "active"; ?>" href="<?=site_url('admin/Activity/return') ?>">Book Return</a>
+                        <a class="collapse-item <?php if($uri=="books/status") echo "active"; ?>" href="<?=site_url('books/status') ?>">Books Status</a>
                     </div>
                 </div>
             </li>
@@ -76,6 +76,28 @@ $uri = uri_string();
                         <a class="collapse-item <?php if($uri=="admin/Uploadbooks") echo "active"; ?>" href="<?=site_url('admin/Uploadbooks')?>">Upload Books</a>
                         <a class="collapse-item <?php if($uri=="Admin/Book/book/Add/New") echo "active"; ?>" href="<?=site_url('Admin/Book/book/Add/New')?>">Add Books</a>
                         <a class="collapse-item <?php if($uri=="admin/ViewAllBooks") echo "active"; ?>" href="<?=site_url('admin/ViewAllBooks')?>">View/Edit Books</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                User's
+            </div>
+
+            <li class="nav-item <?php if($uri=="#" || $uri=="#") echo "active"; ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseManage"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-user"></i>
+                    <span>Manage users</span>
+                </a>
+                <div id="collapseManage" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- <h6 class="collapse-header">Book Entry:</h6> -->
+                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Staffs</a>
+                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Students</a>
                     </div>
                 </div>
             </li>
