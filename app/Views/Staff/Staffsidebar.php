@@ -5,6 +5,8 @@ $settingsModel = new SettingsModel();
 $appLogo = $settingsModel->getAppLogo();
 
 $session = session();
+$uri = uri_string();
+
 ?>
 
 <!--  

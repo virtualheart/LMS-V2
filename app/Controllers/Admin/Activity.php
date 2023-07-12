@@ -16,6 +16,7 @@ class Activity extends BaseController
 
         }
 
+        helper(['form']);
         echo view('Others/header');
         echo view('Admin/AdminBookBarrow');
         echo view('Others/fooder');
@@ -30,7 +31,8 @@ class Activity extends BaseController
         if($this->request->getMethod() === 'post'){
 
         }
-
+        
+        helper(['form']);
         echo view('Others/header');
         echo view('Admin/AdminBookReturn');
         echo view('Others/fooder');

@@ -12,13 +12,13 @@
                             <?php session()->remove('msg'); ?>                          
                     <?php endif;?>
                             <label>User Name</label>
-                            <input type="text" class="form-control" name="username" placeholder="Username">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
                         </div>
                          <div class="form-group">
                             <label>Password</label>
                         <div class="input-group">
                             
-                            <input type="password" class="form-control" name="password" id="apass" placeholder="Password">
+                            <input type="password" class="form-control" name="password" id="apass" placeholder="Password" required>
                             <span class="input-group-btn">
                                 <button class="btn btn-default reveal" type="button" onclick="showpwd()"><i class="fa fa-eye"></i></button>
                             </span>
@@ -29,20 +29,9 @@
                         <div class="form-group pull-right">
                             <input type="submit" class="btn btn-success" value="Login" id="log" name="login">
                             <input type="reset" class="btn btn-danger" value="Clear">
+                            <br>
+                            <br>
                         </div>                      
                     </div>              
                 </form>
             </div>
-    </body> 
-</html>
-
-<script type="text/javascript">
-function showpwd() {
-  var x = document.getElementById("apass");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script>

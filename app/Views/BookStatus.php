@@ -51,7 +51,7 @@
                                             <?php if($books['status'] == 1){ ?>
                                                 <td><a class='btn btn-success' href='#' tooltip="Unavaliable" ><i class='fa fa-check'></i></a></td> 
                                             <?php } else{ ?>
-                                                <td><a class='btn btn-danger' href='<?=site_url("#").$books['bid']; ?>' title="Book Unavaliable, click to Requested the Holder." ><i class='fa fa-ban'></i></a></td> 
+                                                <td><a class='btn btn-danger' href='<?=site_url("#").$books['bid']; ?>' title="Book Unavaliable, click to Request the Holder." ><i class='fa fa-ban'></i></a></td> 
                                             <?php } ?> 
     
                                         </tr>         

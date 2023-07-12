@@ -66,6 +66,7 @@ class Book extends BaseController
 
             }
 
+            helper(['form']);
             echo view('Others/header');
             echo view('Admin/AdminBook');
             echo view('Others/fooder');
@@ -115,7 +116,7 @@ class Book extends BaseController
                 'Book' => $this->booksModel->getBookDetail($bookId),
             ];
 
-
+            helper(['form']);
             echo view('Others/header');
             echo view('Admin/AdminBook',$data);
             echo view('Others/fooder');

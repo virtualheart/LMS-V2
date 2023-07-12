@@ -56,7 +56,7 @@ class Profile extends BaseController
             'profile' => $this->adminModel->getAdminProfile($session->get('id')),
         ];
 
-
+        helper(['form']);
         echo view('Others/header');
         echo view('Admin/AdminProfile',$data);
         echo view('Others/fooder');

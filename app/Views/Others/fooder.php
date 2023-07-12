@@ -139,6 +139,14 @@ $(document).ready(function() {
 //   });
 // });
 
+function showpwd() {
+  var x = document.getElementById("apass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
 
 // Datatables 
 $(document).ready(function() {
