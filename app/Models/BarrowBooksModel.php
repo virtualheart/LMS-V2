@@ -37,7 +37,7 @@ class BarrowBooksModel extends Model{
          **/
 
         $this->select('IFNULL(SUM(GREATEST(DATEDIFF(CURDATE(), return_date), 0) * se.fine),0) AS total_fine');
-        $this->join('settings se','se.id=1','left'); 
+        $this->join('settings se','1=1'); 
         $this->where('sid', $id);
         $this->where('role', $role);
         $result = $this->get();
@@ -47,13 +47,14 @@ class BarrowBooksModel extends Model{
 
     public function getBarrowBookDetails($bcode)
     {
-        $query = $this->select('sbb.sid, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, se.fine')
+        $query = $this->select('sbb.sid, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sb.alamara, sb.rack, sb.price,sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, se.fine')
             ->join('books sb', 'sb.bid = sbb.bid')
-            ->join('settings se')
+            ->join('settings se','1=1')
             ->where('sb.bcode', $bcode)
             ->get();
 
-        return $query->getResult();
+        // return $query->getResult();
+        return $query->getRow();
     }
 }
 

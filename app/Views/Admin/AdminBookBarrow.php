@@ -25,8 +25,20 @@
 
                 <div class="form-group col-md-5">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="GACCS20200002" name="bcode" required autocomplete="off" onkeyup="getDetail(this.value)">
+                    <input type="text" class="form-control" value="GACCS20200002" name="bcode" required autocomplete="off" onkeyup="getDetailBarrow(this.value)">
                 </div>
+
+                <div class="form-group col-md-5">
+                    <label>Reg Number</label>
+                    <input type="text" class="form-control" value="" name="regno" id="regno" onkeyup="getUserDetile(this.value)">
+                </div>
+                
+                <div class="form-group col-md-5">
+                    <label>Std/Staff Name</label>
+                    <input type="text" class="form-control" value="" name="sname" id="sname" readonly="true">
+
+                </div>
+
 
                 <div class="form-group col-md-5">
                     <label>Book No</label>

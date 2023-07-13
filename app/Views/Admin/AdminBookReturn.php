@@ -25,61 +25,61 @@
 
                 <div class="form-group col-md-5">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="<" name="bcode" autocomplete="off"required>
+                    <input type="text" class="form-control" value="GACCS20200002" name="bcode" autocomplete="off" onkeyup="getDetailReturn(this.value)" required>
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Reg Number</label>
-                    <input type="text" class="form-control" value="" name="bcode" readonly="true">
+                    <input type="text" class="form-control" value="" name="regno" id="regno" readonly="true">
                 </div>
                 <div class="form-group col-md-5">
                     <label>Std/Staff Name</label>
-                    <input type="text" class="form-control" value="" name="bcode" readonly="true">
+                    <input type="text" class="form-control" value="" name="sname" id="sname" readonly="true">
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Book No</label>
-                    <input type="text" class="form-control" value="" name="bno" readonly="true">
+                    <input type="text" class="form-control" value="" name="bno" id="bno" readonly="true">
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Title</label>
-                    <input type="text" class="form-control" value="" name="title" readonly="true">
+                    <input type="text" class="form-control" value="" name="title" id="title" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Author Name</label>
-                    <input type="text" class="form-control" value="" name="aname" readonly="true">
+                    <input type="text" class="form-control" value="" name="aname" id="aname" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Publication</label>
-                    <input type="text" class="form-control" value="" name="publication" readonly="true">
+                    <input type="text" class="form-control" value="" name="publication" id="publication" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Fine</label>
-                    <input type="text" class="form-control" value="" name="price" readonly="true">
+                    <input type="text" class="form-control" value="" name="price" id="price" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Alamara</label>
-                    <input type="text" class="form-control" value="" name="alamara" readonly="true">
+                    <input type="text" class="form-control" value="" name="alamara" id="alamara" readonly="true">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Rack</label>
-                    <input type="text" class="form-control" value="" name="rack" readonly="true"> 
+                    <input type="text" class="form-control" value="" name="rack" id="rack" readonly="true"> 
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Request Date</label>
-                    <input type="text" class="form-control" value="" name="rack" readonly="true"> 
+                    <input type="text" class="form-control" value="" name="request_date" id="request_date" readonly="true"> 
                 </div>
 
                 <div class="form-group col-md-5">
                     <label>Returned Date</label>
-                    <input type="text" class="form-control" value=""> 
+                    <input type="text" class="form-control" value="<?=date("d-m-Y"); ?>" readonly="true"> 
                 </div>
                 
                 <div class=" form-group col-md-5"style="position:relative;top:30px;">
