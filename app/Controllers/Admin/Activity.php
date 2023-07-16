@@ -15,7 +15,7 @@ class Activity extends BaseController
         $this->otherModel = new OtherModel();
     }
 
-    public function Barrow()
+    public function Barrow($var = null)
     {
         $session = session();
 
@@ -68,6 +68,7 @@ class Activity extends BaseController
             if ($book['status']==1) {
 
                 if($this->barrowbooksModel->setBarroeBook($data)){
+                    $this->booksModel->updateBook($book['bid'],['status' => 0]);
                     $session->setFlashdata('msg', 'Book Barrowed.');
                 } else{
                     $session->setFlashdata('msg', 'Book Barrowed Failed.');
@@ -78,10 +79,17 @@ class Activity extends BaseController
             }
         }
 
-        helper(['form']);
-        echo view('Others/header');
-        echo view('Admin/AdminBookBarrow');
-        echo view('Others/fooder');
+            helper(['form']);
+            echo view('Others/header');
+        if($var==null){
+            echo view('Admin/AdminBookBarrow');
+        } else{
+             $data = [
+            'BooksData' => $this->booksModel->getBookDetail($var),
+        ];
+            echo view('Admin/AdminBookBarrowA',$data);
+        }
+            echo view('Others/fooder');
     }
 
     public function Return()
