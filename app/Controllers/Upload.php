@@ -4,21 +4,24 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BooksModel;
+use App\Models\StudentModel;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
-class BooksUpload extends BaseController
+class Upload extends BaseController
 {
     protected $booksModel;
 
     public function __construct()
     {
         $this->booksModel = new BooksModel();
+        $this->studentModel = new StudentModel();
     }
 
-    public function upload()
+    public function upload($activity)
     {
+        $session = session();
         if ($session->get('role')!="admin") {
             return redirect()->to('/');
         }
@@ -33,7 +36,12 @@ class BooksUpload extends BaseController
             $destination = WRITEPATH . 'uploads/';
             $file->move($destination);
 
-            $data = $this->processFile($destination.'/'.$file->getName());
+            if ($activity=="Book") {
+                $data = $this->BookprocessFile($destination.'/'.$file->getName());
+            } elseif($activity == "Student") {
+                $data = $this->StudentprocessFile($destination.'/'.$file->getName());
+            }
+
 
             if ($data !== false) {
                 // File processed successfully
@@ -69,7 +77,7 @@ class BooksUpload extends BaseController
         return $newName;
     }
 
-private function processFile($filePath)
+private function BookprocessFile($filePath)
 {
     try {
         $spreadsheet = IOFactory::load($filePath);
@@ -103,6 +111,56 @@ private function processFile($filePath)
         }
 
         $this->booksModel->insertBooks($data);
+
+        return true;
+    } catch (Exception $e) {
+        // session()->setFlashdata('msg',$e);
+        return false;
+    }
+}
+
+private function StudentprocessFile($filePath)
+{
+    try {
+        $spreadsheet = IOFactory::load($filePath);
+        $worksheet = $spreadsheet->getActiveSheet();
+
+        $higestRow = $worksheet->getHighestRow();
+        $data = [];
+
+        for ($row = 2; $row <= $higestRow; $row++) {
+
+            $regno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $sname = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $spass = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $gender = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $stemail = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $Contact = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $did = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $year = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $shift = filter_var($worksheet->getCellByColumnAndRow(10, $row)->getValue(), FILTER_SANITIZE_STRING);
+            
+            if($gender == "boy" || $gender == "Boy")
+                $image = "assets/student/boy.png";
+            elseif($gender == "Girl" || $gender == "girl")
+                $image = 'assets/student/girl.png';
+            
+            $data[] = [
+                'regno' => $regno,
+                'sname' => $sname,
+                'spass' => password_hash($spass, PASSWORD_DEFAULT),
+                'gender' => $gender,
+                'stemail' => $stemail,
+                'Contact' => $Contact,
+                'did' => $did,
+                'year' => $year,
+                'shift' => $shift,
+                'image' => $image,
+                'role' => "student",
+            ];
+        }
+
+        $this->studentModel->insertBooks($data);
 
         return true;
     } catch (Exception $e) {

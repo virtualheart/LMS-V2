@@ -54,7 +54,7 @@ $uri = uri_string();
                     <i class="fa fa-universal-access"></i>
                     <span>Libary activity</span>
                 </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return" || $uri=="books/status") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Book Entry:</h6> -->
                         <a class="collapse-item <?php if($uri=="admin/Activity/barrow") echo "active"; ?>" href="<?=site_url('admin/Activity/barrow') ?>">Book Barrow</a>
@@ -71,7 +71,7 @@ $uri = uri_string();
                     <i class="fa fa-book"></i>
                     <span>Books</span>
                 </a>
-                <div id="collapseBooks" class="collapse <?php if($uri=="admin/Uploadbooks" || $uri=="Admin/Book/book/Add/New" || $uri=="admin/ViewAllBooks") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseBooks" class="collapse <?php if($uri=="admin/Uploadbooks" || $uri=="Admin/Book/book/Add/New") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item <?php if($uri=="admin/Uploadbooks") echo "active"; ?>" href="<?=site_url('admin/Uploadbooks')?>">Upload Books</a>
                         <a class="collapse-item <?php if($uri=="Admin/Book/book/Add/New") echo "active"; ?>" href="<?=site_url('Admin/Book/book/Add/New')?>">Add Books</a>

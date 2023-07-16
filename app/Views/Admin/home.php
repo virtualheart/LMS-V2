@@ -13,7 +13,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                <a href="<?=site_url('admin/Activity/status');?>" class="text-primary">Total Books</a></div>
+                                                <a href="<?=site_url('books/status');?>" class="text-primary">Total Books</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalBooks ?></div>
                                         </div>
                                         <div class="col-auto">

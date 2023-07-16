@@ -5,13 +5,18 @@
 
         <form method="POST" id="bookForm">
             <?php if (session()->getFlashdata('msg') == "New Book Added Successfully.") : ?>
-                <div class="alert alert-success">
+                <div class="alert alert-success alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
                 </div>
                 <?php session()->remove('msg'); ?>
             <?php elseif (session()->getFlashdata('msg') == "New Book Add Failed.") : ?>
-                <div class="alert alert-warning">
+                <div class="alert alert-warning alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+
                 </div>
                 <?php session()->remove('msg'); ?>
             <?php endif; ?>            
@@ -22,11 +27,6 @@
 
             <div class="card-body">
                 <div class="row">
-
-   <!--         <div class="form-group col-md-5">
-                    <label>Serial No</label>
-                    <input type="text" class="form-control" value="< ?php if(isset($Book)){ echo $Book['sno']; } ?>" name="snoid">
-                </div> -->
                 
                 <div class="form-group col-md-5">
                     <label>Barcode No</label>

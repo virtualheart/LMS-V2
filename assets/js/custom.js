@@ -34,7 +34,7 @@ $(document).ready(function() {
 //     var formData = new FormData(this);
 
 //     $.ajax({
-//       url: 'BooksUpload/upload', // URL to your CodeIgniter controller method for handling the upload
+//       url: 'Upload/upload/Book', // URL to your CodeIgniter controller method for handling the upload
 //       type: 'POST',
 //       data: formData,
 //       dataType: 'json',
@@ -106,29 +106,66 @@ function showpwd() {
 }
 
 function getDetailBarrow(str) {
-    const fieldIds = ["bno", "title", "aname", "publication","alamara","price","rack"];
+    const fieldIds = ["bno", "title", "aname", "publication","price"];
+
+    var submitBtn = $('#save');
 
     if (str.length !== 13) {
         clearFormFields(fieldIds);
         return;
     }
 
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            const info = JSON.parse(this.responseText);
-            updateFormFields(info,fieldIds);
-        }
-    };
+const xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+        const info = JSON.parse(this.responseText);
 
-    xmlhttp.open("GET", `${baseUrl + "/Admin/Book/book/Barrow/" + str}`, true);
-    xmlhttp.send();
+        if (info.status === "0") { 
+            const alertDiv = document.createElement("div");
+            alertDiv.className = "alert alert-warning alert-dismissible";
+            alertDiv.role = "alert";
+
+            const closeButton = document.createElement("button");
+            closeButton.type = "button";
+            closeButton.className = "close";
+            closeButton.setAttribute("data-dismiss", "alert");
+            closeButton.setAttribute("aria-label", "Close");
+
+            const closeIcon = document.createElement("span");
+            closeIcon.setAttribute("aria-hidden", "true");
+            closeIcon.innerHTML = "&times;";
+
+            closeButton.appendChild(closeIcon);
+            alertDiv.appendChild(closeButton);
+
+            const strongTag = document.createElement("strong");
+            strongTag.innerHTML = "Warning! ";
+            alertDiv.appendChild(strongTag);
+
+            const message = document.createTextNode("Please verify if the book is borrowed or unavailable in the library.");
+            alertDiv.appendChild(message);
+
+            const parentElement = document.getElementById("NoBookAlert");
+            parentElement.appendChild(alertDiv);
+
+            setTimeout(function () {
+                parentElement.removeChild(alertDiv);
+            }, 5000);
+
+        } 
+        updateFormFields(info, fieldIds);
+    }
+};
+
+xmlhttp.open("GET", `${baseUrl}/Admin/Book/book/Barrow/${str}`, true);
+xmlhttp.send();
+
 }
 
 function getDetailReturn(str) {
     const fieldIds1 = ["bno", "title", "regno","sname", "aname", "publication","alamara","price","rack","request_date"];
 
-    if (str.length !== 13) {
+    if (str.length !== 14) {
         clearFormFields(fieldIds1);
         return;
     }
@@ -148,11 +185,18 @@ function getDetailReturn(str) {
 function getUserDetile(str) {
     const fieldIds = ["sname"];
 
+    if (str.length === 0 || str === null || str === " ") {
+        clearFormFields(fieldIds1);
+        return;
+    }
+
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             const info = JSON.parse(this.responseText);
             updateFormFields(info,fieldIds);
+        } else{
+            clearFormFields(["sname"])
         }
     };
 
@@ -175,3 +219,10 @@ function clearFormFields(fieldIds) {
     });
 }
 
+$(document).ready(function() {
+  // Check if the current page is the specific page where you want to hide the sidebar
+  if (window.location.pathname.includes("/index.php/admin/ViewAllBooks") || window.location.pathname.includes("/index.php/books/status")) {
+    $("body").addClass("hide-sidebar");
+    $(".sidebar").addClass("toggled");
+  }
+});

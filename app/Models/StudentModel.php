@@ -16,7 +16,7 @@ class StudentModel extends Model{
         'did',
         'year',
         'shift',
-        'img',
+        'image',
         'role'
     ];
 
@@ -26,20 +26,23 @@ class StudentModel extends Model{
     }
 
    public function getProfile($id){
-        $result = $this->where('st_id',$id)->first();
+        $result = $this->where('st_id',$id)
+                    ->join('department','did')
+                    ->first();
         return $result;
     }
 
-    public function updateProfile($id, $apass, $amail) {
-        $data = [
-            'apass' => $apass,
-            'a_mail' => $amail
-        ];
-
-        $result = $this->where('id', $id)->set($data)->update();
+    public function updateProfile($id, $data) {
+        $result = $this->where('st_id', $id)
+                        ->set($data)
+                        ->update();
         // return $this->affectedRows() > 0;
         return $result;
     }
 
+    public function insertBooks($data)
+    {
+        $this->insertBatch($data);
+    }
 
 }   

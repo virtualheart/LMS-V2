@@ -56,5 +56,10 @@ class BarrowBooksModel extends Model{
         // return $query->getResult();
         return $query->getRow();
     }
+
+    public function setBarroeBook($data){
+        $this->insert($data);
+        return true;
+    }
 }
 

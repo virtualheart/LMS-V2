@@ -13,13 +13,17 @@
                 <div class="form-group">
                 	
                    <?php if (session()->getFlashdata('msg') == "Profile Update Successfully.") : ?>
-    						<div class="alert alert-success">
+    						<div class="alert alert-success alert-dismissible">
         						<?= session()->getFlashdata('msg') ?>
+                      			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
     						</div>
 	    					<?php session()->remove('msg'); ?>
 						<?php elseif (session()->getFlashdata('msg') == "Profile Update Failed.") : ?>
-    						<div class="alert alert-warning">
+    						<div class="alert alert-warning alert-dismissible">
         						<?= session()->getFlashdata('msg') ?>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
     						</div>
         					<?php session()->remove('msg'); ?>
 						<?php endif; ?>

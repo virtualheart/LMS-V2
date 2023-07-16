@@ -5,13 +5,17 @@
 
         <form method="POST" id="bookForm">
             <?php if (session()->getFlashdata('msg') == "New Book Added Successfully.") : ?>
-                <div class="alert alert-success">
+                <div class="alert alert-success alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
                 </div>
                 <?php session()->remove('msg'); ?>
             <?php elseif (session()->getFlashdata('msg') == "New Book Add Failed.") : ?>
-                <div class="alert alert-warning">
+                <div class="alert alert-warning alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
                 </div>
                 <?php session()->remove('msg'); ?>
             <?php endif; ?>            
@@ -25,7 +29,7 @@
 
                 <div class="form-group col-md-5">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="GACCS20200002" name="bcode" autocomplete="off" onkeyup="getDetailReturn(this.value)" required>
+                    <input type="text" class="form-control" value="" name="bcode" autocomplete="off" onkeyup="getDetailReturn(this.value)" required>
                 </div>
 
                 <div class="form-group col-md-5">
@@ -95,5 +99,3 @@
     </div>
 </div>
 </div>
-
-

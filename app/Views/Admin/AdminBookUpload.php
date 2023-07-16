@@ -12,7 +12,29 @@
   <div id="response"></div> -->
 
           <div class="card-body">
-            <form id="uploadForm" method="POST" action="<?= site_url('BooksUpload/upload') ?>"
+            <form id="uploadForm" method="POST" action="<?= site_url('Upload/upload/Book') ?>"
+              enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="fileInput">Choose File:</label>
+                <input type="file" class="form-control-file" name="file" id="fileInput">
+              </div>
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+            <br>
+            <br>
+
+      <h1 class="h3 mb-4 text-gray-800">Student Upload</h1>
+          <div id="progress" class="progress progress-sm mt-3">
+              <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!-- <div class="alert alert-warning"> -->
+              <div id="response" class="mt-3"></div>
+            <!-- </div> -->
+        </div>
+
+          <div class="card-body">
+            <form id="uploadForm" method="POST" action="<?= site_url('Upload/upload/Student') ?>"
               enctype="multipart/form-data">
               <div class="form-group">
                 <label for="fileInput">Choose File:</label>
