@@ -74,7 +74,7 @@ class Activity extends BaseController
                     $session->setFlashdata('msg', 'Book Barrowed Failed.');
                 }
             } else{
-                echo "<script>alert('Please verify if the book is borrowed or unavailable in the library')</script>";
+                // echo "<script>alert('Please verify if the book is borrowed or unavailable in the library')</script>";
                 $session->setFlashdata('msg', 'Please verify if the book is borrowed or unavailable in the library.');
             }
         }

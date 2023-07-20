@@ -40,7 +40,7 @@
 
                 <div class="form-group col-md-5">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="<?=$BooksData['bcode']?>" name="bcode" autocomplete="off" readonly="yes">
+                    <input type="text" class="form-control" value="<?=$BooksData['bcode']?>" name="bcode" autocomplete="off" readonly="yes" required>
                 </div>
 
                 <div class="form-group col-md-5">
@@ -50,19 +50,19 @@
                 
                 <div class="form-group col-md-5">
                     <label>Std/Staff Name</label>
-                    <input type="text" class="form-control" value="" name="sname" id="sname" required readonly="true">
+                    <input type="text" class="form-control" value="" name="sname" id="sname" required readonly="true" required>
 
                 </div>
 
 
                 <div class="form-group col-md-5">
                     <label>Book No</label>
-                    <input type="text" class="form-control" value="<?=$BooksData['bno']?>" name="bno" id="bno" readonly="true">
+                    <input type="text" class="form-control" value="<?=$BooksData['bno']?>" name="bno" id="bno" readonly="true" required>
                 </div>
                 
                 <div class="form-group col-md-5">
                     <label>Title</label>
-                    <input type="text" class="form-control" value="<?=$BooksData['title']?>" name="title" id="title" readonly="true">
+                    <input type="text" class="form-control" value="<?=$BooksData['title']?>" name="title" id="title" readonly="true" required>
                 </div>
                 <div class="form-group col-md-5">
                     <label>Author Name</label>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group col-md-5">
                     <label>Request Date</label>
-                    <input type="text" class="form-control" value="<?=date("d-m-Y");?>" name="reqdate" readonly="true">
+                    <input type="text" class="form-control" value="<?=date("d-m-Y");?>" name="reqdate" readonly="true" required>
                 </div>
                 <div class="form-group col-md-5">
                     <label>ETA Return Date</label>
@@ -86,7 +86,7 @@
                 </div>
                 <div class=" form-group col-md-5"style="position:relative;top:30px;">
                     <label></label>
-                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" id="save" style="margin-left:5px">                  
+                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" id="save" style="margin-left:5px" disabled>                  
                     <input type="button" class="btn btn-danger btn-md" value="Back" >
                     <br>
                     <br>
@@ -98,3 +98,22 @@
 </div>
 
 
+<!-- Clear Modal -->
+<div class="modal fade" id="clearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Clear Confirmation</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Are you sure you want to clear the form?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger" id="confirmClearButton">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>

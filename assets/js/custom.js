@@ -1,28 +1,10 @@
+let alertShown = false; 
+
 $(document).ready(function() {
     $('#confirmClearButton').click(function() {
         $('#bookForm')[0].reset();
         $('#resetButton').trigger('click');
         $('#clearModal').modal('hide');
-    });
-});
-
-$(document).ready(function() {
-    // Add event listener to password and confirm password fields
-    $('#apass, #capass').on('keyup', function() {
-        var password = $('#apass').val();
-        var confirmPassword = $('#capass').val();
-        var submitBtn = $('#save');
-
-        // Check if password and confirm password match
-        if (password === confirmPassword) {
-            $('#capass').removeClass('is-invalid');
-            $('#capass').addClass('is-valid');
-            submitBtn.prop('disabled', false); // Enable the submit button
-        } else {
-            $('#capass').removeClass('is-valid');
-            $('#capass').addClass('is-invalid');
-            submitBtn.prop('disabled', true); // Disable the submit button
-        }
     });
 });
 
@@ -105,12 +87,16 @@ function showpwd() {
   }
 }
 
+
 function getDetailBarrow(str) {
     const fieldIds = ["bno", "title", "aname", "publication","price"];
 
-    var submitBtn = $('#save');
+    // Check if the pressed key is a special key
+    if (event.key === "Alt" || event.key === "Control" || event.key === "Shift") {
+        return; // Do nothing for special keys
+    }
 
-    if (str.length !== 13) {
+    if (str.length !== 14) {
         clearFormFields(fieldIds);
         return;
     }
@@ -120,7 +106,7 @@ xmlhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
         const info = JSON.parse(this.responseText);
 
-        if (info.status === "0") { 
+        if (!alertShown && info.status === "0") { 
             const alertDiv = document.createElement("div");
             alertDiv.className = "alert alert-warning alert-dismissible";
             alertDiv.role = "alert";
@@ -148,9 +134,11 @@ xmlhttp.onreadystatechange = function () {
             const parentElement = document.getElementById("NoBookAlert");
             parentElement.appendChild(alertDiv);
 
+            alertShown = true; 
             setTimeout(function () {
                 parentElement.removeChild(alertDiv);
-            }, 5000);
+                alertShown = false;
+            }, 3000);
 
         } 
         updateFormFields(info, fieldIds);
@@ -169,7 +157,9 @@ function getDetailReturn(str) {
         clearFormFields(fieldIds1);
         return;
     }
-
+    
+    submitButton.disabled = true; 
+    
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -186,7 +176,7 @@ function getUserDetile(str) {
     const fieldIds = ["sname"];
 
     if (str.length === 0 || str === null || str === " ") {
-        clearFormFields(fieldIds1);
+        clearFormFields(fieldIds);
         return;
     }
 
@@ -196,7 +186,7 @@ function getUserDetile(str) {
             const info = JSON.parse(this.responseText);
             updateFormFields(info,fieldIds);
         } else{
-            clearFormFields(["sname"])
+            clearFormFields(fieldIds)
         }
     };
 
@@ -206,6 +196,7 @@ function getUserDetile(str) {
 
 
 function updateFormFields(info,fieldIds) {
+
     // const fieldIds = ["bno", "title", "aname", "publication","alamara","price","rack"];
     fieldIds.forEach((fieldId) => {
         document.getElementById(fieldId).value = info[fieldId];
@@ -225,4 +216,18 @@ $(document).ready(function() {
     $("body").addClass("hide-sidebar");
     $(".sidebar").addClass("toggled");
   }
+});
+
+// submit confirm 
+document.getElementById('bookForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the form from submitting directly
+
+  // Show the confirmation modal
+  $('#submitConfirmationModal').modal('show');
+
+  // When the user confirms the submission, proceed with the form submission
+  document.getElementById('confirmSubmitButton').addEventListener('click', function() {
+    $('#submitConfirmationModal').modal('hide'); // Hide the modal
+    document.getElementById('bookForm').submit(); // Proceed with the form submission
+  });
 });
