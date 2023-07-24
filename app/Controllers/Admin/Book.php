@@ -131,14 +131,16 @@ class Book extends BaseController
 
         }elseif ($activity=="Return") {
             $response = $this->barrowbooksModel->getBarrowBookDetails($bookId);
-            $responseArray = json_decode(json_encode($response), true);
-            $userDetails = $this->otherModel->getUserDet2($responseArray['sid']);
-            
-            $responseArray = array_merge($responseArray, $userDetails);
-            
-            $jsonResponse = json_encode($responseArray);
-            return $this->response->setJSON($jsonResponse);
-
+            if(!empty($response)){
+                $responseArray = json_decode(json_encode($response), true);
+                $userDetails = $this->otherModel->getUserDet2($responseArray['sid']);
+                
+                $responseArray = array_merge($responseArray, $userDetails);
+                
+                $jsonResponse = json_encode($responseArray);
+                return $this->response->setJSON($jsonResponse);
+            }
+            return $this->response->setStatusCode(202)->setJSON('{"mgs": "Book Not barrowed"}');
         }
     }
 

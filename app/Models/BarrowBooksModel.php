@@ -11,7 +11,7 @@ class BarrowBooksModel extends Model{
         'bid',
         'request_date',
         'return_date',
-        'today',
+        'is_returned',
         'role',
         'status'
     ];
@@ -24,6 +24,7 @@ class BarrowBooksModel extends Model{
         $query = $this->join('books bk','bk.bid=sbb.bid')
                     ->where('sid',$id)
                     ->where('role',$role)
+                    ->where('is_returned',0)
                     // ->countAllResults();
                     ->get();
         $results = $query->getResultArray();
@@ -51,6 +52,7 @@ class BarrowBooksModel extends Model{
             ->join('books sb', 'sb.bid = sbb.bid')
             ->join('settings se','1=1')
             ->where('sb.bcode', $bcode)
+            ->where('sbb.is_returned', 0)
             ->get();
 
         // return $query->getResult();
@@ -59,6 +61,13 @@ class BarrowBooksModel extends Model{
 
     public function setBarroeBook($data){
         $this->insert($data);
+        return true;
+    }
+
+    public function setBookreturn($bid,$data){
+        $this->where('bid',$bid)
+             ->set($data)
+             ->update();
         return true;
     }
 }

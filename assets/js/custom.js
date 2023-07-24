@@ -157,14 +157,50 @@ function getDetailReturn(str) {
         clearFormFields(fieldIds1);
         return;
     }
-    
-    submitButton.disabled = true; 
-    
+        
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             const info = JSON.parse(this.responseText);
             updateFormFields(info,fieldIds1);
+
+        }else if(this.readyState === 4 && this.status === 202){
+            if (!alertShown) { 
+
+                const alertDiv = document.createElement("div");
+                alertDiv.className = "alert alert-warning alert-dismissible";
+                alertDiv.role = "alert";
+
+                const closeButton = document.createElement("button");
+                closeButton.type = "button";
+                closeButton.className = "close";
+                closeButton.setAttribute("data-dismiss", "alert");
+                closeButton.setAttribute("aria-label", "Close");
+
+                const closeIcon = document.createElement("span");
+                closeIcon.setAttribute("aria-hidden", "true");
+                closeIcon.innerHTML = "&times;";
+
+                closeButton.appendChild(closeIcon);
+                alertDiv.appendChild(closeButton);
+
+                const strongTag = document.createElement("strong");
+                strongTag.innerHTML = "Warning! ";
+                alertDiv.appendChild(strongTag);
+
+                const message = document.createTextNode("Please verify if the book is not borrowed or available in the library.");
+                alertDiv.appendChild(message);
+
+                const parentElement = document.getElementById("NoBookAlert");
+                parentElement.appendChild(alertDiv);
+
+                alertShown = true; 
+                setTimeout(function () {
+                    parentElement.removeChild(alertDiv);
+                    alertShown = false;
+                }, 3000);
+            }
+
         }
     };
 
@@ -186,7 +222,7 @@ function getUserDetile(str) {
             const info = JSON.parse(this.responseText);
             updateFormFields(info,fieldIds);
         } else{
-            clearFormFields(fieldIds)
+            clearFormFields(fieldIds);
         }
     };
 

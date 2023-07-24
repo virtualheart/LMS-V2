@@ -2,23 +2,27 @@
 
 	<div class="container-fluid">
     	<!-- <h1 class="h3 mb-4 text-gray-800">Add Book</h1> -->
+        <?= validation_list_errors() ?>
 
         <form method="POST" id="bookForm">
-            <?php if (session()->getFlashdata('msg') == "New Book Added Successfully.") : ?>
+            <?php if (session()->getFlashdata('msg') == "Book return Successfully.") : ?>
                 <div class="alert alert-success alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 <?php session()->remove('msg'); ?>
-            <?php elseif (session()->getFlashdata('msg') == "New Book Add Failed.") : ?>
+            <?php elseif (session()->getFlashdata('msg') == "Book return Failed.") : ?>
                 <div class="alert alert-warning alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 <?php session()->remove('msg'); ?>
-            <?php endif; ?>            
+            <?php endif; ?>         
+
+              <div id="NoBookAlert"></div>
+              
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                  <h6 class="m-0 font-weight-bold text-primary">Return Book</h6>

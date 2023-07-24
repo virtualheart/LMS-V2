@@ -2,7 +2,7 @@
 
 	<div class="container-fluid">
     	<!-- <h1 class="h3 mb-4 text-gray-800">Barrow Book</h1> -->
-
+    <?= validation_list_errors() ?>
         <form method="POST" id="bookForm">
             <?php if (session()->getFlashdata('msg') == "Book Barrowed.") : ?>
                 <div class="alert alert-success alert-dismissible">
@@ -53,7 +53,6 @@
 
                 </div>
 
-
                 <div class="form-group col-md-5">
                     <label>Book No</label>
                     <input type="text" class="form-control" value="" name="bno" id="bno" readonly="true">
@@ -85,7 +84,7 @@
                 </div>
                 <div class=" form-group col-md-5"style="position:relative;top:30px;">
                     <label></label>
-                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" id="save" style="margin-left:5px" disabled>                  
+                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" id="save" style="margin-left:5px" >                  
                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">
                     <input type="reset" class="btn btn-danger btn-md d-none" id="resetButton">
                     <br>
