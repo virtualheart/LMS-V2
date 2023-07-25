@@ -93,11 +93,11 @@ $uri = uri_string();
                     <i class="fa fa-user"></i>
                     <span>Manage users</span>
                 </a>
-                <div id="collapseManage" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseManage" class="collapse <?php if($uri=="admin/users/staff" || $uri=="admin/users/student") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Staffs</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Students</a>
+                        <a class="collapse-item <?php if($uri=="admin/users/staff") echo "active"; ?>" href="<?=site_url('admin/users/staff')?>">Staffs</a>
+                        <a class="collapse-item <?php if($uri=="admin/users/student") echo "active"; ?>" href="<?=site_url('admin/users/student')?>">Students</a>
                     </div>
                 </div>
             </li>

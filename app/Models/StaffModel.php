@@ -27,6 +27,10 @@ class StaffModel extends Model{
         $result = $this->where('sid',$id)->first();
         return $result;
     }
+    
+    public function getStaffList(){
+        return $this->join('designation','designid=id',)->findAll();
+    }
 
     public function updateProfile($id, $apass, $amail) {
         $data = [

@@ -164,7 +164,7 @@ function getDetailReturn(str) {
             const info = JSON.parse(this.responseText);
             updateFormFields(info,fieldIds1);
 
-        }else if(this.readyState === 4 && this.status === 202){
+        }else if(this.readyState === 4 && this.status === 204){
             if (!alertShown) { 
 
                 const alertDiv = document.createElement("div");

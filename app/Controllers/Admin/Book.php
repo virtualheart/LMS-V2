@@ -140,7 +140,7 @@ class Book extends BaseController
                 $jsonResponse = json_encode($responseArray);
                 return $this->response->setJSON($jsonResponse);
             }
-            return $this->response->setStatusCode(202)->setJSON('{"mgs": "Book Not barrowed"}');
+            return $this->response->setStatusCode(204)->setJSON('{"mgs": "Book Not barrowed"}');
         }
     }
 

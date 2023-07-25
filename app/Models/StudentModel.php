@@ -32,6 +32,10 @@ class StudentModel extends Model{
         return $result;
     }
 
+    public function getStudentList(){
+        return $this->findAll();
+    }
+
     public function updateProfile($id, $data) {
         $result = $this->where('st_id', $id)
                         ->set($data)
