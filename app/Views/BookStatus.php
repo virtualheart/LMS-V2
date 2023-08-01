@@ -1,6 +1,4 @@
-<?= view('Admin/Adminsidebar') ?>
-
-	<div class="container-fluid">
+    <div class="container-fluid">
     	<h1 class="h3 mb-4 text-gray-800">Status Books</h1>
 
                         <div class="card-body">
@@ -73,15 +71,19 @@ function request_click() {
   
   $.ajax({
     type: "POST",
-    url: "/books/request/",
+    url: "http://localhost/code/index.php/books/bookrequest/",
     data: {
-      id: $("#bcode").val(),
+      bcode: $("#bcode").val(),
     },
     success: function(result) {
       alert('Request successful');
     },
     error: function(xhr, status, error) {
-      alert('An error occurred: ' + status + ' - ' + error);
+        var errorMessage = "An error occurred: " + status + " - " + error;
+        if (xhr.responseText) {
+          errorMessage += "\nAdditional details: " + xhr.responseText;
+        }
+        alert(errorMessage);
     }
   });
 }

@@ -17,7 +17,8 @@ class BarrowBooksModel extends Model{
     ];
 
     public function getBarrowedBooks(){
-        return $this->where('is_returned',0)->countAllResults();
+        return $this->where('is_returned',0)
+                    ->countAllResults();
     }
 
     public function getBarrowedBookbyUser($id,$role){
@@ -25,7 +26,6 @@ class BarrowBooksModel extends Model{
                     ->where('sid',$id)
                     ->where('role',$role)
                     ->where('is_returned',0)
-                    // ->countAllResults();
                     ->get();
         $results = $query->getResultArray();
         return $results;
@@ -49,14 +49,28 @@ class BarrowBooksModel extends Model{
     public function getBarrowBookDetails($bcode)
     {
         $query = $this->select('sbb.sid, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sb.alamara, sb.rack, sb.price,sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, se.fine')
-            ->join('books sb', 'sb.bid = sbb.bid')
-            ->join('settings se','1=1')
-            ->where('sb.bcode', $bcode)
-            ->where('sbb.is_returned', 0)
-            ->get();
+                    ->join('books sb', 'sb.bid = sbb.bid')
+                    ->join('settings se','1=1')
+                    ->where('sb.bcode', $bcode)
+                    ->where('sbb.is_returned', 0)
+                    ->get();
 
         // return $query->getResult();
         return $query->getRow();
+    }
+
+    public function getBarrowedUserId($bcode)
+    {
+        // $query = $this->select('sbb.sid')
+        //             ->join('books sb', 'sb.bid = sbb.bid')
+        //             ->where('sb.bcode', $bcode)
+        //             ->get();
+        // return $query->sid;
+
+        $result = $this->join('books sb', 'sb.bid = sbb.bid')
+                    ->where('sb.bcode', $bcode)
+                    ->first();
+        return $result;
     }
 
     public function setBarroeBook($data){

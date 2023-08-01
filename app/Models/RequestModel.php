@@ -2,7 +2,7 @@
 namespace App\Models;  
 use CodeIgniter\Model;
   
-class AdminModel extends Model{
+class RequestModel extends Model{
     protected $table = 'request_mgs';
     protected $primaryKey = 'id';
     
@@ -11,11 +11,13 @@ class AdminModel extends Model{
 		'receiver_id',	
 		'messagee',	
 		'is_seen',	
+        'role',
 		'status'
     ];
 
-    public function setRequest($rid,$bcode,$role)
+    public function setRequest($data)
     {
-
+        $this->insert($data);
+        return true;
     }
 }
