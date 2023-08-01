@@ -36,6 +36,15 @@ CREATE TABLE `barrow_books` (
   PRIMARY KEY (`sbid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `barrow_books` (`sbid`, `sid`, `bid`, `request_date`, `return_date`, `returned_date`, `is_returned`, `role`, `status`) VALUES
+(24,	1,	45,	'2023-07-16',	'2023-07-31',	'0000-00-00',	1,	'student',	1),
+(25,	2,	1,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'staff',	1),
+(26,	1,	2,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'student',	1),
+(27,	1,	4,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'student',	1),
+(28,	1,	3,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'student',	1),
+(29,	1,	15,	'2023-07-24',	'2023-08-08',	'0000-00-00',	1,	'student',	1),
+(30,	1,	1,	'2023-07-24',	'2023-08-08',	'0000-00-00',	1,	'student',	1),
+(31,	1,	2,	'2023-07-24',	'2023-08-08',	'0000-00-00',	0,	'student',	1);
 
 DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
@@ -54,7 +63,7 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`bid`, `bno`, `bcode`, `title`, `aname`, `publication`, `price`, `alamara`, `rack`, `status`) VALUES
 (1,	'M0001',	'GACCA202200001',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
-(2,	'M0002',	'GACCA202200002',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
+(2,	'M0002',	'GACCA202200002',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	0),
 (3,	'M0003',	'GACCA202200003',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
 (4,	'M0004',	'GACCA202200004',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
 (5,	'M0005',	'GACCA202200005',	'File Structures',	'M.I.Folk',	'',	'295',	'B1',	'R1',	1),
@@ -953,6 +962,19 @@ INSERT INTO `designation` (`id`, `designation`) VALUES
 (3,	'Lecturer'),
 (4,	'Guest Lecture');
 
+DROP TABLE IF EXISTS `request_mgs`;
+CREATE TABLE `request_mgs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `requester_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `messagee` text NOT NULL,
+  `is_seen` int(11) NOT NULL,
+  `role` varchar(12) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1069,4 +1091,4 @@ INSERT INTO `students` (`st_id`, `regno`, `sname`, `spass`, `gender`, `stemail`,
 (23,	'22PCA242523',	'TAMILSELVI  S',	'$2y$10$487DwPw1chrrYve.m3vPM.Boar4U1TjjQgTC.HQuAiY0Y7wNUY4J6',	'girl',	'TAMILSELVI@GAC.COM',	'9876543210',	1,	'2022',	'I',	'',	'student'),
 (24,	'22PCA242524',	'VAISHNAVI J',	'$2y$10$frCnjJCHWmw.i0GmULeuOeCSZjet2iNkg4Nen9dwswwTY7WRjjiLC',	'girl',	'VAISHNAVI@GAC.COM',	'9876543210',	1,	'2022',	'I',	'',	'student');
 
--- 2023-07-16 07:06:49
+-- 2023-08-01 13:30:47

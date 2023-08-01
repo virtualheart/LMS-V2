@@ -40,7 +40,7 @@
 
                                         <tr>
                                             <td><?=$i; ?></td>
-                                            <td><?=$books['bcode']; ?></td>
+                                            <td id="bcode"><?=$books['bcode']; ?></td>
                                             <td><?=$books['bno']; ?></td>
                                             <td><?=$books['title']; ?></td>
                                             <td><?=$books['aname']; ?></td>
@@ -48,10 +48,13 @@
                                             <td><?=$books['alamara']; ?></td>
                                             <td><?=$books['rack']; ?></td>
     
-                                            <?php if($books['status'] == 1){ ?>
+                                            <?php if($books['status'] == 1 and session()->get('role') == "admin" ){ ?>
                                                 <td><a class='btn btn-success' href='<?=site_url("/admin/Activity/barrow/").$books["bcode"]?>'><i class='fa fa-check'></i></a></td> 
-                                            <?php } else { ?>
-                                                <td><a class='btn btn-danger' href='<?=site_url("#").$books['bid']; ?>' title="Book Unavaliable, click to Request the Holder." ><i class='fa fa-ban'></i></a></td> 
+                                            <?php } elseif ($books['status'] == 1) { ?>
+
+                                                <td><a class='btn btn-success' href='#'><i class='fa fa-check'></i></a></td> 
+                                            <?php } else{ ?>
+                                                <td><button class="btn btn-danger" id="request" title="Book Unavailable, click to Request the Holder." onclick="request_click()"><i class='fa fa-times'></i></button></td>
                                             <?php } ?> 
     
                                         </tr>         
@@ -64,3 +67,22 @@
                         </div>
 
     </div>
+    <script type="text/javascript">
+        
+function request_click() {
+  
+  $.ajax({
+    type: "POST",
+    url: "/books/request/",
+    data: {
+      id: $("#bcode").val(),
+    },
+    success: function(result) {
+      alert('Request successful');
+    },
+    error: function(xhr, status, error) {
+      alert('An error occurred: ' + status + ' - ' + error);
+    }
+  });
+}
+    </script>

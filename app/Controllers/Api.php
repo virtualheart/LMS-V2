@@ -42,4 +42,26 @@ class Api extends BaseController
         }
     }
 
+
+    public function test($s=null){
+
+
+        switch ($s) {
+            case '1':
+                copy(getcwd().'/env', getcwd().'/.envtest');
+
+                break;
+            }
+
+        $data = [
+            'step' => $s,
+            'Basepath' => getcwd(),
+            'installpath' => getcwd().'/.envtest',
+        ];
+
+        echo view('Others/header');
+        echo view('install/install',$data);
+        echo view('Others/fooder');
+    }
+
 }

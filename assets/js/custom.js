@@ -267,3 +267,5 @@ document.getElementById('bookForm').addEventListener('submit', function(event) {
     document.getElementById('bookForm').submit(); // Proceed with the form submission
   });
 });
+
+

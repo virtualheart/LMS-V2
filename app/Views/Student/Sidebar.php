@@ -51,31 +51,15 @@ $uri = uri_string();
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseactivity"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-universal-access"></i>
-                    <span>Libary activity</span>
-                </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="#" || $uri=="#" || $uri=="books/status") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#" >Book Barrow</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Book Return</a>
-                        <a class="collapse-item <?php if($uri=="books/status") echo "active"; ?>" href="<?=site_url('books/status') ?>">Books Status</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBooks"
-                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa fa-book"></i>
                     <span>Books</span>
                 </a>
-                <div id="collapseBooks" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item <?php if($uri=="admin/Uploadbooks") echo "active"; ?>" href="<?=site_url('admin/Uploadbooks')?>">Upload Books</a>
-                        <a class="collapse-item <?php if($uri=="admin/Uploadbooks") echo "active"; ?>" href="<?=site_url('Admin/Book/book/Add/New')?>">Add Books</a>
-                        <a class="collapse-item <?php if($uri=="admin/Uploadbooks") echo "active"; ?>" href="<?=site_url('admin/ViewAllBooks')?>">View/Edit Books</a>
+                        <!-- <h6 class="collapse-header">Book Entry:</h6> -->
+                        <a class="collapse-item <?php if($uri=="books/status") echo "active"; ?>" href="<?=site_url('books/status') ?>">Books Status</a>
+                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#" >Barrow Book List</a>
+                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Return Book History</a>
                     </div>
                 </div>
             </li>
@@ -83,14 +67,12 @@ $uri = uri_string();
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-user"></i>
-                    <span>User Request</span>
+                    <i class="fa fa-paper-plane"></i>
+                    <span>Book Request</span>
                 </a>
                 <div id="collapseRequest" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item" href="#">Staff Request</a>
-                        <a class="collapse-item" href="#">Student Request</a>
+                        <a class="collapse-item" href="#">Request List</a>
                     </div>
                 </div>
             </li>
@@ -113,17 +95,9 @@ $uri = uri_string();
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <h6 class="collapse-header">Settings</h6> -->
-                        <a class="collapse-item" href="#">App Settings</a>
-                        <a class="collapse-item" href="#">General Settings</a>
-                        <a class="collapse-item" href="#">SMTP Settings</a>
-                        <a class="collapse-item" href="#">User Settings</a>
-<!--                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
- -->                </div>
+                        <!-- <a class="collapse-item" href="#">Settings</a> -->
+                        <a class="collapse-item" href="#">Profile</a>
+                 </div>
             </li>
             
             <!-- Divider -->
@@ -326,11 +300,11 @@ $uri = uri_string();
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+<!--                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
-                                <div class="dropdown-divider"></div>
+ -->                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
