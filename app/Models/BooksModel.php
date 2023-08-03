@@ -25,12 +25,12 @@ class BooksModel extends Model{
 
     public function getBooksList()
     {
-        // $query = $this->where('status', 0)->limit(50)->get();
-        // $results = $query->getResultArray();
+        $query = $this->limit(50)->get();
+        $results = $query->getResultArray();
 
-        // return $results;
+        return $results;
 
-        return $this->findAll();
+        // return $this->findAll();
     }
 
     public function getBookDetail($id)

@@ -38,7 +38,7 @@
 
                                         <tr>
                                             <td><?=$i; ?></td>
-                                            <td id="bcode"><?=$books['bcode']; ?></td>
+                                            <td class="bcode"><?=$books['bcode']; ?></td>
                                             <td><?=$books['bno']; ?></td>
                                             <td><?=$books['title']; ?></td>
                                             <td><?=$books['aname']; ?></td>
@@ -52,7 +52,7 @@
 
                                                 <td><a class='btn btn-success' href='#'><i class='fa fa-check'></i></a></td> 
                                             <?php } else{ ?>
-                                                <td><button class="btn btn-danger" id="request" title="Book Unavailable, click to Request the Holder." onclick="request_click()"><i class='fa fa-times'></i></button></td>
+                                                <td><button class="btn btn-danger" id="request" title="Book Unavailable, click to Request the Holder." onclick="request_click(this)"><i class='fa fa-times'></i></button></td>
                                             <?php } ?> 
     
                                         </tr>         
@@ -67,23 +67,28 @@
     </div>
     <script type="text/javascript">
         
-function request_click() {
-  
+function request_click(rowElement) {
+
+    var bcode = $(rowElement).closest('tr').find('.bcode').text();
+
   $.ajax({
     type: "POST",
-    url: "http://localhost/code/index.php/books/bookrequest/",
+    url: "<?php echo site_url(); ?>/books/bookrequest/",
     data: {
-      bcode: $("#bcode").val(),
+      bcode: bcode,
     },
     success: function(result) {
-      alert('Request successful');
+      // alert('Request successful');
+        $('#popupSuccessModal').modal('show');
+
     },
     error: function(xhr, status, error) {
         var errorMessage = "An error occurred: " + status + " - " + error;
         if (xhr.responseText) {
           errorMessage += "\nAdditional details: " + xhr.responseText;
         }
-        alert(errorMessage);
+        $('#popupFailedModal').modal('show');
+        // alert(errorMessage);
     }
   });
 }

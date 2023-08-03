@@ -16,7 +16,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-
 <!-- Logout Modal -->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -75,6 +74,49 @@
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- Popup Modal Success-->
+<div class="modal fade" id="popupSuccessModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="btn-success">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Request Successfully...!</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">Your Request Successfull...!</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Modal Failed-->
+<div class="modal fade" id="popupFailedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="btn-danger">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Request Failed...!</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">Your Request Failed...!</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="<?=base_url()?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>

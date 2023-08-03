@@ -47,18 +47,12 @@ class Books extends BaseController
    
             $bcode = $this->request->getPost('bcode');
             
-            // session not work
-            $name = $session->get('name');
-            $receiver_id = $this->barrowBooksModel->getBarrowedUserId('bcode');
-            $res_id = $session->get('id');
-            $role = $session->get('role');
-
             $data = [
-                'requester_id' => $receiver_id,
-                'receiver_id' => $res_id,
-                'messagee' => "The Book Barcode: " . $bcode . " wanted to " . $name . ".",
+                'requester_id' => $session->get('id'),
+                'receiver_id' => $this->barrowBooksModel->getBarrowedUserId($bcode),
+                'messagee' => "The Book Barcode: " . $bcode . " wanted to " . $session->get('role') ." " . $session->get('name') . ".",
                 'is_seen' => 0,
-                'role' => $role,
+                'role' => $session->get('role'),
                 'status' => 1
             ];
 
@@ -67,8 +61,10 @@ class Books extends BaseController
             else
                 return false;
         } else {
+
             return $this->response->setJSON([
                 'status' => 'Failed',
+                'status1' => $session->get("name"),
                 'msg' => "Method not allowed",
             ]);
         }

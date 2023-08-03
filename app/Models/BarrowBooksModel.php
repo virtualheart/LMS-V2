@@ -61,16 +61,10 @@ class BarrowBooksModel extends Model{
 
     public function getBarrowedUserId($bcode)
     {
-        // $query = $this->select('sbb.sid')
-        //             ->join('books sb', 'sb.bid = sbb.bid')
-        //             ->where('sb.bcode', $bcode)
-        //             ->get();
-        // return $query->sid;
-
-        $result = $this->join('books sb', 'sb.bid = sbb.bid')
+        return $this->select('sbb.sid')
+                    ->join('books sb', 'sb.bid = sbb.bid')
                     ->where('sb.bcode', $bcode)
                     ->first();
-        return $result;
     }
 
     public function setBarroeBook($data){
