@@ -90,7 +90,7 @@
                     </button>
                 </div>
             </div>
-            <div class="modal-body">Your Request Successfull...!</div>
+            <div class="modal-body">Your Request was successful...!</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
             </div>
@@ -111,7 +111,28 @@
                     </button>
                 </div>
             </div>
-            <div class="modal-body">Your Request Failed...!</div>
+            <div class="modal-body">Your Request was Failed...!</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Modal Failed-->
+<div class="modal fade" id="popupAlreadyRequestedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="btn-info">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Alerady Request...!</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">Alerady Request ...!</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
             </div>

@@ -83,12 +83,28 @@ function request_click(rowElement) {
 
     },
     error: function(xhr, status, error) {
-        var errorMessage = "An error occurred: " + status + " - " + error;
-        if (xhr.responseText) {
-          errorMessage += "\nAdditional details: " + xhr.responseText;
-        }
-        $('#popupFailedModal').modal('show');
+        // var errorMessage = "An error occurred: " + status + " - " + error;
+        // if (xhr.responseText) {
+        //   errorMessage += "\nAdditional details: " + xhr.responseText;
+        // }
         // alert(errorMessage);
+        if (xhr.responseText) {
+            // Parse the server's JSON response
+            var errorResponse = JSON.parse(xhr.responseText);
+
+            // Check the message
+            if (errorResponse.message === "Already Requested") {
+                // Book already requested, show appropriate modal or handle the error
+                $('#popupAlreadyRequestedModal').modal('show');
+            } else {
+                // Some other error occurred, show a generic error message or handle the error
+                $('#popupFailedModal').modal('show');
+            }
+        } else {
+            // No valid JSON response received, show a generic error message or handle the error
+            $('#popupFailedModal').modal('show');
+        }
+
     }
   });
 }

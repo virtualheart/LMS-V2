@@ -974,6 +974,24 @@ CREATE TABLE `request_mgs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `request_mgs` (`id`, `requester_id`, `receiver_id`, `messagee`, `is_seen`, `role`, `status`) VALUES
+(27,	3,	1,	'The Book Barcode: GACCA202200002 wanted to staff Dr.K.AKILANDESWARI.',	0,	'staff',	1),
+(28,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	0,	'student',	1),
+(29,	1,	1,	'The Book Barcode: GACCA202200002 wanted to admin admin.',	0,	'admin',	1);
+
+DELIMITER ;;
+
+CREATE TRIGGER `prevent_duplicate_roles` BEFORE INSERT ON `request_mgs` FOR EACH ROW
+BEGIN
+    DECLARE existing_role VARCHAR(12);
+    SELECT `role` INTO existing_role FROM `request_mgs` WHERE `requester_id` = NEW.`requester_id` AND `receiver_id` = NEW.`receiver_id` AND `role` = NEW.`role`;
+    IF existing_role IS NOT NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Already Requested';
+    END IF;
+END;;
+
+DELIMITER ;
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
@@ -1091,4 +1109,4 @@ INSERT INTO `students` (`st_id`, `regno`, `sname`, `spass`, `gender`, `stemail`,
 (23,	'22PCA242523',	'TAMILSELVI  S',	'$2y$10$487DwPw1chrrYve.m3vPM.Boar4U1TjjQgTC.HQuAiY0Y7wNUY4J6',	'girl',	'TAMILSELVI@GAC.COM',	'9876543210',	1,	'2022',	'I',	'',	'student'),
 (24,	'22PCA242524',	'VAISHNAVI J',	'$2y$10$frCnjJCHWmw.i0GmULeuOeCSZjet2iNkg4Nen9dwswwTY7WRjjiLC',	'girl',	'VAISHNAVI@GAC.COM',	'9876543210',	1,	'2022',	'I',	'',	'student');
 
--- 2023-08-01 13:30:47
+-- 2023-08-04 17:43:12

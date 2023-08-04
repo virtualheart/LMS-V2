@@ -64,15 +64,15 @@ $uri = uri_string();
                 </div>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item <?php if($uri=="student/ListRequest") echo "active"; ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa fa-paper-plane"></i>
                     <span>Book Request</span>
                 </a>
-                <div id="collapseRequest" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseRequest" class="collapse <?php if($uri=="student/ListRequest") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Request List</a>
+                        <a class="collapse-item <?php if($uri=="student/ListRequest") echo "active"; ?>" href="<?= site_url('student/ListRequest')?>">Request List</a>
                     </div>
                 </div>
             </li>
@@ -86,17 +86,17 @@ $uri = uri_string();
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?php if($uri=="Student/Profile") echo "active"; ?>">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
                     <i class="fa fa-cogs"></i>
                     <span>Settings</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                <div id="collapsePages" class="collapse <?php if($uri=="Student/Profile") echo "show"; ?>" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <a class="collapse-item" href="#">Settings</a> -->
-                        <a class="collapse-item" href="#">Profile</a>
+                        <a class="collapse-item <?php if($uri=="Student/Profile") echo "active"; ?>" href="<?=site_url('Student/Profile')?>">Profile</a>
                  </div>
             </li>
             

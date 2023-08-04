@@ -14,6 +14,7 @@ class Books extends BaseController
         $this->barrowBooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
     }
+
     public function status()
     {
         $session = session();
@@ -56,7 +57,7 @@ class Books extends BaseController
                 'status' => 1
             ];
 
-            if($this->requestModel->setRequest($data))
+            if($this->requestModel->setBookRequest($data))
                 return true;
             else
                 return false;
