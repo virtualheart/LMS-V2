@@ -61,7 +61,7 @@ class BarrowBooksModel extends Model{
 
     public function getBarrowedUserId($bcode)
     {
-        return $this->select('sbb.sid')
+        return $this->select('sbb.sid,sbb.role')
                     ->join('books sb', 'sb.bid = sbb.bid')
                     ->where('sb.bcode', $bcode)
                     ->first();

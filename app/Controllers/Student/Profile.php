@@ -13,18 +13,19 @@ class Profile extends BaseController
 
     public function index()
     {
-                $session = session();
+        $session = session();
 
         if ($session->get('role')!="student") {
             return redirect()->to('/');
         }
 
-        $data = [
-            'profile' => $this->studentModel->getProfile($session->get('id')),
-        ];
 
         if ($this->request->getMethod() === 'post') {
 
+            $data = [
+                'profile' => $this->studentModel->getProfile($session->get('id')),
+            ];
+            
             $id=$session->get('id');
             $user = $this->request->getPost('user');
             $apass = $this->request->getPost('apass');
@@ -54,7 +55,7 @@ class Profile extends BaseController
             }
 
             $data = [
-                'spass' => $apass,
+                'spass' => $ahpass,
                 'stemail' => $amail,
                 'Contact' => $contact
             ];

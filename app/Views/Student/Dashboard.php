@@ -68,8 +68,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Total Students</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalStudents?></div>
+                                                Total Request </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalRequest?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>

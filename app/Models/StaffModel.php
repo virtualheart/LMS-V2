@@ -24,22 +24,20 @@ class StaffModel extends Model{
     }
 
     public function getStaffProfile($id){
-        $result = $this->where('sid',$id)->first();
+        $result = $this->where('sid',$id)
+                        ->first();
         return $result;
     }
     
     public function getStaffList(){
-        return $this->join('designation','designid=id',)->findAll();
+        return $this->join('designation','designid=id',)
+                    ->findAll();
     }
 
-    public function updateProfile($id, $apass, $amail) {
-        $data = [
-            'apass' => $apass,
-            'a_mail' => $amail
-        ];
-
-        $result = $this->where('id', $id)->set($data)->update();
-        // return $this->affectedRows() > 0;
+    public function updateProfile($id, $data) {
+        $result = $this->where('sid', $id)
+                        ->set($data)
+                        ->update();
         return $result;
     }
 

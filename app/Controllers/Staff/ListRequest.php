@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\student;
+namespace App\Controllers\staff;
 use App\Controllers\BaseController;
 
 use App\Models\RequestModel;

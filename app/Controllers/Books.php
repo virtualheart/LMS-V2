@@ -50,17 +50,16 @@ class Books extends BaseController
             
             $data = [
                 'requester_id' => $session->get('id'),
-                'receiver_id' => $this->barrowBooksModel->getBarrowedUserId($bcode),
+                'receiver_id' => $this->barrowBooksModel->getBarrowedUserId($bcode)['sid'],
                 'messagee' => "The Book Barcode: " . $bcode . " wanted to " . $session->get('role') ." " . $session->get('name') . ".",
                 'is_seen' => 0,
-                'role' => $session->get('role'),
+                'rec_role' => $this->barrowBooksModel->getBarrowedUserId($bcode)['role'],
+                'req_role' => $session->get('role'),
                 'status' => 1
             ];
 
-            if($this->requestModel->setBookRequest($data))
-                return true;
-            else
-                return false;
+            $this->requestModel->setBookRequest($data);
+
         } else {
 
             return $this->response->setJSON([

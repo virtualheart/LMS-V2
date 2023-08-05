@@ -33,7 +33,6 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Barrow Books</div>
-                                                <?php session()->set("bbbbook",$books) ?>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=sizeof($books)?></div>
                                         </div>
                                         <div class="col-auto">

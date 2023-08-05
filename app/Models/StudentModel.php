@@ -3,7 +3,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class StudentModel extends Model{
-    protected $table = 'students';
+    protected $table = 'students std';
     protected $primaryKey = 'st_id';
 
     protected $allowedFields = [
@@ -33,14 +33,14 @@ class StudentModel extends Model{
     }
 
     public function getStudentList(){
-        return $this->findAll();
+        return $this->join('department dd','dd.did=std.did')
+                    ->findAll();
     }
 
     public function updateProfile($id, $data) {
         $result = $this->where('st_id', $id)
                         ->set($data)
                         ->update();
-        // return $this->affectedRows() > 0;
         return $result;
     }
 

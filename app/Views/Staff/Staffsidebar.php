@@ -20,7 +20,7 @@ $uri = uri_string();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('/admin/home'); ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('/staff/Dashboard'); ?>">
                 <div class="sidebar-brand-icon ">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                     <img src="<?= base_url("$appLogo");?>" width="30%" height="30%">
@@ -33,7 +33,7 @@ $uri = uri_string();
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="<?= site_url('admin/home'); ?>">
+                <a class="nav-link" href="<?= site_url('staff/Dashboard'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -47,52 +47,34 @@ $uri = uri_string();
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?php if($uri=="books/status") echo "active"; ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseactivity"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-universal-access"></i>
-                    <span>Libary activity</span>
-                </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="#" || $uri=="#" || $uri=="books/status") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item" href="#">Book Barrow</a>
-                        <a class="collapse-item" href="#">Book Return</a>
-                        <a class="collapse-item" href="<?=site_url('books/status') ?>">Books Status</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBooks"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa fa-book"></i>
                     <span>Books</span>
                 </a>
-                <div id="collapseBooks" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?=site_url('admin/Uploadbooks')?>">Upload Books</a>
-                        <a class="collapse-item" href="<?=site_url('Admin/Book/book/Add/New')?>">Add Books</a>
-                        <a class="collapse-item" href="<?=site_url('admin/ViewAllBooks')?>">View/Edit Books</a>
+                        <a class="collapse-item <?php if($uri=="books/status") echo "active"; ?>" href="<?=site_url('books/status') ?>">Books Status</a>
+                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#" >Barrow Book List</a>
+                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Return Book History</a>
                     </div>
                 </div>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item <?php if($uri=="student/ListRequest") echo "active"; ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-user"></i>
-                    <span>User Request</span>
+                    <i class="fa fa-paper-plane"></i>
+                    <span>Book Request</span>
                 </a>
-                <div id="collapseRequest" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseRequest" class="collapse <?php if($uri=="staff/ListRequest") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item" href="#">Staff Request</a>
-                        <a class="collapse-item" href="#">Student Request</a>
+                        <a class="collapse-item <?php if($uri=="staff/ListRequest") echo "active"; ?>" href="<?= site_url('staff/ListRequest')?>">Request List</a>
                     </div>
                 </div>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -316,20 +298,20 @@ $uri = uri_string();
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$session->get('name')?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="<?php if ($session->get('image')){ echo base_url().$session->get('image'); } else { echo base_url()."/assets/admin.png"; } ?>">
+                                    src="<?php if ($session->get('image')){ echo base_url().$session->get('image'); } else { echo base_url()."./assets/admin.png"; } ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="<?=site_url('Admin/Profile')?>">
+                                <a class="dropdown-item" href="<?=site_url('staff/Profile')?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+<!--                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
-                                <div class="dropdown-divider"></div>
+ -->                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout

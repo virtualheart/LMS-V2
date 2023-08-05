@@ -115,7 +115,7 @@ class Login extends BaseController
 
             $data = $this->userModel->where('regno', $regno)->first();
 
-            if ($data && password_verify($password, password_hash($data['spass'], PASSWORD_DEFAULT))) {
+            if ($data && password_verify($password, $data['spass'])) {
                 // Successful login
                 $session->set([
                     'id' => $data['sid'],

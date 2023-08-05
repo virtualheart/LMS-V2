@@ -27,7 +27,7 @@ class Dashboard extends BaseController
 
         $data = [
             'totalBooks' => $this->bookModel->getTotalBooks(),
-            'totalStudents' => $this->studentModel->getTotalStudents(),
+            'totalRequest' => 3,
             'totalFine' => $this->barrowBooksModel->getFineAmount($session->get("id"),$session->get("role")),
             'books' => $this->barrowBooksModel->getBarrowedBookbyUser($session->get("id"),$session->get("role")),
         ];
