@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\BooksModel;
 use App\Models\RequestModel;
 use App\Models\BarrowBooksModel;
@@ -9,7 +10,7 @@ use App\Models\OtherModel;
 class Books extends BaseController
 {    
     public function __construct()
-    {
+    {        
         $this->requestModel = new RequestModel();
         $this->barrowBooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
@@ -18,13 +19,18 @@ class Books extends BaseController
     public function status()
     {
         $session = session();
+
+        if ($session->get('role') != ("staff" or "admin" or "student")) {
+            return redirect()->to('/');
+        }
+        
         $booksModel = new BooksModel();
 
         $data['books'] = $booksModel->getBooksList();
 
         echo view('Others/header');
         switch ($session->get('role')) {
-             case 'admin':
+            case 'admin':
                 echo view('Admin/Adminsidebar');
                 break;
             case 'staff':
@@ -33,7 +39,7 @@ class Books extends BaseController
             default:
                 echo view('Student/Sidebar');
                 break;
-         }
+        }
         
         echo view('BookStatus',$data);
         echo view('Others/fooder');
@@ -41,8 +47,11 @@ class Books extends BaseController
 
     public function bookrequest()
     {
-
         $session = session();
+        
+        if ($session->get('role') != ("staff" or "admin" or "student")) {
+            return redirect()->to('/');
+        }
 
         if($this->request->getMethod() === 'post'){
    
@@ -55,6 +64,7 @@ class Books extends BaseController
                 'is_seen' => 0,
                 'rec_role' => $this->barrowBooksModel->getBarrowedUserId($bcode)['role'],
                 'req_role' => $session->get('role'),
+                'rec_date' => date('Y-m-d'),
                 'status' => 1
             ];
 

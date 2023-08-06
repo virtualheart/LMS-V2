@@ -6,6 +6,7 @@ use App\Models\BooksModel;
 use App\Models\StudentModel;
 use App\Models\StaffModel;
 use App\Models\BarrowBooksModel;
+use App\Models\RequestModel;
 
 class Dashboard extends BaseController
 {
@@ -15,6 +16,7 @@ class Dashboard extends BaseController
         $this->bookModel = new BooksModel();
         $this->studentModel = new StudentModel();
         $this->barrowBooksModel = new BarrowBooksModel();
+        $this->requestModel = new RequestModel();
     }
         
     public function index()
@@ -27,7 +29,7 @@ class Dashboard extends BaseController
 
         $data = [
             'totalBooks' => $this->bookModel->getTotalBooks(),
-            'totalRequest' => 3,
+            'totalRequest' => count($this->requestModel->getBookRequest($session->get("id"),$session->get("role"))),
             'totalFine' => $this->barrowBooksModel->getFineAmount($session->get("id"),$session->get("role")),
             'books' => $this->barrowBooksModel->getBarrowedBookbyUser($session->get("id"),$session->get("role")),
         ];

@@ -24,5 +24,21 @@ class ListRequest extends BaseController
         echo view('Others/header');
         echo view('ListRequestView',$data);
         echo view('Others/fooder');
+            
+        $this->requestModel->setIsSeen($session->get('id'),$session->get('role'));
+    }
+
+    public function history()
+    {
+        $session = session();
+
+        $data = [
+            'requestlists' => $this->requestModel->getBookRequesthis($session->get('id'),$session->get('role')),
+        ];
+
+        echo view('Others/header');
+        echo view('ListRequestView',$data);
+        echo view('Others/fooder');
+
     }
 }

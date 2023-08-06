@@ -18,6 +18,7 @@
                                             <th>S.No</th>
                                             <th>Message</th>
                                             <th>Requester</th>
+                                            <th>Request Date</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -25,6 +26,7 @@
                                             <th>S.No</th>
                                             <th>Message</th>
                                             <th>Requester</th>
+                                            <th>Request Date</th>
                                         </tr>
                                     </tfoot>
 
@@ -36,6 +38,7 @@
                                             <td><?=$i; ?></td>
                                             <td><?=$requestlist->messagee; ?></td>
                                             <td><?=$requestlist->regno; ?></td>
+                                            <td><?=$requestlist->rec_date; ?></td>
                                         </tr>         
 
                                     <?php $i++; endforeach; ?>
