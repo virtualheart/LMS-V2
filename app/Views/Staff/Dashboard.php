@@ -2,7 +2,6 @@
 
 		<div class="container-fluid">
     		<h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
- 		<div class="card shadow mb-4">
 
                                     <!-- Content Row -->
                     <div class="row">
@@ -80,8 +79,9 @@
                             </div>
                         </div>
                     </div>
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+
+                        <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Barrowed Books</h6>
                                 </div>
                                 <div class="card-body">
@@ -96,8 +96,8 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Alamara</th>
-                                            <th>Rack</th>
+                                            <!-- <th>Alamara</th> -->
+                                            <!-- <th>Rack</th> -->
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -107,8 +107,8 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Alamara</th>
-                                            <th>Rack</th>
+                                            <!-- <th>Alamara</th> -->
+                                            <!-- <th>Rack</th> -->
                                         </tr>
                                     </tfoot>
 
@@ -123,8 +123,8 @@
                                             <td><?=$books['title']; ?></td>
                                             <td><?=$books['aname']; ?></td>
                                             <td><?=$books['publication']; ?></td>
-                                            <td><?=$books['alamara']; ?></td>
-                                            <td><?=$books['rack']; ?></td> 
+                                            <!-- <td>< ?=$books['alamara']; ?></td> -->
+                                            <!-- <td>< ?=$books['rack']; ?></td>  -->
                                         </tr>         
 
                                     <?php $i++; endforeach; ?>
@@ -134,6 +134,7 @@
                             </div>
                         </div>
                     </div>
+       
         </div>
     </div>
 

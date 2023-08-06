@@ -1,11 +1,16 @@
 <?php 
 use App\Models\SettingsModel;
+use App\Models\RequestModel;
 
 $settingsModel = new SettingsModel();
 $appLogo = $settingsModel->getAppLogo();
 
 $session = session();
 $uri = uri_string();
+
+$requestModel = new RequestModel();
+
+$data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get('role'));
 
 ?>
 
@@ -32,7 +37,7 @@ $uri = uri_string();
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
+            <li class="nav-item <?php if($uri=="staff/Dashboard") echo "active"; ?>">
                 <a class="nav-link" href="<?= site_url('staff/Dashboard'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -62,15 +67,16 @@ $uri = uri_string();
                 </div>
             </li>
 
-            <li class="nav-item <?php if($uri=="student/ListRequest") echo "active"; ?>">
+            <li class="nav-item <?php if($uri=="student/ListRequest" || $uri=="staff/ListRequest/history") echo "active"; ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa fa-paper-plane"></i>
                     <span>Book Request</span>
                 </a>
-                <div id="collapseRequest" class="collapse <?php if($uri=="staff/ListRequest") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseRequest" class="collapse <?php if($uri=="staff/ListRequest" || $uri=="staff/ListRequest/history") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item <?php if($uri=="staff/ListRequest") echo "active"; ?>" href="<?= site_url('staff/ListRequest')?>">Request List</a>
+                        <a class="collapse-item <?php if($uri=="staff/ListRequest/history") echo "active"; ?>" href="<?= site_url('staff/ListRequest/history')?>">Request history</a>
                     </div>
                 </div>
             </li>
@@ -85,26 +91,18 @@ $uri = uri_string();
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?php if($uri=="staff/Profile") echo "active"; ?>">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
                     <i class="fa fa-cogs"></i>
                     <span>Settings</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                <div id="collapsePages" class="collapse <?php if($uri=="staff/Profile") echo "show"; ?>" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <h6 class="collapse-header">Settings</h6> -->
-                        <a class="collapse-item" href="#">App Settings</a>
-                        <a class="collapse-item" href="#">General Settings</a>
-                        <a class="collapse-item" href="#">SMTP Settings</a>
-                        <a class="collapse-item" href="#">User Settings</a>
-<!--                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
- -->                </div>
+                        <!-- <a class="collapse-item" href="#">Settings</a> -->
+                        <a class="collapse-item <?php if($uri=="staff/Profile") echo "active"; ?>" href="<?=site_url('staff/Profile')?>">Profile</a>
+                 </div>
             </li>
             
             <!-- Divider -->
@@ -173,56 +171,7 @@ $uri = uri_string();
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
+
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -230,65 +179,47 @@ $uri = uri_string();
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                                <span class="badge badge-danger badge-counter"><?=count($data['req'])?></span>
                             </a>
+                            <!-- Dropdown - Messages -->
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
+                                <?php foreach ($data['req'] as $requests) { ?> 
+                                
+
+                                <a class="dropdown-item d-flex align-items-center" href="<?=site_url('student/ListRequest')?>">
+                                    <!-- <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="img/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
-                                    </div>
+                                    </div> -->
                                     <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                        <div class="d-inline-block text-truncate"><?=$requests->messagee;?></div>
+                                        <div class="small text-gray-500">Date : <?=$requests->rec_date;?></div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+
+                               <?php } ?>
+                                <?php if (count($data['req'])<=0) { ?>
+                                    <!-- <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
+                                    </div> -->
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate text-center">No messgae</div>
+                                        <!-- <div class="small text-gray-500">Date : </div> -->
                                     </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                <?php } ?>
+
+                                <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a> -->
                             </div>
-                        </li>   
+                        </li>
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
