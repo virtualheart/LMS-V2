@@ -32,6 +32,11 @@ class RequestModel extends Model{
         return true;
     }
 
+    public function getAllBookRequest()
+    {
+        return $this->findAll();
+    }
+
     public function getBookRequest($id,$role)
     {
         return $this->select('rs.requester_id, rs.receiver_id, rs.messagee, rs.rec_role, rs.req_role,rs.rec_date,CASE WHEN rs.req_role = "student" THEN ss.regno ELSE sf.regno END AS regno',false)

@@ -161,6 +161,5 @@
     var baseUrl = "<?php echo site_url(); ?>";
 </script>
 
-
 </body>
 </html>

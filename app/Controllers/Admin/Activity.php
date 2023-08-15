@@ -191,7 +191,7 @@ class Activity extends BaseController
                 
                 $book = $this->booksModel->getBookDetail($bcode);
 
-                if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1])) {
+                if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d")])) {
                     $this->booksModel->updateBook($book['bid'],['status' => 1]);
                         $session->setFlashdata('msg', 'Book return Successfully.');
                 } else{

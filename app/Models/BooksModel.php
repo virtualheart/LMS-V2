@@ -25,16 +25,17 @@ class BooksModel extends Model{
 
     public function getBooksList()
     {
-        $query = $this->limit(50)->get();
-        $results = $query->getResultArray();
+        // $query = $this->limit(50)->get();
+        // $results = $query->getResultArray();
 
-        return $results;
+        // return $results;
 
-        // return $this->findAll();
+        return $this->findAll();
     }
 
     public function getBookDetail($id)
     {
+        // need to fix bug here
         return $this->where('bid',$id)
                     ->orWhere('bcode', $id)
                     ->first();
@@ -59,4 +60,3 @@ class BooksModel extends Model{
     }
 
 }
-

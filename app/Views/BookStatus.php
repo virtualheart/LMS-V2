@@ -3,7 +3,8 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="myTable">
+                                <table class="table table-bordered" id="myTable" data-show-columns="true" data-key-events="true"  data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
@@ -14,6 +15,7 @@
                                             <th>Publication</th>
                                             <th>Alamara</th>
                                             <th>Rack</th>
+                                            <th>No of Book</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -27,12 +29,13 @@
                                             <th>Publication</th>
                                             <th>Alamara</th>
                                             <th>Rack</th>
+                                            <th>No of Book</th>
                                             <th>Status</th>
                                         </tr>
                                     </tfoot>
 
                                     <tbody>
-                                    <?php $i=1; ?>
+                                    <?php $i=1;$pos=1 ?>
 
 							        <?php foreach ($books as $books): ?>
 
@@ -44,6 +47,7 @@
                                             <td><?=$books['aname']; ?></td>
                                             <td><?=$books['publication']; ?></td>
                                             <td><?=$books['alamara']; ?></td>
+                                            <td><?=$books['rack']; ?></td>
                                             <td><?=$books['rack']; ?></td>
     
                                             <?php if($books['status'] == 1 and session()->get('role') == "admin" ){ ?>
@@ -57,7 +61,7 @@
     
                                         </tr>         
 
-        							<?php $i++; endforeach; ?>
+        							<?php $i++;$pos++; endforeach; ?>
 
                                     </tbody>
                                 </table>

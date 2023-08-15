@@ -146,7 +146,12 @@ class Book extends BaseController
 
     public function getUserDet($u){
         $result = $this->otherModel->getUserDet($u);
-        return $this->response->setJSON($result);
+        // if (!empty($result)) {
+            return $this->response->setJSON($result);
+        // }
+        
+        // return $this->response->setStatusCode(204)->setJSON('{"mgs": "User Not Found"}');
+
     }
 
 }

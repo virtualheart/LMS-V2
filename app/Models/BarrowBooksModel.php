@@ -11,6 +11,7 @@ class BarrowBooksModel extends Model{
         'bid',
         'request_date',
         'return_date',
+        'returned_date',
         'is_returned',
         'role',
         'status'
@@ -65,6 +66,22 @@ class BarrowBooksModel extends Model{
                     ->join('books sb', 'sb.bid = sbb.bid')
                     ->where('sb.bcode', $bcode)
                     ->first();
+    }
+
+    public function getBarrowedBookcountbyRole($role)
+    {
+        return $this->where('role',$role)
+                    ->where("MONTH(request_date)",date('m'))
+                    ->countAllResults();
+    }
+
+    public function getBarrowedBookMonth()
+    {
+        $query = $this->select('COUNT(*) AS count')
+            ->groupBy('MONTH(request_date)')
+            ->get();
+
+        return array_column($query->getResultArray(), 'count');
     }
 
     public function setBarroeBook($data){

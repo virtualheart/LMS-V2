@@ -36,8 +36,15 @@ class Home extends BaseController
             'barrowBooks' => $barrowBooksModel->getBarrowedBooks(),
         ];
 
+        $chart = [
+            'staff' => $barrowBooksModel->getBarrowedBookcountbyRole("staff"),
+            'student' => $barrowBooksModel->getBarrowedBookcountbyRole("student"),
+            'datevice' => $barrowBooksModel->getBarrowedBookMonth()
+        ];
+
         echo view('Others/header');
         echo view('Admin/home', $data);
         echo view('Others/fooder');
+        echo view('Admin/AdminChart',$chart);
     }
 }

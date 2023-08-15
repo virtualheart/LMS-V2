@@ -221,6 +221,46 @@ function getUserDetile(str) {
         if (this.readyState === 4 && this.status === 200) {
             const info = JSON.parse(this.responseText);
             updateFormFields(info,fieldIds);
+        }
+        else if(this.readyState === 4 && this.status === 204){
+            if (!alertShown) { 
+
+                // unchecked need to check and set alert no user found
+
+                const alertDiv = document.createElement("div");
+                alertDiv.className = "alert alert-warning alert-dismissible";
+                alertDiv.role = "alert";
+
+                const closeButton = document.createElement("button");
+                closeButton.type = "button";
+                closeButton.className = "close";
+                closeButton.setAttribute("data-dismiss", "alert");
+                closeButton.setAttribute("aria-label", "Close");
+
+                const closeIcon = document.createElement("span");
+                closeIcon.setAttribute("aria-hidden", "true");
+                closeIcon.innerHTML = "&times;";
+
+                closeButton.appendChild(closeIcon);
+                alertDiv.appendChild(closeButton);
+
+                const strongTag = document.createElement("strong");
+                strongTag.innerHTML = "Warning! ";
+                alertDiv.appendChild(strongTag);
+
+                const message = document.createTextNode("Please verify if the is exists.");
+                alertDiv.appendChild(message);
+
+                const parentElement = document.getElementById("NoBookAlert");
+                parentElement.appendChild(alertDiv);
+
+                alertShown = true; 
+                setTimeout(function () {
+                    parentElement.removeChild(alertDiv);
+                    alertShown = false;
+                }, 3000);
+            }
+
         } else{
             clearFormFields(fieldIds);
         }
