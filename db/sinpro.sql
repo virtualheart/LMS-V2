@@ -9,7 +9,6 @@ DROP DATABASE IF EXISTS `sinpro`;
 CREATE DATABASE `sinpro` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
 USE `sinpro`;
 
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `aname` varchar(100) NOT NULL,
@@ -22,7 +21,6 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `aname`, `apass`, `a_mail`, `role`) VALUES
 (1,	'admin',	'$2y$10$kHNQZ3amlRdadIUSt3pSsuTqkvHhSzN8pEsmjcFtr7urjXIuL9tNa',	'admin@admin.com',	'admin');
 
-DROP TABLE IF EXISTS `barrow_books`;
 CREATE TABLE `barrow_books` (
   `sbid` int(11) NOT NULL AUTO_INCREMENT,
   `sid` int(11) NOT NULL,
@@ -40,13 +38,19 @@ INSERT INTO `barrow_books` (`sbid`, `sid`, `bid`, `request_date`, `return_date`,
 (24,	1,	45,	'2023-07-16',	'2023-07-31',	'0000-00-00',	1,	'student',	1),
 (25,	2,	1,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'staff',	1),
 (26,	1,	2,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'student',	1),
-(27,	1,	4,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'student',	1),
+(27,	1,	4,	'2023-07-20',	'2023-08-04',	'2023-08-15',	1,	'student',	1),
 (28,	1,	3,	'2023-07-20',	'2023-08-04',	'0000-00-00',	1,	'student',	1),
 (29,	1,	15,	'2023-07-24',	'2023-08-08',	'0000-00-00',	1,	'student',	1),
 (30,	1,	1,	'2023-07-24',	'2023-08-08',	'0000-00-00',	1,	'student',	1),
-(31,	1,	2,	'2023-07-24',	'2023-08-08',	'0000-00-00',	0,	'student',	1);
+(31,	1,	2,	'2023-07-24',	'2023-08-08',	'0000-00-00',	1,	'student',	1),
+(32,	1,	2,	'2023-08-15',	'2023-08-30',	'0000-00-00',	1,	'staff',	1),
+(33,	1,	2,	'2023-08-15',	'2023-08-30',	'1111-08-09',	1,	'staff',	1),
+(34,	1,	2,	'2023-08-15',	'2023-08-30',	'1111-08-09',	1,	'staff',	1),
+(35,	1,	4,	'2023-08-15',	'2023-08-30',	'2023-08-15',	1,	'staff',	1),
+(36,	1,	4,	'2023-08-15',	'2023-08-30',	'0000-00-00',	0,	'staff',	1),
+(37,	1,	3,	'2023-08-15',	'2023-08-30',	'0000-00-00',	0,	'staff',	1),
+(38,	3,	7,	'2023-08-15',	'2023-08-30',	'0000-00-00',	0,	'staff',	1);
 
-DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
   `bid` int(11) NOT NULL AUTO_INCREMENT,
   `bno` varchar(20) NOT NULL,
@@ -63,12 +67,12 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`bid`, `bno`, `bcode`, `title`, `aname`, `publication`, `price`, `alamara`, `rack`, `status`) VALUES
 (1,	'M0001',	'GACCA202200001',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
-(2,	'M0002',	'GACCA202200002',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	0),
-(3,	'M0003',	'GACCA202200003',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
-(4,	'M0004',	'GACCA202200004',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
+(2,	'M0002',	'GACCA202200002',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	1),
+(3,	'M0003',	'GACCA202200003',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	0),
+(4,	'M0004',	'GACCA202200004',	'A Guide to Expert System',	'D.A.Wasterman',	'ADL(Addition Wesley)',	'295',	'B1',	'R1',	0),
 (5,	'M0005',	'GACCA202200005',	'File Structures',	'M.I.Folk',	'',	'295',	'B1',	'R1',	1),
 (6,	'M0006',	'GACCA202200006',	'Discrete Mathemetics',	'S.Nanda',	'',	'180',	'B1',	'R1',	1),
-(7,	'M0007',	'GACCA202200007',	'Discrete Mathemetics',	'S.Nanda',	'',	'180',	'B1',	'R1',	1),
+(7,	'M0007',	'GACCA202200007',	'Discrete Mathemetics',	'S.Nanda',	'',	'180',	'B1',	'R1',	0),
 (8,	'M0008',	'GACCA202200008',	'E-Commerce',	'P.T.joseph',	'',	'250',	'B1',	'R1',	1),
 (9,	'M0009',	'GACCA202200009',	'E-Commerce',	'P.T.joseph',	'',	'250',	'B1',	'R1',	1),
 (10,	'M0010',	'GACCA202200010',	'Microsoft ASP.Net(cd)',	'G.A.Dulkie',	'',	'425',	'B1',	'R1',	1),
@@ -82,26 +86,26 @@ INSERT INTO `books` (`bid`, `bno`, `bcode`, `title`, `aname`, `publication`, `pr
 (18,	'M0018',	'GACCA202200018',	'Software Engineering',	'Lan Sommerbille',	'',	'375',	'B1',	'R1',	1),
 (19,	'M0019',	'GACCA202200019',	'Software Engineering',	'Lan Sommerbille',	'',	'375',	'B1',	'R1',	1),
 (20,	'M0020',	'GACCA202200020',	'Turbo C++',	'R.Lafre',	'',	'279',	'B1',	'R1',	1),
-(21,	'M0021',	'GACCA202200021',	'Turbo C++',	'R.Lafre',	'',	'279',	'B1',	'R1',	1),
-(22,	'M0022',	'GACCA202200022',	'Computer Database Organisation',	'J.Marten',	'',	'225',	'B1',	'R1',	1),
-(23,	'M0023',	'GACCA202200023',	'Computer Database Organisation',	'J.Marten',	'',	'225',	'B1',	'R1',	1),
-(24,	'M0024',	'GACCA202200024',	'Visual Basic  6',	'G.Canell',	'',	'325',	'B1',	'R1',	1),
-(25,	'M0025',	'GACCA202200025',	'Complete Reference ASP.Net',	'M.Donald',	'',	'425',	'B1',	'R1',	1),
-(26,	'M0026',	'GACCA202200026',	'Communication Network',	'Leon',	'',	'299',	'B1',	'R1',	1),
-(27,	'M0027',	'GACCA202200027',	'Introduction to Algorithms',	'T.H.Cotmen',	'',	'325',	'B1',	'R1',	1),
-(28,	'M0028',	'GACCA202200028',	'Introduction to Algorithms',	'T.H.Cotmen',	'',	'325',	'B1',	'R1',	1),
-(29,	'M0029',	'GACCA202200029',	'Matrices and Modulo in Software Quality Engineering',	'S.H.Kan',	'',	'225',	'B1',	'R1',	1),
-(30,	'M0030',	'GACCA202200030',	'Matrices and Modulo in Software Quality Engineering',	'S.H.Kan',	'',	'225',	'B1',	'R1',	1),
-(31,	'M0031',	'GACCA202200031',	'Structured and Object oriented Problem Solving Using C++',	'A.C.Staugaand',	'',	'395',	'B1',	'R1',	1),
-(32,	'M0032',	'GACCA202200032',	'Programming Languages',	'R.Sethu',	'',	'325',	'B1',	'R1',	1),
-(33,	'M0033',	'GACCA202200033',	'Statistical Quality Control',	'E.L.Grant',	'',	'295',	'B1',	'R1',	1),
-(34,	'M0034',	'GACCA202200034',	'Digital Principle & Applications',	'Mahime Leach',	'',	'225',	'B1',	'R1',	1),
-(35,	'M0035',	'GACCA202200035',	'Fuzzy Sets Uncertainity and Information',	'G.J.Klin',	'',	'125',	'B1',	'R1',	1),
-(36,	'M0036',	'GACCA202200036',	'Operation Research CD',	'Taha',	'',	'295',	'B1',	'R1',	1),
-(37,	'M0037',	'GACCA202200037',	'Unix Sysytem programming Using C++',	'T.Chan',	'',	'250',	'B1',	'R1',	1),
-(38,	'M0038',	'GACCA202200038',	'Programming With C++',	'Ravichandran',	'',	'215',	'B1',	'R1',	1),
-(39,	'M0039',	'GACCA202200039',	'Essentials of Management',	'Koontz',	'',	'195',	'B1',	'R1',	1),
-(40,	'M0040',	'GACCA202200040',	'C++',	'S.B.Lipponan',	'',	'450',	'B1',	'R1',	1),
+(21,	'M0021',	'GACCA202200021',	'Turbo C++',	'R.Lafre',	'',	'279',	'B1',	'R2',	1),
+(22,	'M0022',	'GACCA202200022',	'Computer Database Organisation',	'J.Marten',	'',	'225',	'B1',	'R2',	1),
+(23,	'M0023',	'GACCA202200023',	'Computer Database Organisation',	'J.Marten',	'',	'225',	'B1',	'R2',	1),
+(24,	'M0024',	'GACCA202200024',	'Visual Basic  6',	'G.Canell',	'',	'325',	'B1',	'R2',	1),
+(25,	'M0025',	'GACCA202200025',	'Complete Reference ASP.Net',	'M.Donald',	'',	'425',	'B1',	'R2',	1),
+(26,	'M0026',	'GACCA202200026',	'Communication Network',	'Leon',	'',	'299',	'B1',	'R2',	1),
+(27,	'M0027',	'GACCA202200027',	'Introduction to Algorithms',	'T.H.Cotmen',	'',	'325',	'B1',	'R2',	1),
+(28,	'M0028',	'GACCA202200028',	'Introduction to Algorithms',	'T.H.Cotmen',	'',	'325',	'B1',	'R2',	1),
+(29,	'M0029',	'GACCA202200029',	'Matrices and Modulo in Software Quality Engineering',	'S.H.Kan',	'',	'225',	'B1',	'R2',	1),
+(30,	'M0030',	'GACCA202200030',	'Matrices and Modulo in Software Quality Engineering',	'S.H.Kan',	'',	'225',	'B1',	'R2',	1),
+(31,	'M0031',	'GACCA202200031',	'Structured and Object oriented Problem Solving Using C++',	'A.C.Staugaand',	'',	'395',	'B1',	'R2',	1),
+(32,	'M0032',	'GACCA202200032',	'Programming Languages',	'R.Sethu',	'',	'325',	'B1',	'R2',	1),
+(33,	'M0033',	'GACCA202200033',	'Statistical Quality Control',	'E.L.Grant',	'',	'295',	'B1',	'R2',	1),
+(34,	'M0034',	'GACCA202200034',	'Digital Principle & Applications',	'Mahime Leach',	'',	'225',	'B1',	'R2',	1),
+(35,	'M0035',	'GACCA202200035',	'Fuzzy Sets Uncertainity and Information',	'G.J.Klin',	'',	'125',	'B1',	'R2',	1),
+(36,	'M0036',	'GACCA202200036',	'Operation Research CD',	'Taha',	'',	'295',	'B1',	'R2',	1),
+(37,	'M0037',	'GACCA202200037',	'Unix Sysytem programming Using C++',	'T.Chan',	'',	'250',	'B1',	'R2',	1),
+(38,	'M0038',	'GACCA202200038',	'Programming With C++',	'Ravichandran',	'',	'215',	'B1',	'R2',	1),
+(39,	'M0039',	'GACCA202200039',	'Essentials of Management',	'Koontz',	'',	'195',	'B1',	'R2',	1),
+(40,	'M0040',	'GACCA202200040',	'C++',	'S.B.Lipponan',	'',	'450',	'B1',	'R2',	1),
 (41,	'M0041',	'GACCA202200041',	'Computer Graphics',	'Faley',	'',	'450',	'B1',	'R1',	1),
 (42,	'M0042',	'GACCA202200042',	'Client/server Computing',	'P.Smith',	'',	'195',	'B1',	'R1',	1),
 (43,	'M0043',	'GACCA202200043',	'Management Information System',	'javadbar',	'',	'225',	'B1',	'R1',	1),
@@ -923,7 +927,6 @@ INSERT INTO `books` (`bid`, `bno`, `bcode`, `title`, `aname`, `publication`, `pr
 (859,	'54296',	'GACCA202200859',	'Data Analytics Using Python',	'Bharti Morwani',	'Wiley',	'769',	'B1',	'R1',	1),
 (860,	'54297',	'GACCA202200860',	'Machine Learning  (in Python and R) for Dummies',	'John Poul heller Lula Massaion',	'Wiley',	'691',	'B1',	'R1',	1);
 
-DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `did` int(11) NOT NULL AUTO_INCREMENT,
   `dname` varchar(150) NOT NULL,
@@ -934,7 +937,6 @@ INSERT INTO `department` (`did`, `dname`) VALUES
 (1,	'B.C.A.Computer application'),
 (2,	'M.C.A.Computer application');
 
-DROP TABLE IF EXISTS `designation`;
 CREATE TABLE `designation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(150) NOT NULL,
@@ -947,7 +949,6 @@ INSERT INTO `designation` (`id`, `designation`) VALUES
 (3,	'Lecturer'),
 (4,	'Guest Lecture');
 
-DROP TABLE IF EXISTS `request_mgs`;
 CREATE TABLE `request_mgs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `requester_id` int(11) NOT NULL,
@@ -956,21 +957,30 @@ CREATE TABLE `request_mgs` (
   `is_seen` int(11) NOT NULL,
   `req_role` varchar(12) NOT NULL,
   `rec_role` varchar(12) NOT NULL,
+  `rec_date` date NOT NULL DEFAULT '0000-00-00',
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `request_mgs` (`id`, `requester_id`, `receiver_id`, `messagee`, `is_seen`, `req_role`, `rec_role`, `status`) VALUES
-(31,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	0,	'student',	'student',	1),
-(32,	1,	1,	'The Book Barcode: GACCA202200002 wanted to admin admin.',	0,	'admin',	'student',	1),
-(33,	3,	1,	'The Book Barcode: GACCA202200002 wanted to staff Mr. V. GANDHIRAJA.',	0,	'staff',	'student',	1);
+INSERT INTO `request_mgs` (`id`, `requester_id`, `receiver_id`, `messagee`, `is_seen`, `req_role`, `rec_role`, `rec_date`, `status`) VALUES
+(31,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	1,	'student',	'student',	'2023-08-06',	1),
+(32,	1,	1,	'The Book Barcode: GACCA202200002 wanted to admin admin.',	1,	'admin',	'student',	'2023-08-06',	1),
+(33,	3,	1,	'The Book Barcode: GACCA202200002 wanted to staff Mr. V. GANDHIRAJA.',	1,	'staff',	'student',	'2023-08-06',	1),
+(36,	1,	1,	'sjnj',	1,	'1',	'1',	'2023-08-06',	1),
+(37,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	1,	'student',	'student',	'2043-12-10',	1),
+(38,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	1,	'student',	'student',	'2023-08-06',	1),
+(39,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	1,	'student',	'student',	'2023-08-06',	1),
+(40,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	1,	'student',	'student',	'2023-08-06',	1),
+(41,	1,	1,	'The Book Barcode: GACCA202200002 wanted to student ANANDHARUBAN  T.',	0,	'student',	'student',	'2023-08-06',	1),
+(42,	3,	1,	'The Book Barcode: GACCA202200002 wanted to staff Mr. V. GANDHIRAJA.',	0,	'staff',	'student',	'2023-08-06',	1),
+(43,	1,	1,	'The Book Barcode: GACCA202200002 wanted to admin admin.',	0,	'admin',	'student',	'2023-08-15',	1);
 
 DELIMITER ;;
 
 CREATE TRIGGER `prevent_duplicate_roles` BEFORE INSERT ON `request_mgs` FOR EACH ROW
 BEGIN
     DECLARE existing_role VARCHAR(12);
-    SELECT `req_role` INTO existing_role FROM `request_mgs` WHERE `requester_id` = NEW.`requester_id` AND `receiver_id` = NEW.`receiver_id` AND `req_role` = NEW.`req_role`;
+    SELECT `req_role` INTO existing_role FROM `request_mgs` WHERE `requester_id` = NEW.`requester_id` AND `receiver_id` = NEW.`receiver_id` AND `req_role` = NEW.`req_role` AND `is_seen`!=1;
     IF existing_role IS NOT NULL THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Already Requested';
@@ -979,7 +989,6 @@ END;;
 
 DELIMITER ;
 
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app_name` varchar(30) NOT NULL,
@@ -999,7 +1008,6 @@ CREATE TABLE `settings` (
 INSERT INTO `settings` (`id`, `app_name`, `app_decp`, `app_logo`, `fine`, `fine_stf_days`, `fine_std_days`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `smtp_sec_type`) VALUES
 (1,	'GAS-7 LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	2,	60,	30,	'smtp.gmail.com',	'587',	'computersearch4@gmail.com',	'happycomputer',	'ssl');
 
-DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
   `sid` int(11) NOT NULL AUTO_INCREMENT,
   `regno` varchar(150) NOT NULL,
@@ -1030,7 +1038,6 @@ INSERT INTO `staff` (`sid`, `regno`, `spass`, `sname`, `semail`, `did`, `designi
 (8,	'STF0004',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'M. SELVAKUMAR',	'demo@gmail.com',	1,	4,	'9443213646',	'male',	'./assets/staff/male.png',	'staff'),
 (9,	'STF0004',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'K. GEETHA',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff');
 
-DROP TABLE IF EXISTS `staff_department`;
 CREATE TABLE `staff_department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_d_name` varchar(64) NOT NULL,
@@ -1040,7 +1047,6 @@ CREATE TABLE `staff_department` (
 INSERT INTO `staff_department` (`id`, `s_d_name`) VALUES
 (1,	'Computer Application');
 
-DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `st_id` int(11) NOT NULL AUTO_INCREMENT,
   `regno` varchar(150) NOT NULL,
@@ -1083,4 +1089,4 @@ INSERT INTO `students` (`st_id`, `regno`, `sname`, `spass`, `gender`, `stemail`,
 (23,	'22PCA242523',	'TAMILSELVI  S',	'$2y$10$487DwPw1chrrYve.m3vPM.Boar4U1TjjQgTC.HQuAiY0Y7wNUY4J6',	'girl',	'TAMILSELVI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'',	'student'),
 (24,	'22PCA242524',	'VAISHNAVI J',	'$2y$10$frCnjJCHWmw.i0GmULeuOeCSZjet2iNkg4Nen9dwswwTY7WRjjiLC',	'girl',	'VAISHNAVI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'',	'student');
 
--- 2023-08-05 07:07:02
+-- 2023-08-16 12:35:40

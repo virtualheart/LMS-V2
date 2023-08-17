@@ -71,15 +71,26 @@ class BarrowBooksModel extends Model{
     public function getBarrowedBookcountbyRole($role)
     {
         return $this->where('role',$role)
-                    ->where("MONTH(request_date)",date('m'))
+                    ->like('request_date',date('Y-m'))
                     ->countAllResults();
     }
 
     public function getBarrowedBookMonth()
     {
-        $query = $this->select('COUNT(*) AS count')
-            ->groupBy('MONTH(request_date)')
-            ->get();
+        // $query = $this->select('COUNT(*) AS count')
+        //     ->where('YEAR(request_date)',date('Y'))
+        //     ->groupBy('MONTH(request_date)')
+        //     ->get();
+           $query = $this->db->query("
+            SELECT
+                IFNULL(COUNT(request_date), 0) AS count
+            FROM (
+                SELECT 1 AS m UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6
+                UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
+            ) AS months
+            LEFT JOIN barrow_books ON MONTH(request_date) = months.m AND YEAR(request_date) = YEAR(CURDATE())
+            GROUP BY months.m
+        ");
 
         return array_column($query->getResultArray(), 'count');
     }

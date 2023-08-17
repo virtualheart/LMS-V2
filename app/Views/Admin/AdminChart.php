@@ -10,7 +10,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Students","Staff"],
     datasets: [{
-      // data: [55, 30, 222],
+      // data: [1, 1],
       data: <?="[". $student .",". $staff ."]" ?>,
       backgroundColor: ['#4e73df', '#1cc88a'],
       hoverBackgroundColor: ['#2e59d9', '#17a673'],
@@ -73,7 +73,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
-      label: "Earnings",
+      label: "Barrowed",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -87,6 +87,7 @@ var myLineChart = new Chart(ctx, {
       pointBorderWidth: 2,
       // data: [0, 1, 4, 1, 1, 5, 9, 10, 11, 1, 0, 1],
  	  data: [<?php echo implode(",", $datevice); ?>],
+
 
     }],
   },
@@ -119,7 +120,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value);
           }
         },
         gridLines: {
@@ -151,7 +152,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     }
