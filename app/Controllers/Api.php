@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\StudentModel;
+use App\Models\BooksModel;
 
 class Api extends BaseController
 {
@@ -10,6 +11,7 @@ class Api extends BaseController
     public function __construct()
     {
         $this->before = ['auth'];
+        $this->booksModel= new BooksModel();
     }
     
     public function login()
@@ -62,6 +64,13 @@ class Api extends BaseController
         echo view('Others/header');
         echo view('install/install',$data);
         echo view('Others/fooder');
+    }
+
+    public function getBooksListAPI()
+    {
+        return $this->response->setJSON(
+                $this->booksModel->getBooksList()
+            );
     }
 
 }

@@ -45,26 +45,78 @@ $(document).ready(function() {
 //   });
 // });
 
+// $(document).ready(function() {
+//   // Check if the current page is the specific page where you want to hide the sidebar
+//   if (window.location.pathname.includes("/index.php/admin/ViewAllBooks") || window.location.pathname.includes("/index.php/books/status")) {
+//     $("body").addClass("hide-sidebar");
+//     $(".sidebar").addClass("toggled");
+//   }
+// });
+
+$(document).ready(function() {
+    $('.nav-tabs').on('shown.bs.tab', function(event) {
+        // Get the ID of the tab content element associated with the clicked tab
+        var tabContentId = $(event.target).attr('href');
+        
+        // Remove the "show active" class from all tab content elements
+        $('.tab-pane').removeClass('show active');
+        
+        // Add the "show active" class to the clicked tab content element
+        $(tabContentId).addClass('show active');
+    });
+});
+
 
 // Datatables 
 $(document).ready(function() {
-    // DataTable initialisation
-    $('#myTable').DataTable(
-        {
+  // DataTable initialisation
+    $('#myTable1').DataTable({
             "dom": '<"dt-buttons"Bf><"clear">lirtp',
+            "responsive": true,
+            "scrollCollapse": true,
+            "scrollY": '400px',
             "paging": true,
             "autoWidth": true,
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ], 
             "buttons": [
                 'colvis',
-                'copyHtml5',
                 'csvHtml5',
                 'excelHtml5',
-                'pdfHtml5',
                 'print'
-            ]
+            ],
+            "stateSave": true,
+            "responsive": true,
+    });
+
+
+    // DataTable initialisation
+    $('#myTable').DataTable(
+        { 
+            "dom": '<"dt-buttons"Bf><"clear">lirtp',
+            "responsive": true,
+            "scrollCollapse": true,
+            "scrollY": '400px',
+            "paging": true,
+            "autoWidth": true,
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ], 
+            "buttons": [
+                'colvis',
+                'csvHtml5',
+                'excelHtml5',
+                'print'
+            ],
+            "stateSave": true,
+            "responsive": true,
         }
-    );
+    ); 
 });
+
 
 // Disable right-click context menu
 // $(document).on("contextmenu", function(e) {
@@ -286,13 +338,6 @@ function clearFormFields(fieldIds) {
     });
 }
 
-$(document).ready(function() {
-  // Check if the current page is the specific page where you want to hide the sidebar
-  if (window.location.pathname.includes("/index.php/admin/ViewAllBooks") || window.location.pathname.includes("/index.php/books/status")) {
-    $("body").addClass("hide-sidebar");
-    $(".sidebar").addClass("toggled");
-  }
-});
 
 // submit confirm 
 document.getElementById('bookForm').addEventListener('submit', function(event) {

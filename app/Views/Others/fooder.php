@@ -155,7 +155,7 @@
 <!-- Page level plugins -->
 <script src="<?= base_url(); ?>assets/vendor/chart.js/Chart.min.js"></script>
 
-<script src="<?= base_url(); ?>assets/vendor/datatables/datatables.min.js"></script>
+<script src="<?= base_url(); ?>assets/vendor/datatables/datatables.js"></script>
 <script src="<?= base_url(); ?>assets/js/custom.js"></script>
 <script>
     var baseUrl = "<?php echo site_url(); ?>";
