@@ -14,7 +14,7 @@ class users extends BaseController
         $this->studentModel = new StudentModel();
     }
         
-    public function staff()
+    public function staffs()
     {
         $session = session();
 
@@ -31,7 +31,7 @@ class users extends BaseController
         echo view('Others/fooder');
     }
 
-    public function student()
+    public function students()
     {
         $session = session();
 
@@ -46,6 +46,22 @@ class users extends BaseController
         echo view('Others/header');
         echo view('Admin/AdminStudentList',$data);
         echo view('Others/fooder');
+    }
+
+    public function student($activity,$id)
+    {
+        if ($activity=='add') {
+
+            echo view('Others/header');
+            echo view('Admin/AdminAddStudent');
+            echo view('Others/fooder');
         
+        }elseif($activity == 'update'){
+
+            echo view('Others/header');
+            echo view('Admin/AdminAddStudent');
+            echo view('Others/fooder');    
+
+        }
     }
 }

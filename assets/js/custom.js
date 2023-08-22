@@ -78,8 +78,8 @@ $(document).ready(function() {
             "paging": true,
             "autoWidth": true,
             "lengthMenu": [
-                [10, 25, 50, 100],
-                [10, 25, 50, 100]
+                [15, 25, 50, 100],
+                [15, 25, 50, 100]
             ], 
             "buttons": [
                 'colvis',
@@ -102,8 +102,8 @@ $(document).ready(function() {
             "paging": true,
             "autoWidth": true,
             "lengthMenu": [
-                [10, 25, 50, 100],
-                [10, 25, 50, 100]
+                [15, 25, 50, 100],
+                [15, 25, 50, 100]
             ], 
             "buttons": [
                 'colvis',

@@ -22,7 +22,7 @@ class ListRequest extends BaseController
         ];
 
         echo view('Others/header');
-        echo view('ListRequestView',$data);
+        echo view('Student/ListRequestView',$data);
         echo view('Others/fooder');
             
         $this->requestModel->setIsSeen($session->get('id'),$session->get('role'));
@@ -37,7 +37,7 @@ class ListRequest extends BaseController
         ];
 
         echo view('Others/header');
-        echo view('ListRequestView',$data);
+        echo view('Student/ListRequestView',$data);
         echo view('Others/fooder');
 
     }

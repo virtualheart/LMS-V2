@@ -141,6 +141,11 @@ class Book extends BaseController
                 return $this->response->setJSON($jsonResponse);
             }
             return $this->response->setStatusCode(204)->setJSON('{"mgs": "Book Not barrowed"}');
+        } else{
+            $data = [
+                'message' => ' Controller or its method is not found'
+            ];
+            return view('errors/html/error_404',$data);
         }
     }
 

@@ -34,7 +34,11 @@ class RequestModel extends Model{
 
     public function getAllBookRequest()
     {
-        return $this->findAll();
+        return $this->select('rs.requester_id, rs.receiver_id, rs.messagee, rs.rec_role, rs.req_role,rs.is_seen,ss.sname,rs.rec_date,CASE WHEN rs.req_role = "student" THEN ss.regno ELSE sf.regno END AS regno',false)
+                    ->join('students ss', 'rs.requester_id = ss.st_id AND rs.req_role = ss.role', 'LEFT')
+                    ->join('staff sf', 'rs.requester_id = sf.sid AND rs.req_role = sf.role', 'LEFT')
+                    ->get()
+                    ->getResult();
     }
 
     public function getBookRequest($id,$role)
@@ -61,5 +65,4 @@ class RequestModel extends Model{
                     ->get()
                     ->getResult();
     }
-
 }

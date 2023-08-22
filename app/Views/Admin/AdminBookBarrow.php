@@ -37,52 +37,52 @@
             <div class="card-body">
                 <div class="row">
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Barcode No</label>
                     <input type="text" class="form-control" value="" name="bcode" required autocomplete="off" pattern="[a-zA-Z0-9]+" onkeyup="getDetailBarrow(this.value)">
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Reg Number</label>
                     <input type="text" class="form-control" value="" name="regno" id="regno" onkeyup="getUserDetile(this.value)" required pattern="[a-zA-Z0-9]+">
                 </div>
                 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Std/Staff Name</label>
                     <input type="text" class="form-control" value="" name="sname" id="sname" readonly="true">
 
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Book No</label>
                     <input type="text" class="form-control" value="" name="bno" id="bno" readonly="true">
                 </div>
                 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Title</label>
                     <input type="text" class="form-control" value="" name="title" id="title" readonly="true">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Author Name</label>
                     <input type="text" class="form-control" value="" name="aname" id="aname" readonly="true">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Publication</label>
                     <input type="text" class="form-control" value="" name="publication" id="publication" readonly="true">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Price</label>
                     <input type="text" class="form-control" value="" name="price" id="price" readonly="true">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Request Date</label>
                     <input type="text" class="form-control" value="<?=date("d-m-Y");?>" name="reqdate" readonly="true">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>ETA Return Date</label>
                     <input type="text" class="form-control" value="<?=date("d-m-Y",strtotime("+15 days"))?>" name="retdate" id="retdate" readonly="true"> 
                 </div>
-                <div class=" form-group col-md-5"style="position:relative;top:30px;">
+                <div class=" form-group col-md-6"style="position:relative;top:30px;">
                     <label></label>
                     <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" id="save" style="margin-left:5px" >                  
                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">

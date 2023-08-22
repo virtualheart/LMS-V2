@@ -22,7 +22,7 @@ class ListRequest extends BaseController
         ];
 
         echo view('Others/header');
-        echo view('ListRequestView',$data);
+        echo view('Staff/ListRequestView',$data);
         echo view('Others/fooder');
     }
 
@@ -36,7 +36,7 @@ class ListRequest extends BaseController
         ];
 
         echo view('Others/header');
-        echo view('ListRequestView',$data);
+        echo view('Staff/ListRequestView',$data);
         echo view('Others/fooder');
 
     }

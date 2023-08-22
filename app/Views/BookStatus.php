@@ -2,10 +2,10 @@
     	<!-- <h1 class="h3 mb-4 text-gray-800">Status Books</h1> -->
             <ul class="nav nav-tabs" role="tablist" id="list-tab">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="list-home-list" data-toggle="tab" href="#list-home" role="tab" aria-controls="home">Home</a>
+                    <a class="nav-link active" id="list-home-list" data-toggle="tab" href="#list-home" role="tab" aria-controls="home">All</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="list-profile-list" data-toggle="tab" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+                    <a class="nav-link" id="list-profile-list" data-toggle="tab" href="#list-profile" role="tab" aria-controls="profile">Barrowed</a>
                 </li>
             </ul>
 
