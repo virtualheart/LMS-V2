@@ -113,11 +113,11 @@ $data['req'] = $requestModel->getAllBookRequest();
                     <i class="fa fa-user"></i>
                     <span>User Request</span>
                 </a>
-                <div id="collapseRequest" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseRequest" class="collapse <?php if($uri=="Admin/ListRequest") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Staff Request</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Student Request</a>
+                        <a class="collapse-item <?php if($uri=="Admin/ListRequest") echo "active"; ?>" href="<?=site_url('Admin/ListRequest')?>">Staff Request</a>
+                        <!-- <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Student Request</a> -->
                     </div>
                 </div>
             </li>

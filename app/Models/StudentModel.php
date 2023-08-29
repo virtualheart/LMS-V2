@@ -44,9 +44,15 @@ class StudentModel extends Model{
         return $result;
     }
 
-    public function insertBooks($data)
+    public function insertstds($data)
     {
         $this->insertBatch($data);
+    }
+
+    public function insertstd($data)
+    {
+        $this->insert($data);
+        return true;
     }
 
 }   

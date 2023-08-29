@@ -160,7 +160,7 @@ private function StudentprocessFile($filePath)
             ];
         }
 
-        $this->studentModel->insertBooks($data);
+        $this->studentModel->insertstds($data);
 
         return true;
     } catch (Exception $e) {

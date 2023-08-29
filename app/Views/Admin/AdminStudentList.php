@@ -47,7 +47,7 @@
                                             <td><?=$user['year']; ?></td>
                                             <td><?=$user['dname']; ?></td>
                                             <td><?=$user['shift']; ?></td> 
-                                            <td><a class='btn btn-success' href='#' ><i class='fa fa-edit'></i></a></td> 
+                                            <td><a class='btn btn-success' href='<?=site_url('admin/users/student/update/'.$user['st_id'])?>' ><i class='fa fa-edit'></i></a></td> 
                                         </tr>         
 
         							<?php $i++; endforeach; ?>

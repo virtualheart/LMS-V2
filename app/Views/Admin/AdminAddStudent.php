@@ -40,15 +40,19 @@
                 
                 <div class="form-group col-md-6">
                     <label>Contact</label>
-                    <input type="number" class="form-control" value="<?php if(isset($student)){ echo $student['contact']; } ?>" name="contact" required>
+                    <input type="number" class="form-control" value="<?php if(isset($student)){ echo $student['Contact']; } ?>" min="1" name="contact" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Year of joining</label>
                         <select class="form-control" name="year" required>
-                            <option value='-'>Select Year</option>
+                            <option value=''>Select Year</option>
+                            <?php if(isset($student)){ ?>
+                                <option value='<?=$student['year']?>' selected><?=$student['year']; }?></option>
+                            ?>
+
                             <?php
-                                for($i = date('Y')-7 ; $i <= date('Y'); $i++){
-                                echo "<option value='{$i}'>$i</option>";
+                                for($i = date('Y')-5 ; $i <= date('Y'); $i++){
+                                    echo "<option value='{$i}'>$i</option>";
                             }
                             ?>
                         </select>
@@ -56,29 +60,32 @@
                 <div class="form-group col-md-6">
                     <label>Department</label>
                         <select class="itemName form-control" name="dname" required>
-                        <option value='-'>Select Department</option>
-                        <option value='1'>MCA</option>
+                        <option value=''>Select Department</option>
+                        <option value='1' <?php if(isset($student) && $student['did']=='1') echo "selected" ?>>BCA</option>
+                        <option value='2' <?php if(isset($student) && $student['did']=='2') echo "selected" ?>>MCA</option>
                         
                     </select>   
                 </div>
                 <div class="form-group col-md-6">
                     <label>Swift</label>
                     <select class="form-control" name="shift" required>                                      
-                        <option>Select Shift</option>                       
-                        <option value='I'>I</option>                        
-                        <option value='II'>II</option>
+                        <option value="">Select Shift</option>                       
+                        <option value='I' <?php if(isset($student) && $student['shift']=='I') echo "selected" ?>>I</option>                        
+                        <option value='II' <?php if(isset($student) && $student['shift']=='II') echo "selected" ?>>II</option>
                     </select>   
                 </div>
                 <div class="form-group col-md-6">
                     <label>Email</label>
-                    <input type="email" class="form-control" value="<?php if(isset($student)){ echo $student['rack']; } ?>" name="mail" required> 
+                    <input type="email" class="form-control" value="<?php if(isset($student)){ echo $student['stemail']; } ?>" name="mail" required> 
                 </div>
                 <div class="form-group col-md-6">
                     <label>Gender</label>
                     <br>
-                        <input type="radio" id="male" name="gender" value="male" required>
+                        <input type="radio" id="male" name="gender" value="boy" 
+                        <?php if(isset($student) && $student['gender']=='boy') echo "checked" ?> required>
                     <label for="male"> Male</label>
-                        <input type="radio" id="female" name="gender" value="female" required>
+                        <input type="radio" id="female" name="gender" value="girl" 
+                        <?php if(isset($student) && $student['gender']=='girl') echo "checked" ?> required>
                     <label for="female"> Female</label>
                 </div>
                 <div class=" form-group col-md-6"style="position:relative;top:30px;">
