@@ -5,6 +5,7 @@ use CodeIgniter\Model;
 class OtherModel extends Model
 
 {
+    // Using Ajax / Book Barrow / Book Return
     public function getUserDet($u) {
 
     $db = \Config\Database::connect();
@@ -32,6 +33,7 @@ class OtherModel extends Model
         $db = \Config\Database::connect();
 
         $query = $db->table('staff')
+            ->select('sname,semail,regno')
             ->Where('sid', $u)
             ->limit(1);
 
@@ -46,5 +48,38 @@ class OtherModel extends Model
         }
 
         return $result;
-}
+    }
+
+    public function getLastStaffid()
+    {
+        $db = \Config\Database::connect();
+
+        $result = $db->table('staff') 
+                        ->select('substr(regno,4) as dis')
+                        ->orderBy('regno','desc')
+                        ->limit(1)
+                        ->get()
+                        ->getRow();
+        return $result;
+    }
+
+        public function getLastBookid()
+    {
+        $db = \Config\Database::connect();
+
+        $result = $db->table('books') 
+                        ->select('substr(bcode,10) as dis')
+                        ->orderBy('bcode','desc')
+                        ->limit(1)
+                        ->get()
+                        ->getRow();
+        return $result;
+    /*
+        $OtherModel = new OtherModel();
+        $n = $OtherModel->getLastBookid();
+
+        echo $n->dis; 
+    */
+    }
+
 }

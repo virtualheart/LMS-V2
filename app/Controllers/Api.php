@@ -47,7 +47,6 @@ class Api extends BaseController
 
     public function test($s=null){
 
-
         switch ($s) {
             case '1':
                 copy(getcwd().'/env', getcwd().'/.envtest');

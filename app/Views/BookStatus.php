@@ -1,19 +1,57 @@
     <div class="container-fluid">
-    	<!-- <h1 class="h3 mb-4 text-gray-800">Status Books</h1> -->
-            <ul class="nav nav-tabs" role="tablist" id="list-tab">
+        <h1 class="h3 mb-4 text-gray-800">Status Books</h1>
+<!--             <ul class="nav nav-tabs" role="tablist" id="list-tab">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="list-home-list" data-toggle="tab" href="#list-home" role="tab" aria-controls="home">All</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="list-profile-list" data-toggle="tab" href="#list-profile" role="tab" aria-controls="profile">Barrowed</a>
                 </li>
-            </ul>
+            </ul> -->
 
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                            <table class="table table-bordered table-striped" id="myTable" data-show-columns="true" data-key-events="true"  data-cookie="true" data-cookie-id-table="saveId" data-show-export="true">
+
+<table style="width: 67%; margin: 0 auto 2em auto;" cellspacing="0" cellpadding="3" border="0">
+        <thead>
+            <tr>
+                <th>Target</th>
+                <th>Search text</th>
+                <th>Treat as regex</th>
+                <th>Use smart search</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="filter_global">
+                <td>Global search</td>
+                <td align="center"><input type="text" class="global_filter" id="global_filter"></td>
+                <td align="center"><input type="checkbox" class="global_filter" id="global_regex"></td>
+                <td align="center"><input type="checkbox" class="global_filter" id="global_smart" checked="checked"></td>
+            </tr>
+            <tr id="filter_col3" data-column="3">
+                <td>Column - Title</td>
+                <td align="center"><input type="text" class="column_filter" id="col3_filter"></td>
+                <td align="center"><input type="checkbox" class="column_filter" id="col3_regex"></td>
+                <td align="center"><input type="checkbox" class="column_filter" id="col3_smart" checked="checked"></td>
+            </tr>
+            <tr id="filter_col4" data-column="4">
+                <td>Column - Author</td>
+                <td align="center"><input type="text" class="column_filter" id="col4_filter"></td>
+                <td align="center"><input type="checkbox" class="column_filter" id="col4_regex"></td>
+                <td align="center"><input type="checkbox" class="column_filter" id="col4_smart" checked="checked"></td>
+            </tr>
+            <tr id="filter_col5" data-column="5">
+                <td>Column - Publication</td>
+                <td align="center"><input type="text" class="column_filter" id="col5_filter"></td>
+                <td align="center"><input type="checkbox" class="column_filter" id="col5_regex"></td>
+                <td align="center"><input type="checkbox" class="column_filter" id="col5_smart" checked="checked"></td>
+            </tr>
+      
+        </tbody>
+    </table>
+        <table class="table table-bordered table-striped" id="Status" data-show-columns="true" data-key-events="true"  data-cookie="true" data-cookie-id-table="saveId" data-show-export="true">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
@@ -41,97 +79,15 @@
                                         </tr>
                                     </tfoot>
 
-                                    <tbody>
-                                    <?php $i=1;$pos=1 ?>
-
-							        <?php foreach ($books as $books): ?>
-
-                                        <tr>
-                                            <td><?=$i; ?></td>
-                                            <td class="bcode"><?=$books['bcode']; ?></td>
-                                            <td><?=$books['bno']; ?></td>
-                                            <td><?=$books['title']; ?></td>
-                                            <td><?=$books['aname']; ?></td>
-                                            <td><?=$books['publication']; ?></td>
-                                            <td><?=$books['alamara']; ?></td>
-                                            <td><?=$books['rack']; ?></td>
-    
-                                            <?php if($books['status'] == 1 and session()->get('role') == "admin" ){ ?>
-                                                <td><a class='btn btn-success' href='<?=site_url("/admin/Activity/barrow/").$books["bcode"]?>'><i class='fa fa-check'></i></a></td> 
-                                            <?php } elseif ($books['status'] == 1) { ?>
-                                                <td><a class='btn btn-success' href='#'><i class='fa fa-check'></i></a></td> 
-                                            <?php } else{ ?>
-                                                <td><button class="btn btn-danger" id="request" title="Book Unavailable, click to Request the Holder." onclick="request_click(this)"><i class='fa fa-times'></i></button></td>
-                                            <?php } ?> 
-                                        </tr>         
-
-        							<?php $i++;$pos++; endforeach; ?>
-
-                                    </tbody>
                                 </table>
                             </div>
 
-                        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">                 
-                            <table class="table table-bordered table-striped" id="myTable1" data-show-columns="true" data-key-events="true"  data-cookie="true" data-cookie-id-table="saveId" data-show-export="true">
-                                    <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>Barcode No</th>
-                                            <th>Book No</th>
-                                            <th>Title</th>
-                                            <th>Author Name</th>
-                                            <th>Publication</th>
-                                            <th>Alamara</th>
-                                            <th>Rack</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>Barcode No</th>
-                                            <th>Book No</th>
-                                            <th>Title</th>
-                                            <th>Author Name</th>
-                                            <th>Publication</th>
-                                            <th>Alamara</th>
-                                            <th>Rack</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </tfoot>
-                                <tbody>
-                                        <tr>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                                <td><a class='btn btn-success' href='<?=site_url("/admin/Activity/barrow/").$books["bcode"]?>'><i class='fa fa-check'></i></a></td>
-                                        </tr>         
-                                        <tr>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><?=$i; ?></td>
-                                            <td><button class="btn btn-danger" id="request" title="Book Unavailable, click to Request the Holder." onclick="request_click(this)"><i class='fa fa-times'></i></button></td>
-
-                                        </tr>         
-    
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
 
     </div>
+
 
 <script type="text/javascript">
 
@@ -176,6 +132,5 @@ function request_click(rowElement) {
     }
   });
 }
-
 
 </script>

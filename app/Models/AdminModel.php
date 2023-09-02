@@ -13,11 +13,13 @@ class AdminModel extends Model{
         'role'
     ];
 
+    // Get Admin Detiles
     public function getAdminProfile($id){
         $result = $this->where('id',$id)->first();
         return $result;
     }
 
+    // Update Admin Profile
     public function updateProfile($id, $apass, $amail) {
         $data = [
             'apass' => $apass,

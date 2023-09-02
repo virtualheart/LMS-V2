@@ -18,11 +18,13 @@ class BooksModel extends Model{
         'status',
     ];
 
+    // DashBoard Total Book count 
     public function getTotalBooks()
     {
         return $this->countAllResults();
     }
 
+    // Display All Book(All Users)
     public function getBooksList()
     {
         // $query = $this->limit(50)->get();
@@ -33,6 +35,7 @@ class BooksModel extends Model{
         return $this->findAll();
     }
 
+    // Get Book Detiles For Barrow/Return Entry
     public function getBookDetail($id)
     {
         // need to fix bug here
@@ -41,17 +44,20 @@ class BooksModel extends Model{
                     ->first();
     }
 
+    // Admin Insert Bulk Books Record (File Upload)
     public function insertBooks($data)
     {
         $this->insertBatch($data);
     }
 
+    // Admin Insert Single Book
     public function insertBook($data)
     {
         $this->insert($data);
         return true;
     }
 
+    // Admin Update Book 
     public function updateBook($id,$data){
         $this->where('bid',$id)
              ->set($data)

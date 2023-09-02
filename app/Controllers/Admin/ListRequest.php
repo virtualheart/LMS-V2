@@ -24,6 +24,23 @@ class ListRequest extends BaseController
         echo view('Others/header');
         echo view('Admin/AdminListRequestView',$data);
         echo view('Others/fooder');
+
+        $this->requestModel->setIsSeenAdmin();
+
+    }
+
+    public function history()
+    {
+        $session = session();
+
+        $data = [
+            'requestlists' => $this->requestModel->getAllBookRequesthis(),
+        ];
+
+        echo view('Others/header');
+        echo view('Admin/AdminListRequestView',$data);
+        echo view('Others/fooder');
+
     }
 
 }

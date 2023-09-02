@@ -7,6 +7,7 @@ use App\Models\BooksModel;
 use App\Models\BarrowBooksModel;
 use App\Models\StaffModel;
 
+use App\Models\OtherModel;
 
 class Home extends BaseController
 {
@@ -33,7 +34,7 @@ class Home extends BaseController
             'totalBooks' => $bookModel->getTotalBooks(),
             'totalStudents' => $studentModel->getTotalStudents(),
             'totalStaff' => $staffModel->getTotalStaff(),
-            'barrowBooks' => $barrowBooksModel->getBarrowedBooks(),
+            'barrowBooks' => $barrowBooksModel->getBarrowedBookscount(),
         ];
 
         $chart = [
@@ -41,7 +42,8 @@ class Home extends BaseController
             'student' => $barrowBooksModel->getBarrowedBookcountbyRole("student"),
             'datevice' => $barrowBooksModel->getBarrowedBookMonth()
         ];
-
+        
+           
         echo view('Others/header');
         echo view('Admin/home', $data);
         echo view('Others/fooder');

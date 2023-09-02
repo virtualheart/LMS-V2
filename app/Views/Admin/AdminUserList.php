@@ -1,8 +1,8 @@
 <?= view('Admin/Adminsidebar') ?>
 
 	<div class="container-fluid">
-    	<h1 class="h3 mb-4 text-gray-800">User's List</h1>
-            <a href="<?=site_url('')?>" class="btn-lg float-right btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add New</a>
+    	<h1 class="h3 mb-4 text-gray-800">Staff's List</h1>
+            <a href="<?=site_url('admin/users/staff/add/new')?>" class="btn-lg float-right btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add New</a>
                         <div class="card-body">
                             <div class="table-responsive">
 
@@ -45,7 +45,7 @@
                                             <td><?=$user['designation']; ?></td>
                                             <td><?=$user['contact']; ?></td>
                                             <td><?=$user['gender']; ?></td> 
-                                            <td><a class='btn btn-success' href='#' ><i class='fa fa-edit'></i></a></td> 
+                                            <td><a class='btn btn-success' href='<?=site_url('admin/users/staff/update/'.$user['sid'])?>' ><i class='fa fa-edit'></i></a></td> 
                                         </tr>         
 
         							<?php $i++; endforeach; ?>

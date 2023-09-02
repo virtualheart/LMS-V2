@@ -159,6 +159,7 @@
 <script src="<?= base_url(); ?>assets/js/custom.js"></script>
 <script>
     var baseUrl = "<?php echo site_url(); ?>";
+    var role = "<?php echo session()->get('role'); ?>";
 </script>
 
 </body>

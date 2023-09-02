@@ -20,23 +20,27 @@ class StudentModel extends Model{
         'role'
     ];
 
+    // Get Total Student Count (Admin/Staff)
     public function getTotalStudents()
     {
         return $this->countAllResults();
     }
 
-   public function getProfile($id){
+    // Get Student profile Detiles (Admin/Student)
+    public function getProfile($id){
         $result = $this->where('st_id',$id)
                     ->join('department','did')
                     ->first();
         return $result;
     }
 
+    // Show All Student (Admin)
     public function getStudentList(){
         return $this->join('department dd','dd.did=std.did')
                     ->findAll();
     }
 
+    // Update Student (Student update(Admin) / Profile Update(Student))
     public function updateProfile($id, $data) {
         $result = $this->where('st_id', $id)
                         ->set($data)
@@ -44,11 +48,13 @@ class StudentModel extends Model{
         return $result;
     }
 
+    // Insert Bulk Student Data (Admin)
     public function insertstds($data)
     {
         $this->insertBatch($data);
     }
 
+    // Insert single Student ()
     public function insertstd($data)
     {
         $this->insert($data);

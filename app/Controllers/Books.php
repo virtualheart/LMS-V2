@@ -14,6 +14,7 @@ class Books extends BaseController
         $this->requestModel = new RequestModel();
         $this->barrowBooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
+        $this->booksModel = new BooksModel();
     }
 
     public function status()
@@ -24,9 +25,8 @@ class Books extends BaseController
             return redirect()->to('/');
         }
         
-        $booksModel = new BooksModel();
 
-        $data['books'] = $booksModel->getBooksList();
+        $data['books'] = $this->booksModel->getBooksList();
 
         echo view('Others/header');
         switch ($session->get('role')) {
@@ -61,7 +61,9 @@ class Books extends BaseController
                 'requester_id' => $session->get('id'),
                 'receiver_id' => $this->barrowBooksModel->getBarrowedUserId($bcode)['sid'],
                 'messagee' => "The Book Barcode: " . $bcode . " wanted to " . $session->get('role') ." " . $session->get('name') . ".",
+                'bcode' => $bcode,
                 'is_seen' => 0,
+                'is_seen_admin' => 0,
                 'rec_role' => $this->barrowBooksModel->getBarrowedUserId($bcode)['role'],
                 'req_role' => $session->get('role'),
                 'rec_date' => date('Y-m-d'),
@@ -78,5 +80,28 @@ class Books extends BaseController
                 'msg' => "Method not allowed",
             ]);
         }
+    }
+
+    public function barrow()
+    {
+        $session = Session();
+
+        $data['books'] = $this->barrowBooksModel->getBarrowedBooks();
+
+        echo view('Others/header');
+        switch ($session->get('role')) {
+            case 'admin':
+                echo view('Admin/Adminsidebar');
+                break;
+            case 'staff':
+                echo view('Staff/Staffsidebar');
+                break;
+            default:
+                echo view('Student/Sidebar');
+                break;
+        }
+        
+        echo view('BarrowBookStatus',$data);
+        echo view('Others/fooder');
     }
 }

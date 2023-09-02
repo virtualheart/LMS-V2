@@ -31,66 +31,66 @@
             <div class="card-body">
                 <div class="row">
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Barcode No</label>
                     <input type="text" class="form-control" value="" name="bcode" autocomplete="off" onkeyup="getDetailReturn(this.value)" required>
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Reg Number</label>
                     <input type="text" class="form-control" value="" name="regno" id="regno" readonly="true">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Std/Staff Name</label>
                     <input type="text" class="form-control" value="" name="sname" id="sname" readonly="true">
                 </div>
                 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Book No</label>
                     <input type="text" class="form-control" value="" name="bno" id="bno" readonly="true">
                 </div>
                 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Title</label>
                     <input type="text" class="form-control" value="" name="title" id="title" readonly="true">
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Author Name</label>
                     <input type="text" class="form-control" value="" name="aname" id="aname" readonly="true">
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Publication</label>
                     <input type="text" class="form-control" value="" name="publication" id="publication" readonly="true">
                 </div>
 
-                <div class="form-group col-md-5">
-                    <label>Fine</label>
-                    <input type="text" class="form-control" value="" name="price" id="price" readonly="true">
+                <div class="form-group col-md-6">
+                    <label>Late Fine</label>
+                    <input type="text" class="form-control" value="" name="fine" id="fine" readonly="true">
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Alamara</label>
                     <input type="text" class="form-control" value="" name="alamara" id="alamara" readonly="true">
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Rack</label>
                     <input type="text" class="form-control" value="" name="rack" id="rack" readonly="true"> 
                 </div>
                 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Request Date</label>
                     <input type="text" class="form-control" value="" name="request_date" id="request_date" readonly="true"> 
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Returned Date</label>
                     <input type="text" class="form-control" value="<?=date("d-m-Y"); ?>" readonly="true"> 
                 </div>
                 
-                <div class=" form-group col-md-5"style="position:relative;top:30px;">
+                <div class=" form-group col-md-6"style="position:relative;top:30px;">
                     <label></label>
                     <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" style="margin-left:5px">                  
                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">

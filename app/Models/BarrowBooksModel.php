@@ -17,11 +17,20 @@ class BarrowBooksModel extends Model{
         'status'
     ];
 
-    public function getBarrowedBooks(){
+    // For admin dashboard count
+    public function getBarrowedBookscount(){
         return $this->where('is_returned',0)
                     ->countAllResults();
     }
 
+    // Get all Barrow Book list
+    public function getBarrowedBooks(){
+        return $this->join('books bk','bk.bid=sbb.bid')
+                    ->where('is_returned',0)
+                    ->FindAll();
+    }
+
+    // Staff or Student barrowed book list 
     public function getBarrowedBookbyUser($id,$role){
         $query = $this->join('books bk','bk.bid=sbb.bid')
                     ->where('sid',$id)
@@ -32,6 +41,7 @@ class BarrowBooksModel extends Model{
         return $results;
     }
 
+    // Staff or Studnet Due fine amount
     public function getFineAmount($id,$role){
         /** IFNULL - when return null replace 0
          * SUM - calculate all books late fee and showing
@@ -47,9 +57,10 @@ class BarrowBooksModel extends Model{
         return $result->getRow()->total_fine;
     }
 
+    // Admin Barrow entry detiles 
     public function getBarrowBookDetails($bcode)
     {
-        $query = $this->select('sbb.sid, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sb.alamara, sb.rack, sb.price,sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, se.fine')
+        $query = $this->select('sbb.sid, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sb.alamara, sb.rack, sb.price,sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, (se.fine * GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0)) as fine ')
                     ->join('books sb', 'sb.bid = sbb.bid')
                     ->join('settings se','1=1')
                     ->where('sb.bcode', $bcode)
@@ -60,6 +71,7 @@ class BarrowBooksModel extends Model{
         return $query->getRow();
     }
 
+    // Admin Barrow entry user detiles
     public function getBarrowedUserId($bcode)
     {
         return $this->select('sbb.sid,sbb.role')
@@ -68,6 +80,7 @@ class BarrowBooksModel extends Model{
                     ->first();
     }
 
+    // (Admin Dashboard chart) getting Staff and Student barrow book count
     public function getBarrowedBookcountbyRole($role)
     {
         return $this->where('role',$role)
@@ -75,12 +88,9 @@ class BarrowBooksModel extends Model{
                     ->countAllResults();
     }
 
+    // (Admin Dashboard chart) current month Book borrow entry count 
     public function getBarrowedBookMonth()
     {
-        // $query = $this->select('COUNT(*) AS count')
-        //     ->where('YEAR(request_date)',date('Y'))
-        //     ->groupBy('MONTH(request_date)')
-        //     ->get();
            $query = $this->db->query("
             SELECT
                 IFNULL(COUNT(request_date), 0) AS count
@@ -95,11 +105,13 @@ class BarrowBooksModel extends Model{
         return array_column($query->getResultArray(), 'count');
     }
 
+    // insert Book barrow entry 
     public function setBarroeBook($data){
         $this->insert($data);
         return true;
     }
 
+    // update Book barrow entry (Returned)
     public function setBookreturn($bid,$data){
         $this->where('bid',$bid)
              ->set($data)
