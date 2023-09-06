@@ -29,21 +29,20 @@ class OtherModel extends Model
         return $result;
     }
 
-    public function getUserDet2($u) {
+    public function getUserDet2($u,$role) {
         $db = \Config\Database::connect();
 
-        $query = $db->table('staff')
-            ->select('sname,semail,regno')
-            ->Where('sid', $u)
-            ->limit(1);
-
-        $result = $query->get()->getRowArray();
-
-        if (!$result) {
-            $query = $db->table('students')
-                ->Where('st_id', $u)
+        if($role == "staff"){
+            $query = $db->table('staff')
+                ->select('sname,semail,regno')
+                ->Where('sid', $u)
                 ->limit(1);
 
+            $result = $query->get()->getRowArray();
+        } else{
+            $query = $db->table('students')
+                ->Where('st_id', $u)
+                ->limit(1);            
             $result = $query->get()->getRowArray();
         }
 

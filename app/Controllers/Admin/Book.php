@@ -133,7 +133,7 @@ class Book extends BaseController
             $response = $this->barrowbooksModel->getBarrowBookDetails($bookId);
             if(!empty($response)){
                 $responseArray = json_decode(json_encode($response), true);
-                $userDetails = $this->otherModel->getUserDet2($responseArray['sid']);
+                $userDetails = $this->otherModel->getUserDet2($responseArray['sid'],$responseArray['role']);
                 
                 $responseArray = array_merge($responseArray, $userDetails);
                 
