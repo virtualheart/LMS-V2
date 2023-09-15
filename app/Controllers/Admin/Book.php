@@ -15,7 +15,7 @@ class Book extends BaseController
         $this->otherModel = new OtherModel();
     }
         
-    public function book($activity,$bookId)
+    public function book($activity,$bcode)
     {
         $session = session();
 
@@ -109,13 +109,15 @@ class Book extends BaseController
                     'rack' => $rack
                 ];
 
-
-                $this->booksModel->updateBook($bookId,$data);
-
+                if($this->booksModel->updateBook($bcode,$data)){
+                        $session->setFlashdata('msg', $bcode.' Updated Successfully.');
+                } else{
+                    $session->setFlashdata('msg', $bcode.' Updated Failed.');
+                } 
             }
 
             $data = [
-                'Book' => $this->booksModel->getBookDetail($bookId),
+                'Book' => $this->booksModel->getBookDetail($bcode),
             ];
 
             helper(['form']);
@@ -125,12 +127,12 @@ class Book extends BaseController
 
         }elseif ($activity=="Barrow") {
 
-            $response = $this->booksModel->getBookDetail($bookId);
+            $response = $this->booksModel->getBookDetail($bcode);
             $jsonResponse = json_encode($response);
             return $this->response->setJSON($jsonResponse);
 
         }elseif ($activity=="Return") {
-            $response = $this->barrowbooksModel->getBarrowBookDetails($bookId);
+            $response = $this->barrowbooksModel->getBarrowBookDetails($bcode);
             if(!empty($response)){
                 $responseArray = json_decode(json_encode($response), true);
                 $userDetails = $this->otherModel->getUserDet2($responseArray['sid'],$responseArray['role']);

@@ -20,6 +20,10 @@ class SettingsModel extends Model{
         'smtp_sec_type'
     ];
 
+    public function getAppSettings()
+    {
+        return $this->select('app_name,app_logo,app_decp,fine,fine_stf_days,fine_std_days')->first();
+    }
     // Get Application Name (All Users)
     public function getAppName()
     {
@@ -45,7 +49,24 @@ class SettingsModel extends Model{
     public function getAppSmtp()
     {
         $result = $this->select('smtp_host,smtp_port,smtp_user,smtp_pass,smtp_sec_type')->first();
-        return $result ? $result['app_logo'] : null;
+        return $result;
     }
+
+    public function SetAppSettings($data)
+    {
+        $this->set($data)
+            ->Where('id!=','a')
+            ->update();
+        return true;
+    }
+
+    public function SetSMTPSettings($data)
+    {
+        $this->set($data)
+            ->Where('id!=','a')
+            ->update();
+        return true;
+    }
+
 }
 

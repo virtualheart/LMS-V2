@@ -29,7 +29,7 @@
                 
                 <div class="form-group col-md-6">
                     <label>Regno</label>
-                    <input type="text" class="form-control" value="<?php if(isset($staff)){ echo $staff['regno']; } elseif(isset($userid)) echo "STF" . str_pad(++$userid, 4, '0', STR_PAD_LEFT); ?>" name="regno" readonly="true" required>
+                    <input type="text" class="form-control" value="<?php if(isset($staff)){ echo $staff['regno']; } elseif(isset($userid)) echo "CAF" . str_pad(++$userid, 4, '0', STR_PAD_LEFT); ?>" name="regno" readonly="true" required>
                 </div>
                 
                 <div class="form-group col-md-6">

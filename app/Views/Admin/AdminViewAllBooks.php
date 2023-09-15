@@ -52,7 +52,7 @@
                                             <td><?=$books['price']; ?></td> 
                                             <td><?=$books['alamara']; ?></td>
                                             <td><?=$books['rack']; ?></td> 
-                                            <td><a class='btn btn-success' href='<?=site_url("Admin/Book/book/Update/").$books['bid']; ?>' ><i class='fa fa-edit'></i></a></td> 
+                                            <td><a class='btn btn-success' href='<?=site_url("Admin/Book/book/Update/").$books['bcode']; ?>' ><i class='fa fa-edit'></i></a></td> 
                                         </tr>         
 
         							<?php $i++; endforeach; ?>

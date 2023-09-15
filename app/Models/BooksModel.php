@@ -38,10 +38,24 @@ class BooksModel extends Model{
     // Get Book Detiles For Barrow/Return Entry
     public function getBookDetail($id)
     {
-        // need to fix bug here
-        return $this->where('bid',$id)
-                    ->orWhere('bcode', $id)
+        return $this->Where('bcode', $id)
                     ->first();
+    }
+
+    public function getLastBookid()
+    {
+        $result = $this->select('substr(bcode,10) as lbcode')
+                        ->orderBy('bcode','desc')
+                        ->limit(1)
+                        ->get()
+                        ->getRow();
+        return $result;
+    /*
+        $OtherModel = new OtherModel();
+        $n = $OtherModel->getLastBookid();
+
+        echo $n->lbcode; 
+    */
     }
 
     // Admin Insert Bulk Books Record (File Upload)
@@ -58,8 +72,8 @@ class BooksModel extends Model{
     }
 
     // Admin Update Book 
-    public function updateBook($id,$data){
-        $this->where('bid',$id)
+    public function updateBook($bcode,$data){
+        $this->where('bcode',$bcode)
              ->set($data)
              ->update();
         return true;

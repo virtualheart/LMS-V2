@@ -131,20 +131,19 @@ $data['req'] = $requestModel->getAllBookRequest();
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item <?php if($uri=="#" || $uri=="#") echo "active"; ?>">
+            <li class="nav-item <?php if($uri=="admin/settings/app" || $uri=="admin/settings/smtp") echo "active"; ?>">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
                     <i class="fa fa-cogs"></i>
                     <span>Settings</span>
                 </a>
-                <div id="collapsePages" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingPages"
+                <div id="collapsePages" class="collapse <?php if($uri=="admin/settings/app" || $uri=="admin/settings/smtp" || $uri=="Admin/Profile") echo "show"; ?>" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Settings</h6> -->
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">App Settings</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">General Settings</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">SMTP Settings</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">User Settings</a>
+                        <a class="collapse-item <?php if($uri=="admin/settings/app") echo "active"; ?>" href="<?=site_url('/admin/settings/app')?>">App Settings</a>
+                        <a class="collapse-item <?php if($uri=="admin/settings/smtp") echo "active"; ?>" href="<?=site_url('admin/settings/smtp')?>">SMTP Settings</a>
+                        <a class="collapse-item <?php if($uri=="Admin/Profile") echo "active"; ?>" href="<?=site_url('Admin/Profile')?>">Profile</a>
                     </div>
             </li>
             
@@ -278,7 +277,7 @@ $data['req'] = $requestModel->getAllBookRequest();
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?=site_url('admin/settings/app')?>">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>

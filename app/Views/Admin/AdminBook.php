@@ -19,6 +19,22 @@
 
                 </div>
                 <?php session()->remove('msg'); ?>
+            <?php elseif (session()->getFlashdata('msg') == $Book['bcode']." Updated Successfully.") : ?>
+                <div class="alert alert-success alert-dismissible">
+                    <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+
+                </div>
+                <?php session()->remove('msg'); ?>
+            <?php elseif (session()->getFlashdata('msg') == $Book['bcode']." Updated Failed.") : ?>
+                <div class="alert alert-warning alert-dismissible">
+                    <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+
+                </div>
+                <?php session()->remove('msg'); ?>
             <?php endif; ?>            
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

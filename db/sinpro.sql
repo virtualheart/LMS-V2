@@ -1016,15 +1016,15 @@ CREATE TABLE `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `staff` (`sid`, `regno`, `spass`, `sname`, `semail`, `did`, `designid`, `contact`, `gender`, `image`, `role`) VALUES
-(1,	'STF0001',	'$2y$10$raYMSgz6Zi61KSJ7Vlf/Q..n1uRp9TUY1BXIpWnFK9B6MRDxruJI.',	'Dr.A.KANGAIAMMAL',	'demo@gmail.com',	1,	1,	'9443213646',	'female',	'assets/staff/female.png',	'staff'),
-(2,	'STF0002',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'Dr.C.SENTHAMARAI',	'demo@gmail.com',	1,	1,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
-(3,	'STF0003',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'Mr. V. GANDHIRAJA',	'demo@gmail.com',	1,	1,	'9443213612',	'male',	'./assets/staff/male.png',	'staff'),
-(4,	'STF0004',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'T. DURGA',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
-(5,	'STF0005',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'A. RAJALAKSHMI',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
-(6,	'STF0006',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'S. ELAMATHI',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
-(7,	'STF0007',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'C.PREETHA',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
-(8,	'STF0008',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'M. SELVAKUMAR',	'demo@gmail.com',	1,	4,	'9443213646',	'male',	'./assets/staff/male.png',	'staff'),
-(9,	'STF0009',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'K. GEETHA',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff');
+(1,	'CAF0001',	'$2y$10$raYMSgz6Zi61KSJ7Vlf/Q..n1uRp9TUY1BXIpWnFK9B6MRDxruJI.',	'Dr.A.KANGAIAMMAL',	'demo@gmail.com',	1,	1,	'9443213646',	'female',	'assets/staff/female.png',	'staff'),
+(2,	'CAF0002',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'Dr.C.SENTHAMARAI',	'demo@gmail.com',	1,	1,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
+(3,	'CAF0003',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'Mr. V. GANDHIRAJA',	'demo@gmail.com',	1,	1,	'9443213612',	'male',	'./assets/staff/male.png',	'staff'),
+(4,	'CAF0004',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'T. DURGA',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
+(5,	'CAF0005',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'A. RAJALAKSHMI',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
+(6,	'CAF0006',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'S. ELAMATHI',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
+(7,	'CAF0007',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'C.PREETHA',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff'),
+(8,	'CAF0008',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'M. SELVAKUMAR',	'demo@gmail.com',	1,	4,	'9443213646',	'male',	'./assets/staff/male.png',	'staff'),
+(9,	'CAF0009',	'$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW',	'K. GEETHA',	'demo@gmail.com',	1,	4,	'9443213646',	'female',	'./assets/staff/female.png',	'staff');
 
 DROP TABLE IF EXISTS `staff_department`;
 CREATE TABLE `staff_department` (

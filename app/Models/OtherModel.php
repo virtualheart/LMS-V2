@@ -62,23 +62,4 @@ class OtherModel extends Model
         return $result;
     }
 
-        public function getLastBookid()
-    {
-        $db = \Config\Database::connect();
-
-        $result = $db->table('books') 
-                        ->select('substr(bcode,10) as dis')
-                        ->orderBy('bcode','desc')
-                        ->limit(1)
-                        ->get()
-                        ->getRow();
-        return $result;
-    /*
-        $OtherModel = new OtherModel();
-        $n = $OtherModel->getLastBookid();
-
-        echo $n->dis; 
-    */
-    }
-
 }

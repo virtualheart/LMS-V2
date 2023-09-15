@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Controllers\admin;
+
 use App\Controllers\BaseController;
 use App\Models\BooksModel;
 use App\Models\OtherModel;
 use App\Models\BarrowBooksModel;
+use App\Controllers\Mail;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\Validation\ValidationInterface;
-
-
 
 class Activity extends BaseController
 {
@@ -17,7 +17,7 @@ class Activity extends BaseController
         $this->booksModel = new BooksModel();
         $this->barrowbooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
-
+        $this->mail = new Mail();
         // Inject the ValidationInterface into the controller
         $this->validation = \Config\Services::validation();
 
@@ -102,7 +102,10 @@ class Activity extends BaseController
 
                 $res = $this->otherModel->getUserDet($regno);
                 $book = $this->booksModel->getBookDetail($bcode);
-                
+
+                $return_date = date("Y-m-d", strtotime("+15 days"));
+
+                $request_date = date("Y-m-d");
                 $data = [
                     'sid' => $res['sid'],
                     'bid' => $book['bid'],
@@ -110,18 +113,31 @@ class Activity extends BaseController
                     'returned_date' => '0000-00-00',
                     'status' => 1,
                     'is_returned' => 0,
-                    'return_date' => date("Y-m-d", strtotime("+15 days")),
-                    'request_date' => date("Y-m-d"),
+                    'return_date' => $return_date,
+                    'request_date' => $request_date,
                 ];
 
                 if ($book['status']==1) {
 
                     if($this->barrowbooksModel->setBarroeBook($data)){
                         $this->booksModel->updateBook($book['bid'],['status' => 0]);
+                        try{
+                            // mail
+                            $subject = 'You borrowed a book from CA GAC-7 library';
+                            
+                            $body = str_replace(array('{name}', '{caname}', '{ctitle}', '{cpublic}', '{crdate}', '{cetdate}'),array($sname, $aname, $title, $publication, $request_date, $return_date, ),file_get_contents(base_url().'assets/Template/mail.phtml'));
+
+                            $this->mail->sendmail($res['email'],$bcode,$sname,$subject,$body);
+
+                        } catch(Exception $e){
+
+                        }
+
                         $session->setFlashdata('msg', 'Book Barrowed.');
                     } else{
                         $session->setFlashdata('msg', 'Book Barrowed Failed.');
                     }
+
                 } else{
                     // echo "<script>alert('Please verify if the book is borrowed or unavailable in the library')</script>";
                     $session->setFlashdata('msg', 'Please verify if the book is borrowed or unavailable in the library.');
