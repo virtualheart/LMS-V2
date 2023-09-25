@@ -15,7 +15,9 @@ class users extends BaseController
         $this->studentModel = new StudentModel();
         $this->otherModel = new OtherModel();
     }
-        
+     
+
+    // list all staff   
     public function staffs()
     {
         $session = session();
@@ -33,6 +35,7 @@ class users extends BaseController
         echo view('Others/fooder');
     }
 
+    // list all studnet
     public function students()
     {
         $session = session();
@@ -50,9 +53,11 @@ class users extends BaseController
         echo view('Others/fooder');
     }
 
+    // add/update student detiles
     public function student($activity,$id)
     {
         $session = session();
+        // add new studnet detiles
         if ($activity=='add') {
 
             if ($this->request->getMethod() === "post") {
@@ -97,6 +102,7 @@ class users extends BaseController
             echo view('Admin/AdminAddStudent');
             echo view('Others/fooder');
         
+        //Update old studnet detiles
         }elseif($activity == 'update'){
             $session = session();
 
@@ -146,13 +152,15 @@ class users extends BaseController
             echo view('Admin/AdminAddStudent',$stddata);
             echo view('Others/fooder');    
 
-        }
+        } 
     }
 
+    // Add/Update staff
     public function staff($activity,$id)
     {
         $session = session();
 
+        // Add new staff detiles
         if ($activity=='add') {
             if ($this->request->getMethod() === "post") {
                 
@@ -190,7 +198,7 @@ class users extends BaseController
             }
        
             $useri = [
-                'userid' => $this->otherModel->getLastStaffid()->dis
+                'userid' => $this->otherModel->getLastStaffid()->dis ?? 0
             ];
        
 
@@ -198,6 +206,7 @@ class users extends BaseController
             echo view('Admin/AdminAddStaff',$useri);
             echo view('Others/fooder');
 
+        // update old staff detiles
         }elseif($activity == 'update'){
             
             if ($this->request->getMethod() === "post") {

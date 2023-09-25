@@ -86,17 +86,23 @@ private function BookprocessFile($filePath)
         $higestRow = $worksheet->getHighestRow();
         $data = [];
 
+        $var = $this->booksModel->getLastBookid()->lbcode ?? 0;
+
+        $code =  'GACCA'.date("Y").str_pad($var, 5, '0', STR_PAD_LEFT);
+
         for ($row = 2; $row <= $higestRow; $row++) {
             $bno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $bcode = "GACCA".date("Y").$this->booksModel->getLastBookid()->lbcode+1;
+            $bcode = ++$code;
             //$bcode = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $title = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $aname = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $publication = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $price = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $alamara = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $rack = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $title = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $aname = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $publication = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $price = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $alamara = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $rack = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
             $status = 1;
+
+            // if(is_numeric($price)) 
 
             $data[] = [
                 'bno' => $bno,
@@ -133,10 +139,11 @@ private function StudentprocessFile($filePath)
 
             $regno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
             $sname = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $spass = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $gender = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $stemail = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $Contact = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $spass = "$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW";
+            // $spass = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $gender = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $stemail = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $Contact = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
             $did = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
             $year = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
             $shift = filter_var($worksheet->getCellByColumnAndRow(10, $row)->getValue(), FILTER_SANITIZE_STRING);

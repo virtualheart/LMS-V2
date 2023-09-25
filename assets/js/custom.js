@@ -196,17 +196,17 @@ $(document).ready(function() {
 });
 
 
-// // Disable right-click context menu
-// $(document).on("contextmenu", function(e) {
-//   e.preventDefault();
-// });
+// Disable right-click context menu
+$(document).on("contextmenu", function(e) {
+  e.preventDefault();
+});
 
-// // Disable F5 key
-// $(document).on("keydown", function(e) {
-//   if (e.which === 116) {
-//     e.preventDefault();
-//   }
-// });
+// Disable F5 key
+$(document).on("keydown", function(e) {
+  if (e.which === 116) {
+    e.preventDefault();
+  }
+});
 
 function showpwd() {
   var x = document.getElementById("apass");

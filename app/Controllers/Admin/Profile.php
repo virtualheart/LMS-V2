@@ -4,7 +4,6 @@ namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\AdminModel;
 
-
 class Profile extends BaseController
 {
     public function __construct()

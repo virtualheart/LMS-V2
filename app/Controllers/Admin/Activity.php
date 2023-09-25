@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\BooksModel;
 use App\Models\OtherModel;
 use App\Models\BarrowBooksModel;
+use App\Models\SettingsModel;
 use App\Controllers\Mail;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\Validation\ValidationInterface;
@@ -17,6 +18,7 @@ class Activity extends BaseController
         $this->booksModel = new BooksModel();
         $this->barrowbooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
+        $this->settingsModel = new SettingsModel();
         $this->mail = new Mail();
         // Inject the ValidationInterface into the controller
         $this->validation = \Config\Services::validation();
@@ -103,7 +105,9 @@ class Activity extends BaseController
                 $res = $this->otherModel->getUserDet($regno);
                 $book = $this->booksModel->getBookDetail($bcode);
 
-                $return_date = date("Y-m-d", strtotime("+15 days"));
+                $Appfine = $this->settingsModel->getAppfine();
+                
+                $return_date = ($res['role']=="staff") ? date("Y-m-d", strtotime("+". $Appfine['fine_stf_days']." days")) : date("Y-m-d", strtotime("+". $Appfine['fine_std_days']." days")) ;
 
                 $request_date = date("Y-m-d");
                 $data = [
@@ -120,14 +124,15 @@ class Activity extends BaseController
                 if ($book['status']==1) {
 
                     if($this->barrowbooksModel->setBarroeBook($data)){
-                        $this->booksModel->updateBook($book['bid'],['status' => 0]);
+                        $this->booksModel->updateBook($bcode,['status' => 0]);
                         try{
                             // mail
-                            $subject = 'You borrowed a book from CA GAC-7 library';
+                            $subject = '(TESTING) You borrowed a book from CA GAC-7 library';
                             
                             $body = str_replace(array('{name}', '{caname}', '{ctitle}', '{cpublic}', '{crdate}', '{cetdate}'),array($sname, $aname, $title, $publication, $request_date, $return_date, ),file_get_contents(base_url().'assets/Template/mail.phtml'));
 
-                            $this->mail->sendmail($res['email'],$bcode,$sname,$subject,$body);
+                            // mail trigger (calling send mail function)
+                           // $this->mail->sendmail($res['email'],$sname,$bcode,$subject,$body);
 
                         } catch(Exception $e){
 

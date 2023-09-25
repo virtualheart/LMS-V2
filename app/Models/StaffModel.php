@@ -16,6 +16,8 @@ class StaffModel extends Model{
         'contact',
         'gender',
         'image',
+        'Validity',
+        'Remarks',
         'role'
     ];  
 

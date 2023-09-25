@@ -14,6 +14,7 @@ class Api extends BaseController
         $this->booksModel= new BooksModel();
     }
     
+    // Login for Mobile Application (Planning)
     public function login()
     {
         if ($this->request->getMethod() == "post") {
@@ -44,7 +45,7 @@ class Api extends BaseController
         }
     }
 
-
+    // App first install (Under Development)
     public function test($s=null){
 
         switch ($s) {
@@ -65,6 +66,7 @@ class Api extends BaseController
         echo view('Others/fooder');
     }
 
+    // Book list Using DATATABLES js api
     public function getBooksListAPI()
     {
         return $this->response->setJSON(

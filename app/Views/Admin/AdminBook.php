@@ -19,7 +19,7 @@
 
                 </div>
                 <?php session()->remove('msg'); ?>
-            <?php elseif (session()->getFlashdata('msg') == $Book['bcode']." Updated Successfully.") : ?>
+            <?php elseif (session()->getFlashdata('msg') == "Updated Successfully.") : ?>
                 <div class="alert alert-success alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -27,7 +27,7 @@
 
                 </div>
                 <?php session()->remove('msg'); ?>
-            <?php elseif (session()->getFlashdata('msg') == $Book['bcode']." Updated Failed.") : ?>
+            <?php elseif (session()->getFlashdata('msg') == "Updated Failed.") : ?>
                 <div class="alert alert-warning alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -46,7 +46,7 @@
                 
                 <div class="form-group col-md-6">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bcode']; } ?>" name="bcode" required>
+                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['bcode']; } elseif(isset($bcodeid)){ echo 'GACCA'.date('Y').str_pad(++$bcodeid, 5, '0', STR_PAD_LEFT); } ?>" name="bcode" readonly="true" required>
                 </div>
                 
                 <div class="form-group col-md-6">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Price</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['price']; } ?>" name="price" required>
+                    <input type="number" class="form-control" value="<?php if(isset($Book)){ echo $Book['price']; } ?>" name="price" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Alamara</label>

@@ -68,9 +68,13 @@ class Book extends BaseController
 
             }
 
+            $bcodei = [
+                'bcodeid' => $this->booksModel->getLastBookid()->lbcode ?? 0,
+            ];
+
             helper(['form']);
             echo view('Others/header');
-            echo view('Admin/AdminBook');
+            echo view('Admin/AdminBook',$bcodei);
             echo view('Others/fooder');
 
         } else if($activity=="Update"){
@@ -110,9 +114,9 @@ class Book extends BaseController
                 ];
 
                 if($this->booksModel->updateBook($bcode,$data)){
-                        $session->setFlashdata('msg', $bcode.' Updated Successfully.');
+                        $session->setFlashdata('msg', 'Updated Successfully.');
                 } else{
-                    $session->setFlashdata('msg', $bcode.' Updated Failed.');
+                    $session->setFlashdata('msg', 'Updated Failed.');
                 } 
             }
 
