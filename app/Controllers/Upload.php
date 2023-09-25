@@ -98,8 +98,7 @@ private function BookprocessFile($filePath)
             $aname = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
             $publication = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
             $price = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $alamara = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $rack = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $Shelf_id = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
             $status = 1;
 
             // if(is_numeric($price)) 
@@ -111,8 +110,7 @@ private function BookprocessFile($filePath)
                 'aname' => $aname,
                 'publication' => $publication,
                 'price' => $price,
-                'alamara' => $alamara,
-                'rack' => $rack,
+                'Shelf_id' => $Shelf_id,
                 'status' => $status,
             ];
         }
@@ -139,7 +137,7 @@ private function StudentprocessFile($filePath)
 
             $regno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
             $sname = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $spass = "$2y$10$84.SEt/ZTvMVubxoiGBDhOj9x7pX6Hn3lXuEdoklGAoPybAT.TRGW";
+            $spass = "pass";
             // $spass = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
             $gender = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
             $stemail = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);

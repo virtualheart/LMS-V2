@@ -20,13 +20,11 @@ class AdminModel extends Model{
     }
 
     // Update Admin Profile
-    public function updateProfile($id, $apass, $amail) {
-        $data = [
-            'apass' => $apass,
-            'a_mail' => $amail
-        ];
+    public function updateProfile($id, $data) {
 
-        $result = $this->where('id', $id)->set($data)->update();
+        $result = $this->where('id', $id)
+                        ->set($data)
+                        ->update();
         // return $this->affectedRows() > 0;
         return $result;
     }

@@ -33,7 +33,7 @@
 
                 <div class="form-group col-md-6">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="" name="bcode" autocomplete="off" onkeyup="getDetailReturn(this.value)" required>
+                    <input type="text" class="form-control" value="" name="bcode" autocomplete="off" onkeyup="getDetailReturn(this.value)" oninput="this.value = this.value.toUpperCase()" required>
                 </div>
 
                 <div class="form-group col-md-6">
@@ -81,7 +81,7 @@
                 </div>
                 
                 <div class="form-group col-md-6">
-                    <label>Request Date</label>
+                    <label>Request Date/Time</label>
                     <input type="text" class="form-control" value="" name="request_date" id="request_date" readonly="true"> 
                 </div>
 

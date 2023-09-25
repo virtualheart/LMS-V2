@@ -17,9 +17,10 @@ class StudentModel extends Model{
         'year',
         'shift',
         'image',
+        'Validity', 
+        'Remarks',
         'role'
     ];
-
     // Get Total Student Count (Admin/Staff)
     public function getTotalStudents()
     {

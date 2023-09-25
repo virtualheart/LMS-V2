@@ -107,9 +107,11 @@ class Activity extends BaseController
 
                 $Appfine = $this->settingsModel->getAppfine();
                 
+                date_default_timezone_set("Asia/Kolkata");
+
                 $return_date = ($res['role']=="staff") ? date("Y-m-d", strtotime("+". $Appfine['fine_stf_days']." days")) : date("Y-m-d", strtotime("+". $Appfine['fine_std_days']." days")) ;
 
-                $request_date = date("Y-m-d");
+                $request_date = date("Y-m-d h:i:s");
                 $data = [
                     'sid' => $res['sid'],
                     'bid' => $book['bid'],
@@ -213,7 +215,7 @@ class Activity extends BaseController
                 $book = $this->booksModel->getBookDetail($bcode);
 
                 if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d")])) {
-                    $this->booksModel->updateBook($book['bid'],['status' => 1]);
+                    $this->booksModel->updateBook($bcode,['status' => 1]);
                         $session->setFlashdata('msg', 'Book return Successfully.');
                 } else{
                     $session->setFlashdata('msg', 'Book return Failed.');

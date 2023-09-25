@@ -59,12 +59,15 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Department</label>
-                        <select class="itemName form-control" name="dname" required>
+                    <select class="itemName form-control" name="dname" required>
                         <option value=''>Select Department</option>
-                        <option value='1' <?php if(isset($student) && $student['did']=='1') echo "selected" ?>>BCA</option>
-                        <option value='2' <?php if(isset($student) && $student['did']=='2') echo "selected" ?>>MCA</option>
-                        
-                    </select>   
+                        <?php foreach ($departments as $department): ?>
+                            <option value="<?= $department['did'] ?>" <?php if (isset($student) && $student['did'] == $department['did']) echo "selected" ?>>
+                                <?= $department['dname'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
                 </div>
                 <div class="form-group col-md-6">
                     <label>Swift</label>

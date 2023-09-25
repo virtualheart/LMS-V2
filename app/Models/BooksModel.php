@@ -13,8 +13,7 @@ class BooksModel extends Model{
         'aname',
         'publication',
         'price',
-        'alamara',
-        'rack',
+        'Shelf_id',
         'status',
     ];
 
@@ -32,13 +31,15 @@ class BooksModel extends Model{
 
         // return $results;
 
-        return $this->findAll();
+        return $this->join('shelf sf','sf.id=shelf_id')
+                    ->findAll();
     }
 
     // Get Book Detiles For Barrow/Return Entry
     public function getBookDetail($id)
     {
         return $this->Where('bcode', $id)
+                    ->join('shelf sf','sf.id=shelf_id')
                     ->first();
     }
 

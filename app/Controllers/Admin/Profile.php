@@ -37,14 +37,18 @@ class Profile extends BaseController
                 'amail' => 'required | valid_email'
             ]);
 
-            if (empty($apass)) {
+            if (empty($apass) || $apass="" || $apass=null) {
                 $ahpass = $data['profile']['apass'];
             }else{
                 $ahpass = password_hash($apass, PASSWORD_DEFAULT);
             }
 
+            $data = [
+                'apass' => $ahpass,
+                'a_mail' => $amail
+            ];
 
-            if($this->adminModel->updateProfile($id,$ahpass,$amail)){
+            if($this->adminModel->updateProfile($id,$data)){
                 $session->setFlashdata('msg', 'Profile Update Successfully.');
             } else{
                 $session->setFlashdata('msg', 'Profile Update Failed.');

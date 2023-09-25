@@ -72,11 +72,27 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Alamara</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['alamara']; } ?>" name="alamara" required>
+                    <!-- <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['alamara']; } ?>" name="alamara" required> -->
+                    <select class="itemName form-control" name="dname" required>
+                        <option value=''>Select Alamara</option>
+                        <?php foreach ($Alamaras as $Alamara): ?>
+                            <option value="<?= $Alamara['id'] ?>" <?php if (isset($Book) && $Book['id'] == $Alamara['id']) echo "selected" ?>>
+                                <?= $Alamara['alamara'] . ' - ' . $Alamara['rack'] . ' - ' . $Alamara['side']?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Rack</label>
-                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['rack']; } ?>" name="rack" required> 
+                    <label>Year Of Publication</label>
+                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['year_of_publication']; } ?>" name="year_of_publication" required> 
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Edition</label>
+                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['edition']; } ?>" name="edition" required> 
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Remark</label>
+                    <textarea class="form-control" value="<?php if(isset($Book)){ echo $Book['remark']; } ?>" name="remark" minlength='1'></textarea>
                 </div>
                 <div class=" form-group col-md-6"style="position:relative;top:30px;">
                     <label></label>

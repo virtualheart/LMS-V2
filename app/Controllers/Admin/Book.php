@@ -5,6 +5,7 @@ use App\Controllers\BaseController;
 use App\Models\BooksModel;
 use App\Models\BarrowBooksModel;
 use App\Models\OtherModel;
+use App\Models\ShelfModel;
 
 class Book extends BaseController
 {
@@ -13,6 +14,7 @@ class Book extends BaseController
         $this->booksModel = new BooksModel();
         $this->barrowbooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
+        $this->shelfModel = new ShelfModel();
     }
         
     public function book($activity,$bcode)
@@ -32,8 +34,7 @@ class Book extends BaseController
                 $aname = $this->request->getPost('aname');
                 $publication = $this->request->getPost('publication');
                 $price = $this->request->getPost('price');
-                $alamara = $this->request->getPost('alamara');
-                $rack = $this->request->getPost('rack');
+                $Shelf_id = $this->request->getPost('Shelf_id');
 
                 $validation = \Config\Services::validation();
 
@@ -44,8 +45,7 @@ class Book extends BaseController
                     'aname' => 'required',
                     'publication' => 'required',
                     'price' => 'required',
-                    'alamara' => 'required',
-                    'rack' => 'required',
+                    'Shelf_id' => 'required',
                 ]);
 
 
@@ -56,8 +56,7 @@ class Book extends BaseController
                     'aname' => $aname, 
                     'publication' => $publication, 
                     'price' => $price, 
-                    'alamara' => $alamara, 
-                    'rack' => $rack
+                    'Shelf_id' => $Shelf_id
                 ];
 
                     if($this->booksModel->insertBook($data)){
@@ -68,13 +67,14 @@ class Book extends BaseController
 
             }
 
-            $bcodei = [
+            $data = [
                 'bcodeid' => $this->booksModel->getLastBookid()->lbcode ?? 0,
+                'Alamaras' => $this->shelfModel->getAlamarasList(),
             ];
 
             helper(['form']);
             echo view('Others/header');
-            echo view('Admin/AdminBook',$bcodei);
+            echo view('Admin/AdminBook',$data);
             echo view('Others/fooder');
 
         } else if($activity=="Update"){
@@ -86,8 +86,7 @@ class Book extends BaseController
                 $aname = $this->request->getPost('aname');
                 $publication = $this->request->getPost('publication');
                 $price = $this->request->getPost('price');
-                $alamara = $this->request->getPost('alamara');
-                $rack = $this->request->getPost('rack');
+                $Shelf_id = $this->request->getPost('Shelf_id');
 
                 $validation = \Config\Services::validation();
 
@@ -98,8 +97,7 @@ class Book extends BaseController
                     'aname' => 'required',
                     'publication' => 'required',
                     'price' => 'required',
-                    'alamara' => 'required',
-                    'rack' => 'required',
+                    'Shelf_id' => 'required',
                 ]);
 
                 $data = [
@@ -109,8 +107,7 @@ class Book extends BaseController
                     'aname' => $aname, 
                     'publication' => $publication, 
                     'price' => $price, 
-                    'alamara' => $alamara, 
-                    'rack' => $rack
+                    'Shelf_id' => $Shelf_id
                 ];
 
                 if($this->booksModel->updateBook($bcode,$data)){

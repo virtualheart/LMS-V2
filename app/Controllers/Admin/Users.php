@@ -5,7 +5,7 @@ use App\Controllers\BaseController;
 use App\Models\StaffModel;
 use App\Models\StudentModel;
 use App\Models\OtherModel;
-
+use App\Models\DepartmentModel;
 
 class users extends BaseController
 {
@@ -14,6 +14,7 @@ class users extends BaseController
         $this->staffModel = new StaffModel();
         $this->studentModel = new StudentModel();
         $this->otherModel = new OtherModel();
+        $this->departmentModel = new DepartmentModel();
     }
      
 
@@ -97,9 +98,13 @@ class users extends BaseController
                     $session->setFlashdata('msg', 'New Student Add Failed.');
                 } 
             }
+            $data = [
+                'departments' => $this->departmentModel->getDepartmentList(),
+            ];
+
 
             echo view('Others/header');
-            echo view('Admin/AdminAddStudent');
+            echo view('Admin/AdminAddStudent',$data);
             echo view('Others/fooder');
         
         //Update old studnet detiles
