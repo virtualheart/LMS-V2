@@ -11,7 +11,8 @@ class DepartmentModel extends Model{
     ];
 
     // Get Admin Detiles
-    public function getDepartmentList(){
+    public function getDepartmentList()
+    {
         return $this->findAll();
     }
 

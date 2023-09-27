@@ -43,14 +43,16 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label>designation</label>
-                    <select class="form-control" name="designid" required>
-                        <option value="">Select designation</option>                       
-                        <option value='1' <?php if(isset($staff) && $staff['designid']=='1') echo "selected" ?>>Professor</option>                        
-                        <option value='2' <?php if(isset($staff) && $staff['designid']=='2') echo "selected" ?>>Assistant Professor</option>
-                        <option value='3' <?php if(isset($staff) && $staff['designid']=='3') echo "selected" ?>>Lecturer</option>
-                        <option value='4' <?php if(isset($student) && $staff['designid']=='4') echo "selected" ?>>Guest Lecture</option>
-                    </select>   
+                    <label>Designation</label>
+                    <select class="itemName form-control" name="designid" required>
+                        <option value=''>Select Designation</option>
+                        <?php foreach ($designations as $designation): ?>
+                            <option value="<?= $designation['id'] ?>" <?php if (isset($staff) && $staff['designid'] == $designation['id']) echo "selected" ?>>
+                                <?= $designation['designation'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
                 </div>
                 <div class="form-group col-md-6">
                     <label>Email</label>

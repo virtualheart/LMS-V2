@@ -15,6 +15,8 @@ class Activity extends BaseController
 {
     public function __construct()
     {
+        date_default_timezone_set("Asia/Kolkata");
+
         $this->booksModel = new BooksModel();
         $this->barrowbooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
@@ -106,8 +108,6 @@ class Activity extends BaseController
                 $book = $this->booksModel->getBookDetail($bcode);
 
                 $Appfine = $this->settingsModel->getAppfine();
-                
-                date_default_timezone_set("Asia/Kolkata");
 
                 $return_date = ($res['role']=="staff") ? date("Y-m-d", strtotime("+". $Appfine['fine_stf_days']." days")) : date("Y-m-d", strtotime("+". $Appfine['fine_std_days']." days")) ;
 
@@ -214,7 +214,7 @@ class Activity extends BaseController
                 
                 $book = $this->booksModel->getBookDetail($bcode);
 
-                if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d")])) {
+                if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d h:i:s")])) {
                     $this->booksModel->updateBook($bcode,['status' => 1]);
                         $session->setFlashdata('msg', 'Book return Successfully.');
                 } else{
@@ -225,8 +225,6 @@ class Activity extends BaseController
                 // Validation failed
                 $errors = $this->validation->getErrors();
             }
-                
-
         }
         
         helper(['form']);

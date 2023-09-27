@@ -6,6 +6,7 @@ use App\Models\StaffModel;
 use App\Models\StudentModel;
 use App\Models\OtherModel;
 use App\Models\DepartmentModel;
+use App\Models\DesignationModel;
 
 class users extends BaseController
 {
@@ -15,6 +16,7 @@ class users extends BaseController
         $this->studentModel = new StudentModel();
         $this->otherModel = new OtherModel();
         $this->departmentModel = new DepartmentModel();
+        $this->designationModel = new DesignationModel();
     }
      
 
@@ -203,7 +205,8 @@ class users extends BaseController
             }
        
             $useri = [
-                'userid' => $this->otherModel->getLastStaffid()->dis ?? 0
+                'userid' => $this->otherModel->getLastStaffid()->dis ?? 0,
+                'designations' => $this->designationModel->getDesignationList(),
             ];
        
 

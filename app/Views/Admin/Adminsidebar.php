@@ -137,10 +137,11 @@ $data['req'] = $requestModel->getAllBookRequest();
                     <i class="fa fa-cogs"></i>
                     <span>Settings</span>
                 </a>
-                <div id="collapsePages" class="collapse <?php if($uri=="admin/settings/app" || $uri=="admin/settings/smtp" || $uri=="Admin/Profile") echo "show"; ?>" aria-labelledby="headingPages"
+                <div id="collapsePages" class="collapse <?php if($uri=="admin/settings/app" || $uri=="admin/settings/smtp" || $uri=="Admin/Profile" || $uri=="Admin/settings/general") echo "show"; ?>" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Settings</h6> -->
+                        <a class="collapse-item <?php if($uri=="Admin/settings/general") echo "active"; ?>" href="<?=site_url('Admin/settings/general')?>">General</a>
                         <a class="collapse-item <?php if($uri=="admin/settings/app") echo "active"; ?>" href="<?=site_url('/admin/settings/app')?>">App Settings</a>
                         <a class="collapse-item <?php if($uri=="admin/settings/smtp") echo "active"; ?>" href="<?=site_url('admin/settings/smtp')?>">SMTP Settings</a>
                         <a class="collapse-item <?php if($uri=="Admin/Profile") echo "active"; ?>" href="<?=site_url('Admin/Profile')?>">Profile</a>

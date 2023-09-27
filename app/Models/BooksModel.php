@@ -3,7 +3,7 @@ namespace App\Models;
 use CodeIgniter\Model;
   
 class BooksModel extends Model{
-    protected $table = 'books';
+    protected $table = 'books bk';
     protected $primaryKey = 'bid';
     
     protected $allowedFields = [
@@ -14,7 +14,7 @@ class BooksModel extends Model{
         'publication',
         'price',
         'Shelf_id',
-        'status',
+        'status'
     ];
 
     // DashBoard Total Book count 
@@ -31,7 +31,8 @@ class BooksModel extends Model{
 
         // return $results;
 
-        return $this->join('shelf sf','sf.id=shelf_id')
+        return $this->select('bk.bno,bk.bcode,bk.title,bk.aname,bk.publication,bk.price,bk.status,sf.alamara,sf.rack')
+                    ->join('shelf sf','sf.id=shelf_id')
                     ->findAll();
     }
 
@@ -39,7 +40,6 @@ class BooksModel extends Model{
     public function getBookDetail($id)
     {
         return $this->Where('bcode', $id)
-                    ->join('shelf sf','sf.id=shelf_id')
                     ->first();
     }
 

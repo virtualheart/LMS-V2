@@ -2,14 +2,19 @@
 
 namespace App\Controllers\admin;
 use App\Controllers\BaseController;
-
 use App\Models\SettingsModel;
+use App\Models\DepartmentModel;
+use App\Models\DesignationModel;
+use App\Models\ShelfModel;
 
 class Settings extends BaseController
 {
     public function __construct()
     {
         $this->settingsModel = new SettingsModel();
+        $this->departmentModel = new DepartmentModel();
+        $this->designationModel = new DesignationModel();
+        $this->shelfModel = new ShelfModel();
     }
         
     public function App()
@@ -53,7 +58,7 @@ class Settings extends BaseController
         
     }
 
-       public function Smtp()
+    public function Smtp()
     {
         $session = session();
 
@@ -94,5 +99,19 @@ class Settings extends BaseController
         echo View('Admin/AdminSMTPSettings',$data);
         echo view('Others/fooder');
         
+    }
+
+    public function general()
+    {
+        // working on it
+        $data = [
+            'departments' => $this->departmentModel->getDepartmentList(),
+            'designations' => $this->designationModel->getDesignationList(),
+            'berrows' => $this->shelfModel->getAlamarasList()
+        ];
+
+        echo view('Others/header');
+        echo View('Admin/AdminGenSettings',$data);
+        echo view('Others/fooder');
     }
 }

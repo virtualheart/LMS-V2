@@ -60,8 +60,9 @@ class BarrowBooksModel extends Model{
     // Admin Barrow entry detiles 
     public function getBarrowBookDetails($bcode)
     {
-        $query = $this->select('sbb.sid,sbb.return_date, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sb.alamara, sb.rack, sb.price,sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, (se.fine * GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0)) as fine ')
+        $query = $this->select('sbb.sid,sbb.return_date, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sf.alamara, sf.rack, sb.price,sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, (se.fine * GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0)) as fine ')
                     ->join('books sb', 'sb.bid = sbb.bid')
+                    ->join('shelf sf','sf.id=shelf_id')
                     ->join('settings se','1=1')
                     ->where('sb.bcode', $bcode)
                     ->where('sbb.is_returned', 0)
