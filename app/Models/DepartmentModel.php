@@ -16,5 +16,10 @@ class DepartmentModel extends Model{
         return $this->findAll();
     }
 
+    public function setDepartment($data)
+    {
+        $this->insert($data);
+        return true;
+    }
 }
 

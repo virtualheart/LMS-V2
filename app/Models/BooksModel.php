@@ -26,11 +26,6 @@ class BooksModel extends Model{
     // Display All Book(All Users)
     public function getBooksList()
     {
-        // $query = $this->limit(50)->get();
-        // $results = $query->getResultArray();
-
-        // return $results;
-
         return $this->select('bk.bno,bk.bcode,bk.title,bk.aname,bk.publication,bk.price,bk.status,sf.alamara,sf.rack')
                     ->join('shelf sf','sf.id=shelf_id')
                     ->findAll();
@@ -51,12 +46,6 @@ class BooksModel extends Model{
                         ->get()
                         ->getRow();
         return $result;
-    /*
-        $OtherModel = new OtherModel();
-        $n = $OtherModel->getLastBookid();
-
-        echo $n->lbcode; 
-    */
     }
 
     // Admin Insert Bulk Books Record (File Upload)

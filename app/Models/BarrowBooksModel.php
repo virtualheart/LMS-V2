@@ -25,17 +25,32 @@ class BarrowBooksModel extends Model{
 
     // Get all Barrow Book list
     public function getBarrowedBooks(){
-        return $this->join('books bk','bk.bid=sbb.bid')
+        return $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS fine')
+                    ->join('books bk','bk.bid=sbb.bid')
+                    ->join('settings se','1=1') 
                     ->where('is_returned',0)
                     ->FindAll();
     }
 
     // Staff or Student barrowed book list 
     public function getBarrowedBookbyUser($id,$role){
-        $query = $this->join('books bk','bk.bid=sbb.bid')
+        $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS fine')
+                    ->join('books bk','bk.bid=sbb.bid')
+                    ->join('settings se','1=1') 
                     ->where('sid',$id)
                     ->where('role',$role)
                     ->where('is_returned',0)
+                    ->get();
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    // Staff or Student barrowed book list 
+    public function getReturnedBookbyUser($id,$role){
+        $query = $this->join('books bk','bk.bid=sbb.bid')
+                    ->where('sid',$id)
+                    ->where('role',$role)
+                    ->where('is_returned',1)
                     ->get();
         $results = $query->getResultArray();
         return $results;
@@ -52,6 +67,22 @@ class BarrowBooksModel extends Model{
         $this->join('settings se','1=1'); 
         $this->where('sid', $id);
         $this->where('role', $role);
+        $result = $this->get();
+
+        return $result->getRow()->total_fine;
+    }
+
+   // Staff or Studnet Due fine amount
+    public function getSingleFineAmount($id,$is_returned){
+        /** IFNULL - when return null replace 0
+         * SUM - calculate all books late fee and showing
+         * GREATEST - calculate late date 
+         **/
+
+        $this->select('IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS total_fine');
+        $this->join('settings se','1=1'); 
+        $this->where('bid', $id);
+        $this->where('is_returned', $role);
         $result = $this->get();
 
         return $result->getRow()->total_fine;

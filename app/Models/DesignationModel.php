@@ -10,10 +10,16 @@ class DesignationModel extends Model{
         'designation'
     ];
 
-    public function getDesignationList(){
+    public function getDesignationList()
+    {
         return $this->findAll();
     }
 
+    public function setDesignation($data)
+    {
+        $this->insert($data);
+        return true;
+    }
     
 }
 

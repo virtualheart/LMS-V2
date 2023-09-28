@@ -89,19 +89,38 @@ class Books extends BaseController
         $data['books'] = $this->barrowBooksModel->getBarrowedBooks();
 
         echo view('Others/header');
-        switch ($session->get('role')) {
-            case 'admin':
-                echo view('Admin/Adminsidebar');
-                break;
-            case 'staff':
-                echo view('Staff/Staffsidebar');
-                break;
-            default:
-                echo view('Student/Sidebar');
-                break;
-        }
-        
+        echo view('Admin/Adminsidebar');        
         echo view('BarrowBookStatus',$data);
         echo view('Others/fooder');
     }
+
+    public function barrowed()
+    {
+        $session = Session();
+
+        $data['books'] = $this->barrowBooksModel->getBarrowedBookbyUser($session->get("id"),$session->get("role"));
+
+        echo view('Others/header');
+        echo view('Student/Sidebar');        
+        echo view('BarrowBookStatus',$data);
+        echo view('Others/fooder');
+
+    }
+
+    public function returned()
+    {
+        $session = Session();
+
+        $data = [
+            'books' => $this->barrowBooksModel->getReturnedBookbyUser($session->get("id"),$session->get("role"))
+        ];
+
+        echo view('Others/header');
+        echo view('Student/Sidebar');        
+        echo view('ReturnedBookStatus',$data);
+        echo view('Others/fooder');
+
+    }
+
+
 }

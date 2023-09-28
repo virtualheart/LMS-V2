@@ -3,6 +3,7 @@
 	<div class="container-fluid">
     	<h1 class="h3 mb-4 text-gray-800">Student's List</h1>
             <a href="<?=site_url('admin/users/student/add/new')?>" class="btn-lg float-right btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add New</a>
+            <a href="<?=site_url('admin/users/students')?>" class="btn-lg float-right btn btn-sm btn-secondary shadow-sm mr-2"><i class="fas fa-arrow-left fa-sm text-white-50 "></i> Back</a>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="myTable">

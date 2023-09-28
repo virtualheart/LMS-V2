@@ -39,7 +39,7 @@
 
                 <div class="form-group col-md-6">
                     <label>Barcode No</label>
-                    <input type="text" class="form-control" value="" name="bcode" required autocomplete="off" pattern="[a-zA-Z0-9]+" oninput="this.value = this.value.toUpperCase()" onkeyup="getDetailBarrow(this.value)">
+                    <input type="text" class="form-control" value="" name="bcode" required autocomplete="off" pattern="[a-zA-Z0-9]+" oninput="this.value = this.value.toUpperCase()" onkeyup="getDetailBarrow(this.value)" maxlength="14">
                 </div>
 
                 <div class="form-group col-md-6">

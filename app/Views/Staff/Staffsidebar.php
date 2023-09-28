@@ -58,11 +58,11 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                     <i class="fa fa-book"></i>
                     <span>Books</span>
                 </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="#" || $uri=="#") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="books/returned" || $uri=="books/barrowed") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item <?php if($uri=="books/status") echo "active"; ?>" href="<?=site_url('books/status') ?>">Books Status</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#" >Barrow Book List</a>
-                        <a class="collapse-item <?php if($uri=="#") echo "active"; ?>" href="#">Return Book History</a>
+                        <a class="collapse-item <?php if($uri=="books/barrowed") echo "active"; ?>" href="<?=site_url('books/barrowed') ?>" >Barrow Book List</a>
+                        <a class="collapse-item <?php if($uri=="books/barrowed") echo "active"; ?>" href="<?=site_url('books/barrowed') ?>">Return Book History</a>
                     </div>
                 </div>
             </li>

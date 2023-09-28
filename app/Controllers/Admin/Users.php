@@ -42,18 +42,31 @@ class users extends BaseController
     public function students()
     {
         $session = session();
+        if($this->request->getMethod() === "post"){
 
-        if ($session->get('role')!="admin") {
-            return redirect()->to('/');
+            if ($session->get('role')!="admin") {
+                return redirect()->to('/');
+            }
+
+            $dname = $this->request->getPost('dname');
+            $year = $this->request->getPost('year');
+
+            $data = [
+                'users' => $this->studentModel->getStudentList($dname,$year),
+            ];
+
+            echo view('Others/header');
+            echo view('Admin/AdminStudentList',$data);
+            echo view('Others/fooder');
+        } else{
+            $data = [
+                'departments' => $this->departmentModel->getDepartmentList(),
+            ];
+            
+            echo view('Others/header');
+            echo view('Admin/AdminStudentGetList',$data);
+            echo view('Others/fooder');
         }
-
-        $data = [
-            'users' => $this->studentModel->getStudentList(),
-        ];
-
-        echo view('Others/header');
-        echo view('Admin/AdminStudentList',$data);
-        echo view('Others/fooder');
     }
 
     // add/update student detiles

@@ -103,7 +103,45 @@ class Settings extends BaseController
 
     public function general()
     {
-        // working on it
+        
+        if ($this->request->getMethod() === 'post') {
+
+            if ($this->request->getPost('class_name')) {
+
+                $department = $this->request->getPost('class_name');
+
+                $data = [
+                    'dname' => $department,
+                ];
+
+                $this->departmentModel->setDepartment($data);
+                
+            }elseif($this->request->getPost('savedesign')){
+                $designation = $this->request->getPost('designation_name');
+
+                $data = [
+                    'designation' => $designation,
+                ];
+
+                $this->designationModel->setDesignation($data);
+                
+            }elseif($this->request->getPost('berrowno') && $this->request->getPost('rackno') && $this->request->getPost('side')){
+
+                $berrowno = $this->request->getPost('berrowno');
+                $rackno = $this->request->getPost('rackno');
+                $side = $this->request->getPost('side');
+                
+                $data = [
+                    'alamara' => $berrowno,
+                    'rack' => $rackno,
+                    'side' => $side,
+                    'status' => 1
+                ];
+
+                $this->shelfModel->setAlamaras($data);
+            }
+        }
+
         $data = [
             'departments' => $this->departmentModel->getDepartmentList(),
             'designations' => $this->designationModel->getDesignationList(),
@@ -114,4 +152,5 @@ class Settings extends BaseController
         echo View('Admin/AdminGenSettings',$data);
         echo view('Others/fooder');
     }
+    
 }

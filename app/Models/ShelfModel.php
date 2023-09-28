@@ -7,7 +7,7 @@ class ShelfModel extends Model{
     protected $primaryKey = 'id';
     
     protected $allowedFields = [
-        'berrow',
+        'alamara',
         'rack',
         'count',
         'side',
@@ -21,5 +21,10 @@ class ShelfModel extends Model{
         return $this->findAll();
     }
 
+    public function setAlamaras($data)
+    {
+        $this->insert($data);
+        return true;
+    }
 }
 

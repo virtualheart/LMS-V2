@@ -36,8 +36,10 @@ class StudentModel extends Model{
     }
 
     // Show All Student (Admin)
-    public function getStudentList(){
+    public function getStudentList($dept,$year){
         return $this->join('department dd','dd.did=std.did')
+                    ->where('dd.did',$dept)
+                    ->Where('year',$year)
                     ->findAll();
     }
 

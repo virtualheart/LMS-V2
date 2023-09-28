@@ -1,7 +1,6 @@
 <?= view('Admin/Adminsidebar') ?>
 
 <div class="container-fluid">
-    <form method="POST" id="bookForm">
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">General Setting</h6>
@@ -25,10 +24,12 @@
                         <div class="row">
                             <!-- Left Column - Form -->
                             <div class="col-md-6">
+                                <form method="POST" >
+
                                 <div class="card-body">
                                 <div class="form-group">
                                     <label>Class</label>
-                                    <input type="text" class="form-control" name="app_name" required>
+                                    <input type="text" class="form-control" name="class_name" required>
                                 </div>
                                 <div class="form-group text-right" style="top:30px;">
                                     <label></label>
@@ -38,13 +39,14 @@
                                     <br><br>
                                 </div>
                             </div>
+                        </form>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <table class="table table-bordered">
                                 <thead>
                                     <th>S.No</th>
                                     <th>Class</th>
-                                    <th>Update</th>     
+                                    <!-- <th>Update</th>      -->
                                     <th>Delete</th>
                                 </thead>
                                 <tbody>
@@ -53,7 +55,7 @@
                                     <tr>
                                         <td><?=$i++;?></td>
                                         <td><?= $department['dname'] ?></td>
-                                        <td><a href='#' class='btn btn-success'><span class='fa fa-edit'></span></a></td>
+                                        <!-- <td><a href='#' class='btn btn-success'><span class='fa fa-edit'></span></a></td> -->
                                         <td><center><a href='#' class='btn btn-danger'> <span class='fa fa-trash'></span></a></td>
                                     </tr> 
                                     <?php endforeach; ?>
@@ -68,26 +70,29 @@
                         <div class="row">
                             <!-- Left Column - Form -->
                             <div class="col-md-6">
+                            <form method="POST" >
+
                                 <div class="card-body">
                                 <div class="form-group">
                                     <label>Designation</label>
-                                    <input type="text" class="form-control" name="app_name" required>
+                                    <input type="text" class="form-control" name="designation_name" required>
                                 </div>
                                 <div class="form-group text-right" style="top:30px;">
                                     <label></label>
-                                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" style="margin-left:5px">                  
+                                    <input type="submit" class="btn btn-primary btn-md " name="savedesign" value="Save" style="margin-left:5px">                  
                                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">
                                     <input type="reset" class="btn btn-danger btn-md d-none" id="resetButton">
                                     <br><br>
                                 </div>
                             </div>
+                        </form>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <table class="table table-bordered">
                                 <thead>
                                     <th>S.No</th>
                                     <th>Designation List</th>
-                                    <th>Update</th>     
+                                    <!-- <th>Update</th>      -->
                                     <th>Delete</th>
                                 </thead>
                                 <tbody>
@@ -95,7 +100,7 @@
                                     <tr>
                                         <td><?=$i++;?></td>
                                         <td><?= $designation['designation'] ?></td>
-                                        <td><a href='#' class='btn btn-success'><span class='fa fa-edit'></span></a></td>
+                                        <!-- <td><a href='#' class='btn btn-success'><span class='fa fa-edit'></span></a></td> -->
                                         <td><center><a href='#' class='btn btn-danger'> <span class='fa fa-trash'></span></a></td>
                                     </tr> 
                                     <?php endforeach; ?>
@@ -108,6 +113,8 @@
                         <div class="row">
                             <!-- Left Column - Form -->
                             <div class="col-md-6">
+                                <form method="POST">
+
                                 <div class="card-body">
 
                                 <div class="form-group">
@@ -128,12 +135,13 @@
 
                                 <div class="form-group text-right" style="top:30px;">
                                     <label></label>
-                                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" style="margin-left:5px">                  
+                                    <input type="submit" class="btn btn-primary btn-md " name="savebro" value="Save" style="margin-left:5px">                  
                                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">
                                     <input type="reset" class="btn btn-danger btn-md d-none" id="resetButton">
                                     <br><br>
                                 </div>
                             </div>
+                        </form>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <table class="table table-bordered">
@@ -142,7 +150,7 @@
                                     <th>Berrow No.</th>
                                     <th>Rack No.</th>
                                     <th>Side</th>
-                                    <th>Update</th>     
+                                    <!-- <th>Update</th>      -->
                                     <th>Delete</th>
                                 </thead>
                                 <tbody>
@@ -152,7 +160,7 @@
                                         <td><?= $berrow['alamara'] ?></td>
                                         <td><?= $berrow['rack'] ?></td>
                                         <td><?= $berrow['side'] ?></td>
-                                        <td><a href='#' class='btn btn-success'><span class='fa fa-edit'></span></a></td>
+                                        <!-- <td><a href='#' class='btn btn-success'><span class='fa fa-edit'></span></a></td> -->
                                         <td><center><a href='#' class='btn btn-danger'> <span class='fa fa-trash'></span></a></td>
                                     </tr> 
                                     <?php endforeach; ?>
