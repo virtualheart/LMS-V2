@@ -48,6 +48,7 @@ $(document).ready(function() {
             "stateSave": false,
             "responsive": true,
             ajax: {
+                type: 'POST',
                 url: `${baseUrl}/api/getBooksListAPI`,
                 dataSrc: ''
             },

@@ -22,7 +22,7 @@ class Dashboard extends BaseController
     {
         $session = session();
 
-        if (!$session->get("id") && $session->get('role')!="staff") {
+        if ($session->get('role')!="staff") {
             return redirect()->to('/');
         }
 

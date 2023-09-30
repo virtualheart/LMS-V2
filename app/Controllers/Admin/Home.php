@@ -13,7 +13,10 @@ class Home extends BaseController
 {
     public function __construct()
     {
-
+        $this->studentModel = new StudentModel();
+        $this->staffModel = new StaffModel();
+        $this->bookModel = new BooksModel();
+        $this->barrowBooksModel = new BarrowBooksModel();
     }
         
     public function index()
@@ -24,23 +27,18 @@ class Home extends BaseController
             return redirect()->to('/');
         }
 
-        $studentModel = new StudentModel();
-        $staffModel = new StaffModel();
-        $bookModel = new BooksModel();
-        $barrowBooksModel = new BarrowBooksModel();
-
 
         $data = [
-            'totalBooks' => $bookModel->getTotalBooks(),
-            'totalStudents' => $studentModel->getTotalStudents(),
-            'totalStaff' => $staffModel->getTotalStaff(),
-            'barrowBooks' => $barrowBooksModel->getBarrowedBookscount(),
+            'totalBooks' => $this->bookModel->getTotalBooks(),
+            'totalStudents' => $this->studentModel->getTotalStudents(),
+            'totalStaff' => $this->staffModel->getTotalStaff(),
+            'barrowBooks' => $this->barrowBooksModel->getBarrowedBookscount(),
         ];
 
         $chart = [
-            'staff' => $barrowBooksModel->getBarrowedBookcountbyRole("staff"),
-            'student' => $barrowBooksModel->getBarrowedBookcountbyRole("student"),
-            'datevice' => $barrowBooksModel->getBarrowedBookMonth()
+            'staff' => $this->barrowBooksModel->getBarrowedBookcountbyRole("staff"),
+            'student' => $this->barrowBooksModel->getBarrowedBookcountbyRole("student"),
+            'datevice' => $this->barrowBooksModel->getBarrowedBookMonth()
         ];
         
            

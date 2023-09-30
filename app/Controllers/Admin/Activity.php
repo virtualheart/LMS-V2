@@ -134,7 +134,7 @@ class Activity extends BaseController
                             $body = str_replace(array('{name}', '{caname}', '{ctitle}', '{cpublic}', '{crdate}', '{cetdate}'),array($sname, $aname, $title, $publication, $request_date, $return_date, ),file_get_contents(base_url().'assets/Template/mail.phtml'));
 
                             // mail trigger (calling send mail function)
-                           // $this->mail->sendmail($res['email'],$sname,$bcode,$subject,$body);
+                           // $this->mail->sendmail($res['email'],$sname,$subject,$body);
 
                         } catch(Exception $e){
 

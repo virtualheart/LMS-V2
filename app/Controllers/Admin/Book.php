@@ -78,6 +78,7 @@ class Book extends BaseController
             echo view('Others/fooder');
 
         } else if($activity=="Update"){
+            // need to work empty record update page
 
             if ($this->request->getMethod() === 'post') {
                 $bno = $this->request->getPost('bno');
@@ -119,6 +120,7 @@ class Book extends BaseController
 
             $data = [
                 'Book' => $this->booksModel->getBookDetail($bcode),
+                'Alamaras' => $this->shelfModel->getAlamarasList(),
             ];
 
             helper(['form']);
@@ -153,6 +155,13 @@ class Book extends BaseController
     }
 
     public function getUserDet($u){
+
+        $session = session();
+
+        if ($session->get('role')!="admin") {
+            return redirect()->to('/');
+        }
+
         $result = $this->otherModel->getUserDet($u);
         // if (!empty($result)) {
             return $this->response->setJSON($result);

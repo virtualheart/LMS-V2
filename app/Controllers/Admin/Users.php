@@ -18,7 +18,6 @@ class users extends BaseController
         $this->departmentModel = new DepartmentModel();
         $this->designationModel = new DesignationModel();
     }
-     
 
     // list all staff   
     public function staffs()
@@ -42,6 +41,11 @@ class users extends BaseController
     public function students()
     {
         $session = session();
+
+        if ($session->get('role') !="admin") {
+            return redirect()->to('/');
+        }
+
         if($this->request->getMethod() === "post"){
 
             if ($session->get('role')!="admin") {
@@ -73,6 +77,10 @@ class users extends BaseController
     public function student($activity,$id)
     {
         $session = session();
+        if ($session->get('role')!="admin") {
+            return redirect()->to('/');
+        }
+
         // add new studnet detiles
         if ($activity=='add') {
 
@@ -124,6 +132,8 @@ class users extends BaseController
         
         //Update old studnet detiles
         }elseif($activity == 'update'){
+            // need to work empty record update page
+
             $session = session();
 
             if ($this->request->getMethod() === "post") {
@@ -165,7 +175,8 @@ class users extends BaseController
             }
 
             $stddata = [
-                'student' => $this->studentModel->getProfile($id) 
+                'student' => $this->studentModel->getProfile($id),
+                'departments' => $this->departmentModel->getDepartmentList(),
             ];
             
             echo view('Others/header');
@@ -179,6 +190,10 @@ class users extends BaseController
     public function staff($activity,$id)
     {
         $session = session();
+
+        if ($session->get('role')!="admin") {
+            return redirect()->to('/');
+        }
 
         // Add new staff detiles
         if ($activity=='add') {
@@ -229,6 +244,8 @@ class users extends BaseController
 
         // update old staff detiles
         }elseif($activity == 'update'){
+
+            // need to work empty record update page
             
             if ($this->request->getMethod() === "post") {
 
@@ -266,9 +283,9 @@ class users extends BaseController
             }
 
             $stfdata = [
-                'staff' => $this->staffModel->getStaffProfile($id) 
+                'staff' => $this->staffModel->getStaffProfile($id),
+                'designations' => $this->designationModel->getDesignationList()
             ];
-
        
             echo view('Others/header');
             echo view('Admin/AdminAddStaff',$stfdata);

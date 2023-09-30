@@ -16,7 +16,7 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Barrowed</th>
+                                            <th>Date</th>
                                             <th>Fine</th>
                                             <th>ETA</th>
                                             <!-- <th>Alamara</th> -->

@@ -103,6 +103,12 @@ class Settings extends BaseController
 
     public function general()
     {
+        $session = session();
+        
+        if ($session->get('role') !="admin") {
+            return redirect()->to('/');
+        }
+
         
         if ($this->request->getMethod() === 'post') {
 

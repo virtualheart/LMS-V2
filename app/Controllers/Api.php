@@ -69,9 +69,22 @@ class Api extends BaseController
     // Book list Using DATATABLES js api
     public function getBooksListAPI()
     {
-        return $this->response->setJSON(
+        $session=session();
+        if ($session->get('role') != ("staff" or "admin" or "student")) {
+            return redirect()->to('/');
+        }
+        
+        if ($this->request->getMethod() == "post") {
+            
+            return $this->response->setJSON(
                 $this->booksModel->getBooksList()
             );
+        }else {
+            return $this->response->setJSON([
+                'status' => 'Failed',
+                'msg' => "Method not allowed",
+            ]);
+        }
     }
 
 }

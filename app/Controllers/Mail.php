@@ -16,12 +16,12 @@ class Mail extends BaseController
         $this->barrowBooksModel = new BarrowBooksModel();
     }
 
-    public function sendmail($getmail,$sname,$bcode,$subject,$body)
+    public function sendmail($getmail,$sname,$subject,$body)
     {
         $session = session();
 
         if ($session->get('role') != ("staff" or "admin" or "student")) {
-//            return redirect()->to('/');
+           return ;
         }
 
         $app_name = $this->settingsModel->getAppName();
@@ -81,7 +81,5 @@ class Mail extends BaseController
             return false;
             // echo "Something went wrong. Please try again.";
         }
-        
-        
     }
 }

@@ -17,6 +17,10 @@ class ListRequest extends BaseController
     public function index()
     {
         $session = session();
+        if ($session->get('role')!="student") {
+            return redirect()->to('/');
+        }
+
         $data = [
             'requestlists' => $this->requestModel->getBookRequest($session->get('id'),$session->get('role')),
         ];
@@ -30,6 +34,11 @@ class ListRequest extends BaseController
 
     public function history()
     {
+        $session = session();
+        
+        if ($session->get('role')!="student") {
+            return redirect()->to('/');
+        }
         $session = session();
 
         $data = [

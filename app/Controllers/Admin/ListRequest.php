@@ -17,6 +17,11 @@ class ListRequest extends BaseController
     public function index()
     {
         $session = session();
+        
+        if ($session->get('role') !="admin") {
+            return redirect()->to('/');
+        }
+
         $data = [
             'requestlists' => $this->requestModel->getAllBookRequest(),
         ];

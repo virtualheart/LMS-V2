@@ -24,7 +24,6 @@ class Books extends BaseController
         if ($session->get('role') != ("staff" or "admin" or "student")) {
             return redirect()->to('/');
         }
-        
 
         $data['books'] = $this->booksModel->getBooksList();
 
