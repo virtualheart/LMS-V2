@@ -32,10 +32,28 @@ CREATE TABLE `barrow_books` (
   `returned_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   `is_returned` int(11) NOT NULL,
   `role` varchar(10) NOT NULL,
+  `remark` varchar(500) DEFAULT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`sbid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `barrow_books` (`sbid`, `sid`, `bid`, `request_date`, `return_date`, `returned_date`, `is_returned`, `role`, `remark`, `status`) VALUES
+(86,	3,	1,	'2023-09-26 02:03:27',	'2023-10-11',	'2023-10-01 08:42:43',	1,	'staff',	'',	1),
+(87,	29,	2,	'2023-09-26 02:11:00',	'2023-10-03',	'2023-10-01 08:42:50',	1,	'student',	'',	1),
+(88,	29,	1,	'2023-01-28 01:13:03',	'2023-02-05',	'2023-10-01 08:42:43',	1,	'student',	'',	1),
+(89,	29,	2,	'2023-09-28 01:46:10',	'2023-10-05',	'2023-10-01 08:42:50',	1,	'student',	'',	1),
+(90,	3,	3,	'2023-09-28 01:46:27',	'2023-10-13',	'2023-10-01 08:42:58',	1,	'staff',	'',	1),
+(91,	29,	4,	'2023-09-29 22:39:16',	'2023-10-01',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(92,	29,	4,	'2023-09-29 22:40:05',	'2023-10-01',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(93,	29,	4,	'2023-09-29 22:43:01',	'0000-00-00',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(94,	29,	4,	'2023-09-29 22:45:32',	'2023-10-01',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(95,	29,	4,	'2023-09-29 22:57:26',	'2023-10-01',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(96,	29,	4,	'2023-09-29 22:59:30',	'2023-10-01',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(97,	29,	4,	'2023-09-29 23:00:18',	'2023-10-01',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(98,	29,	7,	'2023-10-01 03:09:57',	'2023-10-02',	'2023-10-01 08:42:34',	1,	'student',	'',	1),
+(99,	29,	8,	'2023-10-01 03:11:51',	'2023-10-02',	'2023-10-01 09:32:04',	1,	'student',	NULL,	1),
+(100,	29,	8,	'2023-10-01 03:14:39',	'2023-10-02',	'2023-10-01 09:32:04',	1,	'student',	NULL,	1),
+(101,	29,	4,	'2023-10-01 04:02:32',	'2023-10-02',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1);
 
 DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
@@ -56,7 +74,7 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`bid`, `bno`, `bcode`, `title`, `aname`, `publication`, `price`, `year_of_publication`, `edition`, `shelf_id`, `remark`, `status`) VALUES
 (1,	'M0001',	'GACCA202300001',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	'',	1,	'',	1),
-(2,	'M0002',	'GACCA202300002',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	'',	1,	'',	1),
+(2,	'M0002',	'GACCA202300002',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'2002',	'1',	1,	'yea',	1),
 (3,	'M0003',	'GACCA202300003',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	'',	1,	'',	1),
 (4,	'M0004',	'GACCA202300004',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	'',	1,	'',	1),
 (5,	'M0005',	'GACCA202300005',	'File Structures',	'M.I.Folk',	'Pearson',	'295',	'',	'',	1,	'',	1),
@@ -953,10 +971,13 @@ CREATE TABLE `request_mgs` (
   `req_role` varchar(12) NOT NULL,
   `rec_role` varchar(12) NOT NULL,
   `rec_date` date NOT NULL DEFAULT '0000-00-00',
+  `remark` varchar(500) DEFAULT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `request_mgs` (`id`, `requester_id`, `receiver_id`, `messagee`, `bcode`, `is_seen`, `is_seen_admin`, `req_role`, `rec_role`, `rec_date`, `remark`, `status`) VALUES
+(63,	1,	3,	'The Book Barcode: GACCA202300001 wanted to admin admin.',	'GACCA202300001',	0,	1,	'admin',	'staff',	'2023-09-26',	NULL,	1);
 
 DELIMITER ;;
 
@@ -990,7 +1011,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `settings` (`id`, `app_name`, `app_decp`, `app_logo`, `fine`, `fine_stf_days`, `fine_std_days`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `smtp_sec_type`) VALUES
-(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	1,	15,	7,	'smtp.gmail.com',	'465',	'computersearch4@gmail.com',	'ahjivkwizjqsytuk',	'ssl');
+(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	5,	1,	1,	'smtp.gmail.com',	'465',	'computersearch4@gmail.com',	'ahjivkwizjqsytuk',	'ssl');
 
 DROP TABLE IF EXISTS `shelf`;
 CREATE TABLE `shelf` (
@@ -1027,7 +1048,7 @@ CREATE TABLE `staff` (
   `gender` enum('male','female') NOT NULL,
   `image` varchar(300) NOT NULL,
   `Validity` date DEFAULT NULL,
-  `Remarks` text DEFAULT NULL,
+  `remark` varbinary(500) DEFAULT NULL,
   `role` char(20) NOT NULL,
   PRIMARY KEY (`sid`),
   KEY `id` (`designid`),
@@ -1036,18 +1057,18 @@ CREATE TABLE `staff` (
   CONSTRAINT `staff_ibfk_4` FOREIGN KEY (`did`) REFERENCES `department` (`did`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `staff` (`sid`, `regno`, `spass`, `sname`, `semail`, `did`, `designid`, `contact`, `gender`, `image`, `Validity`, `Remarks`, `role`) VALUES
-(1,	'CAF0001',	'$2y$10$cc6gxtX684lqACa1.Zn8Nu4nR4Tx5NfuQIZM3Nja8kMenRKTiIfda',	'Dr.A.KANGAIAMMAL',	'indurath2007@gmail.com',	1,	2,	'9787897342',	'female',	'assets/staff/female.png',	'2033-12-06',	'',	'staff'),
-(2,	'CAF0002',	'$2y$10$LzfeQ8XxPBLkFWIMgjF/We9VxcnovTG60n4Zs8GhGZv5kLLfO0NmS',	'Dr.C.SENTHAMARAI',	'senthamaraiksrct@gmail.com',	1,	2,	'9443946683',	'female',	'assets/staff/female.png',	'2027-06-30',	'',	'staff'),
-(3,	'CAF0003',	'$2y$10$epwsCKAVARqBPwjCKW8HXerI3R3dZ87NYUxM34Do.KqL6c1eYXkZm',	'V.GANDHIRAJA',	'gandhiraja06@gmail.com',	1,	2,	'9344214829',	'male',	'assets/staff/male.png',	'2038-12-05',	'',	'staff'),
-(4,	'CAF0004',	'$2y$10$/EHsHXHmjOWtHGbpjyvXuuqthiGdbW.50Ygl9fB7MScP8S/NE90Me',	'S.PREETHA',	'preesithan@gmail.com',	1,	4,	'8608668102',	'female',	'assets/staff/female.png',	'0000-00-00',	'',	'staff'),
-(5,	'CAF0005',	'$2y$10$4.vzjBdNlXZZE7Ee16eMZOStlpduRPGmcxqlV.Dxn0Y.rTGA7Q8aa',	'M.SELVAKUMAR',	'mselvaamca@gmail.com',	1,	4,	'9944556773',	'male',	'assets/staff/male.png',	'0000-00-00',	'',	'staff'),
-(6,	'CAF0006',	'$2y$10$0IhnZbwN6TARsMtMuUxO2ejWW2NISC2hFpnnrRvBbx.ayjX6baQK.',	'K.GEETHA',	'geethagacslm7@gmail.com',	1,	4,	'9677444046',	'female',	'assets/staff/female.png',	'0000-00-00',	'',	'staff'),
-(7,	'CAF0007',	'$2y$10$DMLznvHVQz./lu3/bjsfM.lRGKlOtwyOmDJOvmlxXCiWchirlJaJe',	'D.DURGA',	'durganeelavathi19@gmail.com',	1,	4,	'8754257776',	'female',	'assets/staff/female.png',	'0000-00-00',	'',	'staff'),
-(8,	'CAF0008',	'$2y$10$1fGu6ukp.N9r0eG/oksCWOWeIitK.PoeIT31dwMLS5ervZlFLC7YC',	'A.RAJALAKSHMI',	'rajalakshmislm8@gmail.com',	1,	4,	'9025441815',	'female',	'assets/staff/female.png',	'0000-00-00',	'',	'staff'),
-(9,	'CAF0009',	'$2y$10$Zi/SH4aKvEEGzmTN.Mk4SexfanAIDi/i/f14aLmEfcwNnXLkgVpXu',	'C.ELAMATHI',	'elamathithangaraju@gmail.com',	1,	4,	'7094199313',	'female',	'assets/staff/female.png',	'0000-00-00',	'',	'staff'),
-(10,	'CAF0010',	'$2y$10$LhQZPVjy5KGobGJDeKq8XeZdvKVH6lkv8Xa/3n19v19m45BETP2cC',	'Dr.C.SATHYA CHARANYA',	'convey2sathya@gmail.com',	1,	4,	'9976212020',	'female',	'assets/staff/female.png',	'0000-00-00',	'',	'staff'),
-(11,	'CAF0011',	'$2y$10$ulZKlzQd.dF.4AZqhezPcuDAOO7EwrxNyqNtTiSc1ceUozDLmsCa6',	'S.RAJESHKANNAN',	'rk278919@gmail.com',	1,	4,	'6379856897',	'male',	'assets/staff/male.png',	'0000-00-00',	'',	'staff');
+INSERT INTO `staff` (`sid`, `regno`, `spass`, `sname`, `semail`, `did`, `designid`, `contact`, `gender`, `image`, `Validity`, `remark`, `role`) VALUES
+(1,	'CAF0001',	'$2y$10$cc6gxtX684lqACa1.Zn8Nu4nR4Tx5NfuQIZM3Nja8kMenRKTiIfda',	'Dr.A.KANGAIAMMAL',	'indurath2007@gmail.com',	1,	2,	'9787897342',	'female',	'assets/staff/female.png',	'2033-12-06',	UNHEX(''),	'staff'),
+(2,	'CAF0002',	'$2y$10$LzfeQ8XxPBLkFWIMgjF/We9VxcnovTG60n4Zs8GhGZv5kLLfO0NmS',	'Dr.C.SENTHAMARAI',	'senthamaraiksrct@gmail.com',	1,	2,	'9443946683',	'female',	'assets/staff/female.png',	'2027-06-30',	UNHEX(''),	'staff'),
+(3,	'CAF0003',	'$2y$10$epwsCKAVARqBPwjCKW8HXerI3R3dZ87NYUxM34Do.KqL6c1eYXkZm',	'V.GANDHIRAJA',	'gandhiraja06@gmail.com',	1,	2,	'9344214829',	'male',	'assets/staff/male.png',	'2038-12-05',	UNHEX(''),	'staff'),
+(4,	'CAF0004',	'$2y$10$/EHsHXHmjOWtHGbpjyvXuuqthiGdbW.50Ygl9fB7MScP8S/NE90Me',	'S.PREETHA',	'preesithan@gmail.com',	1,	4,	'8608668102',	'female',	'assets/staff/female.png',	'0000-00-00',	UNHEX(''),	'staff'),
+(5,	'CAF0005',	'$2y$10$4.vzjBdNlXZZE7Ee16eMZOStlpduRPGmcxqlV.Dxn0Y.rTGA7Q8aa',	'M.SELVAKUMAR',	'mselvaamca@gmail.com',	1,	4,	'9944556773',	'male',	'assets/staff/male.png',	'0000-00-00',	UNHEX(''),	'staff'),
+(6,	'CAF0006',	'$2y$10$0IhnZbwN6TARsMtMuUxO2ejWW2NISC2hFpnnrRvBbx.ayjX6baQK.',	'K.GEETHA',	'geethagacslm7@gmail.com',	1,	4,	'9677444046',	'female',	'assets/staff/female.png',	'0000-00-00',	UNHEX(''),	'staff'),
+(7,	'CAF0007',	'$2y$10$DMLznvHVQz./lu3/bjsfM.lRGKlOtwyOmDJOvmlxXCiWchirlJaJe',	'D.DURGA',	'durganeelavathi19@gmail.com',	1,	4,	'8754257776',	'female',	'assets/staff/female.png',	'0000-00-00',	UNHEX(''),	'staff'),
+(8,	'CAF0008',	'$2y$10$1fGu6ukp.N9r0eG/oksCWOWeIitK.PoeIT31dwMLS5ervZlFLC7YC',	'A.RAJALAKSHMI',	'rajalakshmislm8@gmail.com',	1,	4,	'9025441815',	'female',	'assets/staff/female.png',	'0000-00-00',	UNHEX(''),	'staff'),
+(9,	'CAF0009',	'$2y$10$Zi/SH4aKvEEGzmTN.Mk4SexfanAIDi/i/f14aLmEfcwNnXLkgVpXu',	'C.ELAMATHI',	'elamathithangaraju@gmail.com',	1,	4,	'7094199313',	'female',	'assets/staff/female.png',	'0000-00-00',	UNHEX(''),	'staff'),
+(10,	'CAF0010',	'$2y$10$LhQZPVjy5KGobGJDeKq8XeZdvKVH6lkv8Xa/3n19v19m45BETP2cC',	'Dr.C.SATHYA CHARANYA',	'convey2sathya@gmail.com',	1,	4,	'9976212020',	'female',	'assets/staff/female.png',	'0000-00-00',	UNHEX(''),	'staff'),
+(11,	'CAF0011',	'$2y$10$ulZKlzQd.dF.4AZqhezPcuDAOO7EwrxNyqNtTiSc1ceUozDLmsCa6',	'S.RAJESHKANNAN',	'rk278919@gmail.com',	1,	4,	'6379856897',	'male',	'assets/staff/male.png',	'0000-00-00',	UNHEX(''),	'staff');
 
 DROP TABLE IF EXISTS `staff_department`;
 CREATE TABLE `staff_department` (
@@ -1073,10 +1094,12 @@ CREATE TABLE `students` (
   `shift` varchar(5) NOT NULL,
   `image` varchar(150) NOT NULL,
   `Validity` date DEFAULT NULL,
-  `Remarks` varchar(450) DEFAULT NULL,
+  `remarks` varchar(500) DEFAULT NULL,
   `role` char(20) NOT NULL,
   PRIMARY KEY (`st_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `students` (`st_id`, `regno`, `sname`, `spass`, `gender`, `stemail`, `Contact`, `did`, `year`, `shift`, `image`, `Validity`, `remarks`, `role`) VALUES
+(29,	'123',	'123',	'$2y$10$dHVbR5ktBfTnvMukbs6rUuoN.jokcQBJBpWJ4bbWdq6NKS3TSaKpu',	'boy',	'k.dhanajayan1999@gmail.com',	'123',	1,	'2023',	'I',	'assets/student/boy.png',	'0000-00-00',	NULL,	'student');
 
--- 2023-09-25 17:45:57
+-- 2023-10-01 04:19:27
