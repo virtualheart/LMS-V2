@@ -18,7 +18,7 @@ class StudentModel extends Model{
         'shift',
         'image',
         'Validity', 
-        'Remarks',
+        'remark',
         'role'
     ];
     // Get Total Student Count (Admin/Staff)

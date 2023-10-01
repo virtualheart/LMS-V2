@@ -14,6 +14,7 @@ class BarrowBooksModel extends Model{
         'returned_date',
         'is_returned',
         'role',
+        'remark',
         'status'
     ];
 
@@ -67,22 +68,6 @@ class BarrowBooksModel extends Model{
         $this->join('settings se','1=1'); 
         $this->where('sid', $id);
         $this->where('role', $role);
-        $result = $this->get();
-
-        return $result->getRow()->total_fine;
-    }
-
-   // Staff or Studnet Due fine amount
-    public function getSingleFineAmount($id,$is_returned){
-        /** IFNULL - when return null replace 0
-         * SUM - calculate all books late fee and showing
-         * GREATEST - calculate late date 
-         **/
-
-        $this->select('IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS total_fine');
-        $this->join('settings se','1=1'); 
-        $this->where('bid', $id);
-        $this->where('is_returned', $role);
         $result = $this->get();
 
         return $result->getRow()->total_fine;

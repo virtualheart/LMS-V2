@@ -47,4 +47,9 @@ http://localhost/code/index.php/logout/
 API
 http://localhost/code/index.php/api/login
 http://localhost/code/index.php/api/getBooksListAPI
-http://localhost/code/index.php/sendmail/<mail>,<name>,<subject>,<htmlbody> 
+http://localhost/code/index.php/Admin/Book/book/Return/<bcode>
+http://localhost/code/index.php/Admin/Book/getUserDet/<user>
+http://localhost/code/index.php/Admin/Book/book/Barrow/<bcode>
+
+class
+sendmail(<mail>,<name>,<subject>,<htmlbody>) 

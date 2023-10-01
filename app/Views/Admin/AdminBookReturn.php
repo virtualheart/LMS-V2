@@ -64,12 +64,14 @@
                     <label>Publication</label>
                     <input type="text" class="form-control" value="" name="publication" id="publication" readonly="true">
                 </div>
-
+                <div class="form-group col-md-6">
+                    <label>Late</label>
+                    <input type="text" class="form-control" value="" name="fineday" id="fineday" readonly="true">
+                </div>
                 <div class="form-group col-md-6">
                     <label>Late Fine</label>
                     <input type="text" class="form-control" value="" name="fine" id="fine" readonly="true">
                 </div>
-
                 <div class="form-group col-md-6">
                     <label>Alamara</label>
                     <input type="text" class="form-control" value="" name="alamara" id="alamara" readonly="true">
@@ -89,7 +91,11 @@
                     <label>Returned Date</label>
                     <input type="text" class="form-control" value="<?=date("d-m-Y"); ?>" readonly="true"> 
                 </div>
-                
+                <div class="form-group col-md-6">
+                    <label>Remark</label>
+                    <input type="text" class="form-control" name="remark" id="remark">
+                </div>
+
                 <div class=" form-group col-md-6"style="position:relative;top:30px;">
                     <label></label>
                     <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" style="margin-left:5px">                  

@@ -73,7 +73,7 @@
                 <div class="form-group col-md-6">
                     <label>Alamara</label>
                     <!-- <input type="text" class="form-control" value="< ?php if(isset($Book)){ echo $Book['alamara']; } ?>" name="alamara" required> -->
-                    <select class="itemName form-control" name="dname" required>
+                    <select class="itemName form-control" name="alamara" required>
                         <option value=''>Select Alamara</option>
                         <?php foreach ($Alamaras as $Alamara): ?>
                             <option value="<?= $Alamara['id'] ?>" <?php if (isset($Book) && $Book['shelf_id'] == $Alamara['id']) echo "selected" ?>>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Remark</label>
-                    <textarea class="form-control" value="<?php if(isset($Book)){ echo $Book['remark']; } ?>" name="remark" minlength='1'></textarea>
+                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['remark']; } ?>" name="remark" id="remark">
                 </div>
                 <div class=" form-group col-md-6"style="position:relative;top:30px;">
                     <label></label>

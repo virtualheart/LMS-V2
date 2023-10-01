@@ -282,7 +282,7 @@ xmlhttp.send();
 }
 
 function getDetailReturn(str) {
-    const fieldIds1 = ["bno", "title", "regno","sname", "aname", "publication","alamara","fine","rack","request_date"];
+    const fieldIds1 = ["bno", "title", "regno","sname", "aname", "publication","alamara","fineday","fine","rack","request_date"];
 
     if (str.length !== 14) {
         clearFormFields(fieldIds1);
@@ -404,7 +404,6 @@ function getUserDetile(str) {
 
 function updateFormFields(info,fieldIds) {
 
-    // const fieldIds = ["bno", "title", "aname", "publication","alamara","price","rack"];
     fieldIds.forEach((fieldId) => {
         document.getElementById(fieldId).value = info[fieldId];
     });

@@ -52,12 +52,10 @@
                     <input type="text" class="form-control" value="" name="sname" id="sname" readonly="true">
 
                 </div>
-
                 <div class="form-group col-md-6">
                     <label>Book No</label>
                     <input type="text" class="form-control" value="" name="bno" id="bno" readonly="true">
                 </div>
-                
                 <div class="form-group col-md-6">
                     <label>Title</label>
                     <input type="text" class="form-control" value="" name="title" id="title" readonly="true">
@@ -79,8 +77,8 @@
                     <input type="text" class="form-control" value="<?=date("d-m-Y");?>" name="reqdate" readonly="true">
                 </div>
                 <div class="form-group col-md-6">
-                    <label>ETA Return Date</label>
-                    <input type="text" class="form-control" value="<?=date("d-m-Y",strtotime("+15 days"))?>" name="retdate" id="retdate" readonly="true"> 
+                    <label>Remark</label>
+                    <input type="text" class="form-control" name="remark" id="remark">
                 </div>
                 <div class=" form-group col-md-6"style="position:relative;top:30px;">
                     <label></label>

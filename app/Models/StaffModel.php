@@ -17,7 +17,7 @@ class StaffModel extends Model{
         'gender',
         'image',
         'Validity',
-        'Remarks',
+        'remark',
         'role'
     ];  
 

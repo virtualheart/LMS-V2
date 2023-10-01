@@ -47,6 +47,7 @@ class Activity extends BaseController
             $price = $this->request->getPost('price');
             $alamara = $this->request->getPost('alamara');
             $rack = $this->request->getPost('rack');
+            $remark = $this->request->getPost('remark');
 
             // Set the validation rules
             $validationRules = [
@@ -101,7 +102,6 @@ class Activity extends BaseController
 
             $validation->setRules($validationRules, $validationMessages);
 
-
             if($this->validation->withRequest($this->request)->run()){
 
                 $res = $this->otherModel->getUserDet($regno);
@@ -121,6 +121,7 @@ class Activity extends BaseController
                     'is_returned' => 0,
                     'return_date' => $return_date,
                     'request_date' => $request_date,
+                    'remark' => $remark,
                 ];
 
                 if ($book['status']==1) {
@@ -131,7 +132,7 @@ class Activity extends BaseController
                             // mail
                             $subject = '(TESTING) You borrowed a book from CA GAC-7 library';
                             
-                            $body = str_replace(array('{name}', '{caname}', '{ctitle}', '{cpublic}', '{crdate}', '{cetdate}'),array($sname, $aname, $title, $publication, $request_date, $return_date, ),file_get_contents(base_url().'assets/Template/mail.phtml'));
+                            $body = str_replace(array('{name}', '{caname}', '{ctitle}', '{cpublic}', '{crdate}', '{cetdate}'),array($sname, $aname, $title, $publication, date("d-M-Y", strtotime($request_date)), date("d-M-Y", strtotime($return_date)), ),file_get_contents(base_url().'assets/Template/mail.phtml'));
 
                             // mail trigger (calling send mail function)
                            // $this->mail->sendmail($res['email'],$sname,$subject,$body);
@@ -160,9 +161,9 @@ class Activity extends BaseController
         if($var==null){
             echo view('Admin/AdminBookBarrow');
         } else{
-             $data = [
-            'BooksData' => $this->booksModel->getBookDetail($var),
-        ];
+            $data = [
+                'BooksData' => $this->booksModel->getBookDetail($var),
+            ];
             echo view('Admin/AdminBookBarrowA',$data);
         }
             echo view('Others/fooder');
@@ -180,6 +181,7 @@ class Activity extends BaseController
             $regno = $this->request->getPost('regno');
             $sname = $this->request->getPost('sname');
             $bno = $this->request->getPost('bno');
+            $remark = $this->request->getPost('remark');
 
 
             // Set the validation rules
@@ -214,7 +216,7 @@ class Activity extends BaseController
                 
                 $book = $this->booksModel->getBookDetail($bcode);
 
-                if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d h:i:s")])) {
+                if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d h:i:s"),'remark' => $remark ])) {
                     $this->booksModel->updateBook($bcode,['status' => 1]);
                         $session->setFlashdata('msg', 'Book return Successfully.');
                 } else{

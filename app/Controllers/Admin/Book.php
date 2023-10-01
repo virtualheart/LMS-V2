@@ -34,7 +34,10 @@ class Book extends BaseController
                 $aname = $this->request->getPost('aname');
                 $publication = $this->request->getPost('publication');
                 $price = $this->request->getPost('price');
-                $Shelf_id = $this->request->getPost('Shelf_id');
+                $alamara = $this->request->getPost('alamara');
+                $year_of_publication = $this->request->getPost('year_of_publication');
+                $remark = $this->request->getPost('remark');
+                $edition = $this->request->getPost('edition');
 
                 $validation = \Config\Services::validation();
 
@@ -45,7 +48,9 @@ class Book extends BaseController
                     'aname' => 'required',
                     'publication' => 'required',
                     'price' => 'required',
-                    'Shelf_id' => 'required',
+                    'alamara' => 'required',
+                    'year_of_publication' => 'required',
+                    'edition' => 'required'
                 ]);
 
 
@@ -56,7 +61,11 @@ class Book extends BaseController
                     'aname' => $aname, 
                     'publication' => $publication, 
                     'price' => $price, 
-                    'Shelf_id' => $Shelf_id
+                    'Shelf_id' => $alamara,
+                    'year_of_publication' => $year_of_publication,
+                    'edition' => $edition,
+                    'remark' => $remark,
+                    'status' => 1
                 ];
 
                     if($this->booksModel->insertBook($data)){
@@ -82,12 +91,14 @@ class Book extends BaseController
 
             if ($this->request->getMethod() === 'post') {
                 $bno = $this->request->getPost('bno');
-                $bcode = $this->request->getPost('bcode');
                 $title = $this->request->getPost('title');
                 $aname = $this->request->getPost('aname');
                 $publication = $this->request->getPost('publication');
                 $price = $this->request->getPost('price');
-                $Shelf_id = $this->request->getPost('Shelf_id');
+                $alamara = $this->request->getPost('alamara');
+                $year_of_publication = $this->request->getPost('year_of_publication');
+                $remark = $this->request->getPost('remark');
+                $edition = $this->request->getPost('edition');
 
                 $validation = \Config\Services::validation();
 
@@ -103,12 +114,14 @@ class Book extends BaseController
 
                 $data = [
                     'bno' => $bno, 
-                    'bcode' => $bcode, 
                     'title' => $title, 
                     'aname' => $aname, 
                     'publication' => $publication, 
                     'price' => $price, 
-                    'Shelf_id' => $Shelf_id
+                    'Shelf_id' => $alamara,
+                    'year_of_publication' => $year_of_publication,
+                    'edition' => $edition,
+                    'remark' => $remark,
                 ];
 
                 if($this->booksModel->updateBook($bcode,$data)){

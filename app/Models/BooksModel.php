@@ -13,7 +13,10 @@ class BooksModel extends Model{
         'aname',
         'publication',
         'price',
+        'year_of_publication',
+        'edition',
         'Shelf_id',
+        'remark',
         'status'
     ];
 

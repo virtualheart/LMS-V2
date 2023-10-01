@@ -82,8 +82,8 @@
                     <input type="text" class="form-control" value="<?=date("d-m-Y");?>" name="reqdate" readonly="true" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label>ETA Return Date</label>
-                    <input type="text" class="form-control" value="<?=date("d-m-Y",strtotime("+15 days"))?>" name="retdate" id="retdate" readonly="true"> 
+                    <label>Remark</label>
+                    <input type="text" class="form-control" name="remark" maxlength="499" id="remark">
                 </div>
                 <div class=" form-group col-md-6"style="position:relative;top:30px;">
                     <label></label>
