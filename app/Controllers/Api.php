@@ -45,27 +45,6 @@ class Api extends BaseController
         }
     }
 
-    // App first install (Under Development)
-    public function test($s=null){
-
-        switch ($s) {
-            case '1':
-                copy(getcwd().'/env', getcwd().'/.envtest');
-
-                break;
-            }
-
-        $data = [
-            'step' => $s,
-            'Basepath' => getcwd(),
-            'installpath' => getcwd().'/.envtest',
-        ];
-
-        echo view('Others/header');
-        echo view('install/install',$data);
-        echo view('Others/fooder');
-    }
-
     // Book list Using DATATABLES js api
     public function getBooksListAPI()
     {
@@ -86,5 +65,4 @@ class Api extends BaseController
             ]);
         }
     }
-
 }

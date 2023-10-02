@@ -160,7 +160,6 @@
 <script>
     var baseUrl = "<?php echo site_url(); ?>";
     var role = "<?php echo session()->get('role'); ?>";
-</script>
-
+</script>    
 </body>
 </html>

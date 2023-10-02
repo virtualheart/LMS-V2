@@ -1,33 +1,29 @@
 <?php
-
-use App\Models\SettingsModel;
-
-$settingsModel = new SettingsModel();
-$appName = $settingsModel->getAppName();
-
-$database_dump_file = 'database.sql';
-
-$errors = false;
-
+$errors=false;
 ?>
-
-<link rel="stylesheet" href="<?=base_url();?>assets/install/css/styles.css" media="all">    
-  
-<!-- Scripts -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<?=base_url();?>assets/install/css/styles.css" media="all">    
+    <title>LMS-V2 installcation</title>
+    <!-- Scripts -->
 <script>
-	window.onload = (event) => {
-		var card = document.getElementById('card');
-		card.classList.add('show');
-	};
+    window.onload = (event) => {
+        var card = document.getElementById('card');
+        card.classList.add('show');
+    };
 </script>
+</head>
+<body>
 
- 	<div id="wrapper">
-		<div class="container">
-			<div class="setup">
-				<div id="card" class="card">
-					<div class="card__body">
-					    <?php switch ($step) { default: ?>
-					        <?php  
+    <div id="wrapper">
+        <div class="container">
+            <div class="setup">
+                <div id="card" class="card">
+                    <div class="card__body">
+                            <?php  
                                 if(phpversion() < "7.4"){
                                     $errors = true;
                                 }
@@ -40,18 +36,35 @@ $errors = false;
                                 if(!extension_loaded('pdo')){
                                     $errors = true; 
                                 }
+                                if(!extension_loaded('intl')){
+                                    $errors = true; 
+                                }
+                                if(!extension_loaded('gd')){
+                                    $errors = true; 
+                                }
                                 if(!extension_loaded('json')){
                                     $errors = true; 
                                 }
                                 if(!extension_loaded('mbstring')){
                                     $errors = true; 
                                 }
-                                if(is_writable($Basepath)){
+                                if(!is_writable(getcwd())){
                                     $errors = true; 
                                 }
-                                if(file_exists($installpath)){
+                                if(file_exists(getcwd().'/.env')){
                                     $errors = true; 
                                 }
+                                if (!function_exists('exec')) {
+                                    $errors = true;
+                                }
+                                if (!exec('composer --version')) {
+                                    $errors = true; 
+                                } 
+                                if (!extension_loaded('openssl')) {
+                                    $errors = true;
+                                }
+
+
                             ?>
                             
                             <div class="card__image">
@@ -61,17 +74,37 @@ $errors = false;
                                     <img src="<?=base_url();?>assets/install/images/server_success.png" alt="">
                                 <?php } ?>
                             </div>
-    				        <div class="card__content">
-        						<div class="card__content__head">
-        							<h3 class="card__title">
-        								<span><?php echo $appName; ?></span>
-        							</h3>
-        							<p class="card__fade">This php extensions Are must needed! If you server don't have this Ask you server provider to enable it. This are commonly used php extension in all Hosting's. For Further Info Contact us.</p>
-        						</div>
-        						<div class="card__fade">
-        							<div class="notify-list">
-        							     <?php  
+                            <div class="card__content">
+                                <div class="card__content__head">
+                                    <h3 class="card__title">
+                                        <span><?php echo "LMS-V2"; ?></span>
+                                    </h3>
+                                    <p class="card__fade">This php extensions Are must needed! If you server don't have this Ask you server provider to enable it. This are commonly used php extension in all Hosting's. For Further Info Contact us.</p>
+                                </div>
+                                <div class="card__fade">
+                                    <div class="notify-list">
+                                         <?php  
                                             // Add or remove your script's requirements below
+                                            if(file_exists(getcwd().'/.env')){
+                                                echo "<div class='notify notify--error'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                                                <path fill='none' d='M0 0h24v24H0z'/>
+                                                <path fill='currentColor' d='M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z'/>
+                                                </svg>
+                                                <span class='notify__text'>The installation process is already complete !</span>
+                                                </div>";
+                                            }
+                                            
+                                            if(!is_writeable(getcwd())){
+                                                echo "<div class='notify notify--error'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                                                <path fill='none' d='M0 0h24v24H0z'/>
+                                                <path fill='currentColor' d='M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z'/>
+                                                </svg>
+                                                <span class='notify__text'>The file's don't have writeable permission !</span>
+                                                </div>";
+
+                                            }
                                             if(phpversion() < "7.1"){
                                                 echo "<div class='notify notify--error'>
                                                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
@@ -174,209 +207,74 @@ $errors = false;
                                                 <span class='notify__text'>mbstring PHP extension available</span>
                                                 </div>";
                                             }
-                                            if(!is_writeable($Basepath)){
+
+                                            if(!function_exists('exec')){
                                                 echo "<div class='notify notify--error'>
                                                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
                                                 <path fill='none' d='M0 0h24v24H0z'/>
                                                 <path fill='currentColor' d='M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z'/>
                                                 </svg>
-                                                <span class='notify__text'>The don't have writeable permission !</span>
+                                                <span class='notify__text'>exec PHP function missing!</span>
                                                 </div>";
-                                            }
-                                            if(file_exists($installpath)){
+                                            } else {
+                                                echo "<div class='notify notify--success'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                                                <path fill='none' d='M0 0h24v24H0z'/>
+                                                <path fill='currentColor' d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z'/>
+                                                </svg>
+                                                <span class='notify__text'>exec PHP function available</span>
+                                                </div>";
+                                            } 
+
+                                            if (!exec('composer --version')) {
                                                 echo "<div class='notify notify--error'>
                                                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
                                                 <path fill='none' d='M0 0h24v24H0z'/>
                                                 <path fill='currentColor' d='M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z'/>
                                                 </svg>
-                                                <span class='notify__text'>The installation process is already complete !</span>
+                                                <span class='notify__text'>PHP composer missing!</span>
+                                                </div>";
+                                            } else {
+                                                echo "<div class='notify notify--success'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                                                <path fill='none' d='M0 0h24v24H0z'/>
+                                                <path fill='currentColor' d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z'/>
+                                                </svg>
+                                                <span class='notify__text'>PHP composer available</span>
                                                 </div>";
                                             }
+
+                                            if(!extension_loaded('openssl')){
+                                                echo "<div class='notify notify--error'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                                                <path fill='none' d='M0 0h24v24H0z'/>
+                                                <path fill='currentColor' d='M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z'/>
+                                                </svg>
+                                                <span class='notify__text'>openssl PHP extension missing!</span>
+                                                </div>";
+                                            } else {
+                                                echo "<div class='notify notify--success'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                                                <path fill='none' d='M0 0h24v24H0z'/>
+                                                <path fill='currentColor' d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z'/>
+                                                </svg>
+                                                <span class='notify__text'>openssl PHP extension available</span>
+                                                </div>";
+                                            } 
+
                                         ?>
-        							</div>
-        							<div class="card__content__foot">
-        								<p>Copyright © <?php echo date('Y'); ?> <a target="_blank" href="https://github.com/virtualheart/LMS-V2"><?=$appName?></a> All rights reserved.</p>
-        								<div class="text-right">
-        								    <?php if($errors==true){ ?>
-        								        <button type="button" id="next" class="btn btn--primary btn--slide" style="min-width: 124px;" disabled>Next</button>
+                                    </div>
+                                    <div class="card__content__foot">
+                                        <p>Copyright © <?php echo date('Y'); ?> <a target="_blank" href="https://github.com/virtualheart/LMS-V2"><?="LMS-V2"?></a> All rights reserved.</p>
+                                        <div class="text-right">
+                                            <?php if($errors==true){ ?>
+                                                <button type="button" id="next" class="btn btn--primary btn--slide" style="min-width: 124px;" disabled>Next</button>
                                             <?php }else{ ?>
-                                                <a href="<?=site_url('/api/test/1')?>" class="btn btn--primary btn--slide" style="min-width: 124px;">Next</a>
+                                                <a href="<?=site_url('/install/step1')?>" class="btn btn--primary btn--slide" style="min-width: 124px;">Next</a>
                                             <?php } ?>
-        								</div>
-        							</div>
-        						</div>
-    					    </div>					    
-					    
-					    <?php break; case "1": ?>
-					    
-                                
-                                          <div class="card__image">
-                    							<img src="<?=base_url();?>assets/install/images/database.png" alt="">
-                    						</div>
-                    						<div class="card__content">
-                    							<div class="card__content__head">
-                    								<h3 class="card__title">
-                    									<span>Database</span>
-                    								</h3>
-                    							</div>
-                    							<div class="card__fade">
-                    							    <form action="index.php?step=1" method="POST">
-                    							        <div class="notify notify--error" style="margin-bottom: 18px;">
-                    										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    											<path fill="none" d="M0 0h24v24H0z"/>
-                    											<path fill="currentColor" d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/>
-                    										</svg>
-                    										<span class="notify__text">Failed to connect to MySQL: <?php echo mysqli_connect_error(); ?></span>
-                    									</div>
-                									
-                        								<input type="hidden" name="lcscs" id="lcscs" value="">
-                                                
-                                                        <div class="mb-16">
-            												<label for="host" class="form-label">Database Host</label>
-            												<input class="form-control" type="text" id="host" placeholder="enter your database host" name="host" value="localhost" required>
-            											</div>
-            											<div class="mb-16">
-            												<label for="username" class="form-label">Database Username</label>
-            												<input class="form-control" type="text" id="user" placeholder="enter your database username" name="user" required>
-            											</div>
-            											<div class="mb-16">
-            												<label for="password" class="form-label">Database Password</label>
-            												<input class="form-control" type="text" id="pass" placeholder="enter your database password" name="pass">
-            											</div>
-            											<div class="mb-16">
-            												<label for="name" class="form-label">Database Name</label>
-            												<input class="form-control" type="text" id="name" placeholder="enter your database name" name="name" required>
-            											</div>
-                        								<div class="card__content__foot">
-                        									<div class="text-right">
-                        										<button type="submit" id="next" class="btn btn--primary btn--slide" style="min-width: 124px;">Import</button>
-                        									</div>
-                        								</div>
-                        								<p style="margin-top: 10px;">Copyright © <?php echo date('Y'); ?> <a target="_blank" href="https://github.com/virtualheart/LMS-V2"><?=$appName?></a> All rights reserved.</p>
-                    								</form>
-                    							</div>
-                    						</div>
-
-                                        <div class="card__image">
-                							<img src="<?=base_url();?>assets/install/images/database.png" alt="">
-                						</div>
-                						<div class="card__content">
-                							<div class="card__content__head">
-                								<h3 class="card__title">
-                									<span>Database</span>
-                								</h3>
-                							</div>
-                							<div class="card__fade">
-                							    <form action="index.php?step=2" method="POST">
-                    								<div class="mb-48">
-                    								    <div class="notify notify--success">
-                    										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    											<path fill="none" d="M0 0h24v24H0z"/>
-                    											<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"/>
-                    										</svg>
-                    										<span class="notify__text">Database was successfully imported.</span>
-                    									</div>
-                    									<input type="hidden" name="dbscs" id="dbscs" value="true">
-                    								</div>
-                    								<div class="card__content__foot">
-                    									<div class="text-right">
-                    									    <button type="submit" class="btn btn--primary btn--slide" style="min-width: 124px;">Next</button>
-                    									</div>
-                    								</div>
-                								</form>
-                							</div>
-                						</div>
-
-                                    
-                                        <div class="card__image">
-                							<img src="<?=base_url();?>assets/install/images/database.png" alt="">
-                						</div>
-                						<div class="card__content">
-                							<div class="card__content__head">
-                								<h3 class="card__title">
-                									<span>Database</span>
-                								</h3>
-                							</div>
-                							<div class="card__fade">
-                							    <form action="index.php?step=1" method="POST">
-                    								<input type="hidden" name="lcscs" id="lcscs" value="">
-                                            
-                                                    <div class="mb-16">
-        												<label for="host" class="form-label">Database Host</label>
-        												<input class="form-control" type="text" id="host" placeholder="enter your database host" name="host" value="localhost" required>
-        											</div>
-        											<div class="mb-16">
-        												<label for="username" class="form-label">Database Username</label>
-        												<input class="form-control" type="text" id="user" placeholder="enter your database username" name="user" required>
-        											</div>
-        											<div class="mb-16">
-        												<label for="password" class="form-label">Database Password</label>
-        												<input class="form-control" type="text" id="pass" placeholder="enter your database password" name="pass">
-        											</div>
-        											<div class="mb-16">
-        												<label for="name" class="form-label">Database Name</label>
-        												<input class="form-control" type="text" id="name" placeholder="enter your database name" name="name" required>
-        											</div>
-                    								<div class="card__content__foot">
-                    									<div class="text-right">
-                    										<button type="submit" id="next" class="btn btn--primary btn--slide" style="min-width: 124px;">Import</button>
-                    									</div>
-                    								</div>
-                    								<p style="margin-top: 10px;">Copyright © <?php echo date('Y'); ?> <a target="_blank" href="https://github.com/virtualheart/LMS-V2"><?=$appName?></a> All rights reserved.</p>
-                								</form>
-                							</div>
-                						</div>
-                                    
-
-					    
-					    <?php break; case "2": ?>
-					    
-    					    <?php if($_POST && isset($_POST["dbscs"])){
-                                session_destroy();
-                            ?>
-                                <div class="card__image">
-        							<img src="<?=base_url();?>assets/install/images/finish.png" alt="">
-        						</div>
-        						<div class="card__content">
-        							<div class="card__content__head">
-        								<h3 class="card__title">
-        									<span>Finish</span>
-        								</h3>
-        							</div>
-        							<div class="card__fade">
-        								<div class="notify notify--success mb-40">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                                <path fill="none" d="M0 0h24v24H0z"/>
-                                                <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"/>
-                                            </svg>
-                                            <span class="notify__text"><?php echo $appName; ?> is successfully installed.</span>
                                         </div>
-                                        <p>You can now login using your username: <b style="color: #f44336c7;">admin</b> and default password: <b style="color: #f44336c7;">admin</b></p>
-                                        <p>The first thing you should do is change your account details.</p>
-                                        <div class="text-center mb-48">
-                                            <a href="../index.php" class="btn btn--primary">Let's go</a>
-                                        </div>
-                                        <h3 class="card__title">Support</h3>
-                                        <div class="card__foot">
-                                            <p>We provide support through Email or Telegram. <br>
-                                            <b>Email:</b> <a href="mailto:dhanajayan99@gmail.com" style="color: #2196f3;">dhanajayan99@gmail.com</a> <br>
-                                            <b>Telegram:</b>  </p>
-                                        </div>
-        								<div class="card__content__foot text-center">
-        									<p>Thank you for purchasing our products</p>
-        								</div>
-        							</div>
-        						</div>
-        
-                            <?php } else { ?>
-                            
-                                <h2 style="color: #f44336c7;">Sorry, something went wrong.</h2>
-                                
-                            <?php } break; } ?>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                    </div>
+                                </div>
+                            </div>                      
 </body>
 </html>

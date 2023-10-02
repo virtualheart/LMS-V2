@@ -29,7 +29,7 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('student/Dashboard'); ?>">
                 <div class="sidebar-brand-icon">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
-                    <img src="<?= base_url("$appLogo");?>" width="30%" height="30%">
+                    <img src="<?php if(isset($appLogo)) { echo base_url($appLogo); } else { echo base_url('/assets/logo.png'); } ?>" width="30%" height="30%">
                 </div>
                 <!-- <div class="sidebar-brand-text mx-3">SB<sup>Admin</sup></div> -->
             </a>

@@ -68,6 +68,7 @@ class BarrowBooksModel extends Model{
         $this->join('settings se','1=1'); 
         $this->where('sid', $id);
         $this->where('role', $role);
+        $this->where('is_returned',0);
         $result = $this->get();
 
         return $result->getRow()->total_fine;

@@ -28,7 +28,7 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('/staff/Dashboard'); ?>">
                 <div class="sidebar-brand-icon ">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
-                    <img src="<?= base_url("$appLogo");?>" width="30%" height="30%">
+                    <img src="<?php if(isset($appLogo)) { echo base_url($appLogo); } else { echo base_url('/assets/logo.png'); } ?>" width="30%" height="30%">
                 </div>
                 <!-- <div class="sidebar-brand-text mx-3">SB<sup>Admin</sup></div> -->
             </a>
@@ -67,7 +67,7 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                 </div>
             </li>
 
-            <li class="nav-item <?php if($uri=="student/ListRequest" || $uri=="staff/ListRequest/history") echo "active"; ?>">
+            <li class="nav-item <?php if($uri=="staff/ListRequest" || $uri=="staff/ListRequest/history") echo "active"; ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa fa-paper-plane"></i>
@@ -182,7 +182,6 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                                 <span class="badge badge-danger badge-counter"><?=count($data['req'])?></span>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -191,7 +190,7 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                                 <?php foreach ($data['req'] as $requests) { ?> 
                                 
 
-                                <a class="dropdown-item d-flex align-items-center" href="<?=site_url('student/ListRequest')?>">
+                                <a class="dropdown-item d-flex align-items-center" href="<?=site_url('staff/ListRequest')?>">
                                     <!-- <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="img/undraw_profile_1.svg"
                                             alt="...">

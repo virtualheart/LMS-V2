@@ -35,9 +35,9 @@ class BooksModel extends Model{
     }
 
     // Get Book Detiles For Barrow/Return Entry
-    public function getBookDetail($id)
+    public function getBookDetail($bcode)
     {
-        return $this->Where('bcode', $id)
+        return $this->Where('bcode', $bcode)
                     ->first();
     }
 

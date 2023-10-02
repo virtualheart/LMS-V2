@@ -21,7 +21,9 @@ app_logourl = '/assets/logo.png'
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-CI_ENVIRONMENT = development
+# CI_ENVIRONMENT = development
+CI_ENVIRONMENT = production
+
 
 #--------------------------------------------------------------------
 # APP
@@ -37,13 +39,19 @@ app.baseURL = 'http://localhost/code/'
 # DATABASE
 #--------------------------------------------------------------------
 
-database.default.hostname = localhost
-database.default.database = sinpro
-database.default.username = smk
-database.default.password = 
-database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
-database.default.port = 3306
+# database.default.hostname = db_hname
+# database.default.database = db_name
+# database.default.username = db_uname
+# database.default.password = db_password
+# database.default.port = db_port
+# database.default.DBDriver = MySQLi
+
+# database.default.hostname = db_ hname
+# database.default.database = db_ name
+# database.default.username = db_ uname
+# database.default.password = db_ password
+# database.default.port = db_ port
+# database.default.DBDriver = MySQLi
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4_test

@@ -7,12 +7,18 @@ class StaffDeptModel extends Model{
     protected $primaryKey = 'id';
     
     protected $allowedFields = [
-        'staff_department'
+        's_d_name'
     ];
 
     public function getstfDepartmentList()
     {
         return $this->findAll();
+    }
+
+    public function setstfDepartment($data)
+    {
+        $this->insert($data);
+        return true;
     }
 
 }

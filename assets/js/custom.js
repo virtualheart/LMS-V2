@@ -171,7 +171,6 @@ $(document).ready(function() {
 // Datatables 
 $(document).ready(function() {
 
-    
     // DataTable initialization
     const table = $('#myTable').DataTable({
         "dom": '<"dt-buttons"Bf><"clear">lirtp',
@@ -189,6 +188,26 @@ $(document).ready(function() {
             'csvHtml5',
             'excelHtml5',
             'print'
+        ],
+        "stateSave": false,
+        "responsive": true,
+    });
+
+});
+
+// normal Datatables 
+$(document).ready(function() {
+    // DataTable initialization
+    const table = $('#norTable').DataTable({
+        "dom": '<"dt-buttons"Bf><"clear">lirtp',
+        "responsive": true,
+        "scrollCollapse": true,
+        "scrollY": '400px',
+        "paging": true,
+        "autoWidth": true,
+        "lengthMenu": [
+            [15, 25, 50, 100],
+            [15, 25, 50, 100]
         ],
         "stateSave": false,
         "responsive": true,
