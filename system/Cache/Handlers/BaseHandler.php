@@ -13,6 +13,7 @@ namespace CodeIgniter\Cache\Handlers;
 
 use Closure;
 use CodeIgniter\Cache\CacheInterface;
+use Config\Cache;
 use Exception;
 use InvalidArgumentException;
 
@@ -61,7 +62,7 @@ abstract class BaseHandler implements CacheInterface
             throw new InvalidArgumentException('Cache key cannot be empty.');
         }
 
-        $reserved = config('Cache')->reservedCharacters ?? self::RESERVED_CHARACTERS;
+        $reserved = config(Cache::class)->reservedCharacters ?? self::RESERVED_CHARACTERS;
         if ($reserved && strpbrk($key, $reserved) !== false) {
             throw new InvalidArgumentException('Cache key contains reserved characters ' . $reserved);
         }
@@ -76,6 +77,7 @@ abstract class BaseHandler implements CacheInterface
      * @param string  $key      Cache item name
      * @param int     $ttl      Time to live
      * @param Closure $callback Callback return value
+     * @phpstan-param Closure(): mixed $callback
      *
      * @return array|bool|float|int|object|string|null
      */
@@ -96,6 +98,8 @@ abstract class BaseHandler implements CacheInterface
      * Deletes items from the cache store matching a given pattern.
      *
      * @param string $pattern Cache items glob-style pattern
+     *
+     * @return int|never
      *
      * @throws Exception
      */

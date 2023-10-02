@@ -17,6 +17,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Validation\Exceptions\ValidationException;
 use CodeIgniter\Validation\ValidationInterface;
 use Config\Services;
+use Config\Validation;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -69,6 +70,8 @@ class Controller
     /**
      * Constructor.
      *
+     * @return void
+     *
      * @throws HTTPException
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -95,6 +98,8 @@ class Controller
      *                      considered secure for. Only with HSTS header.
      *                      Default value is 1 year.
      *
+     * @return void
+     *
      * @throws HTTPException
      */
     protected function forceHTTPS(int $duration = 31_536_000)
@@ -103,12 +108,15 @@ class Controller
     }
 
     /**
-     * Provides a simple way to tie into the main CodeIgniter class and
-     * tell it how long to cache the current page for.
+     * How long to cache the current page for.
+     *
+     * @params int $time time to live in seconds.
+     *
+     * @return void
      */
     protected function cachePage(int $time)
     {
-        CodeIgniter::cache($time);
+        Services::responsecache()->setTtl($time);
     }
 
     /**
@@ -117,6 +125,8 @@ class Controller
      * @deprecated Use `helper` function instead of using this method.
      *
      * @codeCoverageIgnore
+     *
+     * @return void
      */
     protected function loadHelpers()
     {
@@ -164,7 +174,7 @@ class Controller
 
         // If you replace the $rules array with the name of the group
         if (is_string($rules)) {
-            $validation = config('Validation');
+            $validation = config(Validation::class);
 
             // If the rule wasn't found in the \Config\Validation, we
             // should throw an exception so the developer can find it.

@@ -14,16 +14,15 @@
 # APPLICATION DETILES
 #--------------------------------------------------------------------
 
-app_name = 'GAS-7 LMS'
-app_logourl = '/assets/logo.png'
+# app_name = 'GAS-7 LMS'
+# app_logourl = '/assets/logo.png'
 
 #--------------------------------------------------------------------
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = development
-CI_ENVIRONMENT = production
-
+ CI_ENVIRONMENT = development
+# CI_ENVIRONMENT = production
 
 #--------------------------------------------------------------------
 # APP

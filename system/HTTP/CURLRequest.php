@@ -112,12 +112,12 @@ class CURLRequest extends OutgoingRequest
 
         parent::__construct('GET', $uri);
 
-        $this->responseOrig   = $response ?? new Response(config('App'));
+        $this->responseOrig   = $response ?? new Response(config(App::class));
         $this->baseURI        = $uri->useRawQueryString();
         $this->defaultOptions = $options;
 
         /** @var ConfigCURLRequest|null $configCURLRequest */
-        $configCURLRequest  = config('CURLRequest');
+        $configCURLRequest  = config(ConfigCURLRequest::class);
         $this->shareOptions = $configCURLRequest->shareOptions ?? true;
 
         $this->config = $this->defaultConfig;
@@ -151,6 +151,8 @@ class CURLRequest extends OutgoingRequest
 
     /**
      * Reset all options to default.
+     *
+     * @return void
      */
     protected function resetOptions()
     {
@@ -263,7 +265,7 @@ class CURLRequest extends OutgoingRequest
     /**
      * Set JSON data to be sent.
      *
-     * @param mixed $data
+     * @param array|bool|float|int|object|string|null $data
      *
      * @return $this
      */
@@ -277,6 +279,8 @@ class CURLRequest extends OutgoingRequest
     /**
      * Sets the correct settings based on the options array
      * passed in.
+     *
+     * @return void
      */
     protected function parseOptions(array $options)
     {
@@ -387,6 +391,10 @@ class CURLRequest extends OutgoingRequest
             $output = substr($output, strpos($output, $breakString) + 4);
         }
 
+        if (strpos($output, 'HTTP/1.1 200 Connection established') === 0) {
+            $output = substr($output, strpos($output, $breakString) + 4);
+        }
+
         // If request and response have Digest
         if (isset($this->config['auth'][2]) && $this->config['auth'][2] === 'digest' && strpos($output, 'WWW-Authenticate: Digest') !== false) {
             $output = substr($output, strpos($output, $breakString) + 4);
@@ -475,6 +483,8 @@ class CURLRequest extends OutgoingRequest
     /**
      * Parses the header retrieved from the cURL response into
      * our Response object.
+     *
+     * @return void
      */
     protected function setResponseHeaders(array $headers = [])
     {
@@ -548,6 +558,12 @@ class CURLRequest extends OutgoingRequest
             } elseif (is_bool($config['verify'])) {
                 $curlOptions[CURLOPT_SSL_VERIFYPEER] = $config['verify'];
             }
+        }
+
+        // Proxy
+        if (isset($config['proxy'])) {
+            $curlOptions[CURLOPT_HTTPPROXYTUNNEL] = true;
+            $curlOptions[CURLOPT_PROXY]           = $config['proxy'];
         }
 
         // Debug

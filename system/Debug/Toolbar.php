@@ -346,8 +346,7 @@ class Toolbar
     /**
      * Prepare for debugging..
      *
-     * @param RequestInterface  $request
-     * @param ResponseInterface $response
+     * @return void
      */
     public function prepare(?RequestInterface $request = null, ?ResponseInterface $response = null)
     {
@@ -365,7 +364,7 @@ class Toolbar
                 return;
             }
 
-            $toolbar = Services::toolbar(config(self::class));
+            $toolbar = Services::toolbar(config(ToolbarConfig::class));
             $stats   = $app->getPerformanceStats();
             $data    = $toolbar->run(
                 $stats['startTime'],
@@ -434,6 +433,9 @@ class Toolbar
      * Inject debug toolbar into the response.
      *
      * @codeCoverageIgnore
+     *
+     * @return void
+     * @phpstan-return never|void
      */
     public function respond()
     {

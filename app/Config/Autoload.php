@@ -13,7 +13,12 @@ use CodeIgniter\Config\AutoloadConfig;
  * can find the files as needed.
  *
  * NOTE: If you use an identical key in $psr4 or $classmap, then
- * the values in this file will overwrite the framework's values.
+ *       the values in this file will overwrite the framework's values.
+ *
+ * NOTE: This class is required prior to Autoloader instantiation,
+ *       and does not extend BaseConfig.
+ *
+ * @immutable
  */
 class Autoload extends AutoloadConfig
 {
@@ -42,8 +47,6 @@ class Autoload extends AutoloadConfig
     public $psr4 = [
         APP_NAMESPACE => APPPATH, // For custom app namespace
         'Config'      => APPPATH . 'Config',
-        'PhpOffice\PhpSpreadsheet' => APPPATH . 'vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
-
     ];
 
     /**
@@ -63,9 +66,7 @@ class Autoload extends AutoloadConfig
      *
      * @var array<string, string>
      */
-    public $classmap = [
-        'PhpOffice\PhpSpreadsheet\Spreadsheet' => APPPATH . 'vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Spreadsheet.php' 
-    ];
+    public $classmap = [];
 
     /**
      * -------------------------------------------------------------------

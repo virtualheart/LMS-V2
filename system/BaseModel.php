@@ -338,6 +338,8 @@ abstract class BaseModel
     /**
      * Initializes the instance with any additional steps.
      * Optionally implemented by child classes.
+     *
+     * @return void
      */
     protected function initialize()
     {
@@ -458,6 +460,8 @@ abstract class BaseModel
      * Works with the find* methods to return only the rows that
      * have been deleted.
      * This method works only with dbCalls.
+     *
+     * @return void
      */
     abstract protected function doOnlyDeleted();
 
@@ -523,6 +527,8 @@ abstract class BaseModel
      *
      * @param int     $size     Size
      * @param Closure $userFunc Callback Function
+     *
+     * @return void
      *
      * @throws DataException
      */
@@ -754,7 +760,7 @@ abstract class BaseModel
 
         // Must be called first, so we don't
         // strip out created_at values.
-        $data = $this->doProtectFields($data);
+        $data = $this->doProtectFieldsForInsert($data);
 
         // doProtectFields() can further remove elements from
         // $data so we need to check for empty dataset again
@@ -847,7 +853,7 @@ abstract class BaseModel
 
                 // Must be called first so we don't
                 // strip out created_at values.
-                $row = $this->doProtectFields($row);
+                $row = $this->doProtectFieldsForInsert($row);
 
                 // Set created_at and updated_at with same time
                 $date = $this->setDate();
@@ -973,7 +979,9 @@ abstract class BaseModel
                 // properties representing the collection elements, we need to grab
                 // them as an array.
                 if (is_object($row) && ! $row instanceof stdClass) {
-                    $row = $this->objectToArray($row, true, true);
+                    // For updates the index field is needed even if it is not changed.
+                    // So set $onlyChanged to false.
+                    $row = $this->objectToArray($row, false, true);
                 }
 
                 // If it's still a stdClass, go ahead and convert to
@@ -990,6 +998,13 @@ abstract class BaseModel
 
                 // Save updateIndex for later
                 $updateIndex = $row[$index] ?? null;
+
+                if ($updateIndex === null) {
+                    throw new InvalidArgumentException(
+                        'The index ("' . $index . '") for updateBatch() is missing in the data: '
+                        . json_encode($row)
+                    );
+                }
 
                 // Must be called first so we don't
                 // strip out updated_at values.
@@ -1222,10 +1237,10 @@ abstract class BaseModel
     }
 
     /**
-     * Ensures that only the fields that are allowed to be updated
-     * are in the data array.
+     * Ensures that only the fields that are allowed to be updated are
+     * in the data array.
      *
-     * Used by insert() and update() to protect against mass assignment
+     * Used by update() and updateBatch() to protect against mass assignment
      * vulnerabilities.
      *
      * @param array $data Data
@@ -1249,6 +1264,22 @@ abstract class BaseModel
         }
 
         return $data;
+    }
+
+    /**
+     * Ensures that only the fields that are allowed to be inserted are in
+     * the data array.
+     *
+     * Used by insert() and insertBatch() to protect against mass assignment
+     * vulnerabilities.
+     *
+     * @param array $data Data
+     *
+     * @throws DataException
+     */
+    protected function doProtectFieldsForInsert(array $data): array
+    {
+        return $this->doProtectFields($data);
     }
 
     /**
@@ -1345,7 +1376,7 @@ abstract class BaseModel
     }
 
     /**
-     * Allows to set validation messages.
+     * Allows to set (and reset) validation messages.
      * It could be used when you have to change default or override current validate messages.
      *
      * @param array $validationMessages Value
@@ -1376,7 +1407,7 @@ abstract class BaseModel
     }
 
     /**
-     * Allows to set validation rules.
+     * Allows to set (and reset) validation rules.
      * It could be used when you have to change default or override current validate rules.
      *
      * @param array $validationRules Value
@@ -1401,6 +1432,17 @@ abstract class BaseModel
      */
     public function setValidationRule(string $field, $fieldRules)
     {
+        $rules = $this->validationRules;
+
+        // ValidationRules can be either a string, which is the group name,
+        // or an array of rules.
+        if (is_string($rules)) {
+            [$rules, $customErrors] = $this->validation->loadRuleGroup($rules);
+
+            $this->validationRules    = $rules;
+            $this->validationMessages = $this->validationMessages + $customErrors;
+        }
+
         $this->validationRules[$field] = $fieldRules;
 
         return $this;
@@ -1466,7 +1508,9 @@ abstract class BaseModel
         // ValidationRules can be either a string, which is the group name,
         // or an array of rules.
         if (is_string($rules)) {
-            $rules = $this->validation->loadRuleGroup($rules);
+            [$rules, $customErrors] = $this->validation->loadRuleGroup($rules);
+
+            $this->validationMessages = $this->validationMessages + $customErrors;
         }
 
         if (isset($options['except'])) {
@@ -1711,7 +1755,7 @@ abstract class BaseModel
      *
      * @param string $name Name
      *
-     * @return mixed
+     * @return array|bool|float|int|object|string|null
      */
     public function __get(string $name)
     {

@@ -29,6 +29,4 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
-
-    
 }
