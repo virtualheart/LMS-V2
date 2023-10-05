@@ -192,14 +192,12 @@ $(document).ready(function() {
         "stateSave": false,
         "responsive": true,
     });
-
 });
 
 // normal Datatables 
 $(document).ready(function() {
     // DataTable initialization
     const table = $('#norTable').DataTable({
-        "dom": '<"dt-buttons"Bf><"clear">lirtp',
         "responsive": true,
         "scrollCollapse": true,
         "scrollY": '400px',

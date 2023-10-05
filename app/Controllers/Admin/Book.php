@@ -6,6 +6,7 @@ use App\Models\BooksModel;
 use App\Models\BarrowBooksModel;
 use App\Models\OtherModel;
 use App\Models\ShelfModel;
+use App\Models\PlanningModel;
 
 class Book extends BaseController
 {
@@ -15,6 +16,7 @@ class Book extends BaseController
         $this->barrowbooksModel = new BarrowBooksModel();
         $this->otherModel = new OtherModel();
         $this->shelfModel = new ShelfModel();
+        $this->planningModel = new PlanningModel();
     }
         
     public function book($activity,$bcode)
@@ -29,11 +31,13 @@ class Book extends BaseController
 
             if ($this->request->getMethod() === 'post') {
                 $bno = $this->request->getPost('bno');
+                $plan_id = $this->request->getPost('plan');
                 $bcode = $this->request->getPost('bcode');
                 $title = $this->request->getPost('title');
                 $aname = $this->request->getPost('aname');
                 $publication = $this->request->getPost('publication');
                 $price = $this->request->getPost('price');
+                $language = $this->request->getPost('language');
                 $alamara = $this->request->getPost('alamara');
                 $year_of_publication = $this->request->getPost('year_of_publication');
                 $remark = $this->request->getPost('remark');
@@ -53,14 +57,15 @@ class Book extends BaseController
                     'edition' => 'required'
                 ]);
 
-
                 $data = [
                     'bno' => $bno, 
-                    'bcode' => $bcode, 
+                    'bcode' => $bcode,
+                    'plan_id' => $plan_id,
                     'title' => $title, 
                     'aname' => $aname, 
                     'publication' => $publication, 
                     'price' => $price, 
+                    'language' => $language,
                     'Shelf_id' => $alamara,
                     'year_of_publication' => $year_of_publication,
                     'edition' => $edition,
@@ -79,6 +84,7 @@ class Book extends BaseController
             $data = [
                 'bcodeid' => $this->booksModel->getLastBookid()->lbcode ?? 0,
                 'Alamaras' => $this->shelfModel->getAlamarasList(),
+                'Plans' => $this->planningModel->getPlanningList(),
             ];
 
             helper(['form']);

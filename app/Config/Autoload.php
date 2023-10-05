@@ -47,6 +47,7 @@ class Autoload extends AutoloadConfig
     public $psr4 = [
         APP_NAMESPACE => APPPATH, // For custom app namespace
         'Config'      => APPPATH . 'Config',
+        'PhpOffice\PhpSpreadsheet' => APPPATH . 'vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
     ];
 
     /**
@@ -66,8 +67,9 @@ class Autoload extends AutoloadConfig
      *
      * @var array<string, string>
      */
-    public $classmap = [];
-
+    public $classmap = [
+        'PhpOffice\PhpSpreadsheet\Spreadsheet' => APPPATH . 'vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Spreadsheet.php' 
+    ];
     /**
      * -------------------------------------------------------------------
      * Files

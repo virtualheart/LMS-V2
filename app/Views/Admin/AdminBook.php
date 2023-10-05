@@ -70,6 +70,25 @@
                     <label>Price</label>
                     <input type="number" class="form-control" value="<?php if(isset($Book)){ echo $Book['price']; } ?>" name="price" required>
                 </div>
+
+                 <div class="form-group col-md-6">
+                    <label>Plan</label>
+                    <!-- <input type="text" class="form-control" value="< ?php if(isset($Book)){ echo $Book['alamara']; } ?>" name="alamara" required> -->
+                    <select class="itemName form-control" name="plan" required>
+                        <option value=''>Select Plan</option>
+                        <?php foreach ($Plans as $Plan): ?>
+                            <option value="<?= $Plan['id'] ?>" <?php if (isset($Book) && $Book['plan_id'] == $Plan['id']) echo "selected" ?>>
+                                <?= $Plan['category'] .' - '. $Plan['year'] .' - '. $Plan['billno']?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Language</label>
+                    <input type="text" class="form-control" value="<?php if(isset($Book)){ echo $Book['language']; } ?>" name=" " >
+                </div>
+
                 <div class="form-group col-md-6">
                     <label>Alamara</label>
                     <!-- <input type="text" class="form-control" value="< ?php if(isset($Book)){ echo $Book['alamara']; } ?>" name="alamara" required> -->

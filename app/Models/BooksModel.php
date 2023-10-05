@@ -8,6 +8,7 @@ class BooksModel extends Model{
     
     protected $allowedFields = [
         'bno',
+        'plan_id',
         'bcode',
         'title',
         'aname',

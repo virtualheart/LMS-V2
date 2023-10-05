@@ -122,6 +122,29 @@ $data['req'] = $requestModel->getAllBookRequest();
                 </div>
             </li>
 
+         <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Planning
+            </div>
+                        <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item <?php if($uri=="admin/plan") echo "active"; ?>">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePlan" aria-expanded="true"
+                    aria-controls="collapsePlan">
+                    <i class="fa fa-tasks"></i>
+                    <span>Plan</span>
+                </a>
+                <div id="collapsePlan" class="collapse <?php if($uri=="admin/plan") echo "show"; ?>" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- <h6 class="collapse-header">Settings</h6> -->
+                        <a class="collapse-item <?php if($uri=="admin/plan") echo "active"; ?>" href="<?=site_url('admin/plan')?>">General</a>
+                    </div>
+            </li>
+
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

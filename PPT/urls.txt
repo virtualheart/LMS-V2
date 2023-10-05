@@ -43,6 +43,10 @@ http://localhost/code/index.php/admin/settings/app
 http://localhost/code/index.php/admin/settings/smtp
 http://localhost/code/index.php/Admin/Profile
 http://localhost/code/index.php/logout/
+http://localhost/code/index.php/admin/plan
+http://localhost/code/index.php/admin/plan/planning/new/add
+http://localhost/code/index.php/admin/plan/planning/update/<id>
+http://localhost/code/index.php/admin/Plan/report/<id>
 
 API
 http://localhost/code/index.php/api/login
