@@ -140,6 +140,7 @@ class Book extends BaseController
             $data = [
                 'Book' => $this->booksModel->getBookDetail($bcode),
                 'Alamaras' => $this->shelfModel->getAlamarasList(),
+                'Plans' => $this->planningModel->getPlanningList(),
             ];
 
             helper(['form']);
@@ -182,11 +183,11 @@ class Book extends BaseController
         }
 
         $result = $this->otherModel->getUserDet($u);
-        // if (!empty($result)) {
+        if (!empty($result)) {
             return $this->response->setJSON($result);
-        // }
+        }
         
-        // return $this->response->setStatusCode(204)->setJSON('{"mgs": "User Not Found"}');
+        return $this->response->setStatusCode(204)->setJSON('{"mgs": "User Not Found"}');
 
     }
 

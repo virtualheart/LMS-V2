@@ -26,9 +26,11 @@ class BarrowBooksModel extends Model{
 
     // Get all Barrow Book list
     public function getBarrowedBooks(){
-        return $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS fine')
+        return $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS fine,COALESCE(st.role, sf.role) AS borrower_role,COALESCE(st.sname, sf.sname) AS borrower_name')
                     ->join('books bk','bk.bid=sbb.bid')
-                    ->join('settings se','1=1') 
+                    ->join('students st','sbb.sid=st.st_id', 'LEFT')
+                    ->join('staff sf','sbb.sid=sf.sid', 'LEFT')
+                    ->join('settings se','1=1')
                     ->where('is_returned',0)
                     ->FindAll();
     }
@@ -46,7 +48,7 @@ class BarrowBooksModel extends Model{
         return $results;
     }
 
-    // Staff or Student barrowed book list 
+    // Staff or Student return book list 
     public function getReturnedBookbyUser($id,$role){
         $query = $this->join('books bk','bk.bid=sbb.bid')
                     ->where('sid',$id)

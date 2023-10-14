@@ -18,6 +18,7 @@
                                             <th>Publication</th>
                                             <th>Date</th>
                                             <th>Fine</th>
+                                            <th>Name</th>
                                             <th>ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
@@ -32,6 +33,7 @@
                                             <th>Publication</th>
                                             <th>Barrowed</th>
                                             <th>Fine</th>
+                                            <th>Name</th>
                                             <th>ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
@@ -51,6 +53,7 @@
                                             <td><?=$books['publication']; ?></td>
                                             <td><?=$books['request_date']; ?></td>
                                             <td><?=$books['fine']; ?></td>
+                                            <td><?=$books['borrower_name']; ?></td>
                                             <td><?=$books['return_date']; ?></td>
                                             <!-- <td>< ?=$books['alamara']; ?></td> -->
                                             <!-- <td>< ?=$books['rack']; ?></td>  -->

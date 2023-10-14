@@ -20,8 +20,21 @@ class Report extends BaseController
             return redirect()->to('/');
         }
 
+        if ($this->request->getMethod() === 'post') {
+
+            $remark = $this->request->getPost('remark');
+            
+            $data = [
+                'remark' => $remark,
+            ];
+
+            if($this->studentModel->updateProfile($id,$data));
+
+        }
+
         $stddata = [
             'student' => $this->studentModel->getProfile($id),
+            'books' => $this->barrowBooksModel->getBarrowedBookbyUser($id,'student'),
         ];
 
         echo view('Others/header');

@@ -12,6 +12,7 @@ class Plan extends BaseController
         $this->planningModel = new PlanningModel();
         $this->plannCmdsModel = new PlannCmdsModel();
     }
+
     public function index()
     {
         $session = session();
@@ -118,10 +119,13 @@ class Plan extends BaseController
             return redirect()->to('/');
         }
 
+        $data = [
+            'plan' => $this->planningModel->getPlan($id), 
+            'remarks' => $this->plannCmdsModel->getPlanningCmds($id), 
+        ];
+
         echo view('Others/header');
-        echo view('Admin/AdminPlanReport');
+        echo view('Admin/AdminPlanReport',$data);
         echo view('Others/fooder');
     }
 }
-
-
