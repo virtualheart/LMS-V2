@@ -9,6 +9,7 @@ class Plan extends BaseController
 {
     public function __construct()
     {
+        date_default_timezone_set("Asia/Kolkata");
         $this->planningModel = new PlanningModel();
         $this->plannCmdsModel = new PlannCmdsModel();
     }
@@ -52,6 +53,7 @@ class Plan extends BaseController
                     'category' => $category,
                     'year' => $year,
                     'billno' => $billno,
+                    'plan_status' => 'New',
                     'noofbooks' => $noofbooks,
                     'amount' => $amount,
                     'remark' => $remark,
@@ -117,6 +119,14 @@ class Plan extends BaseController
 
         if ($session->get('role') != ("staff" or "admin" or "student")) {
             return redirect()->to('/');
+        }
+
+        if($this->request->getMethod() === "post"){
+            $commands = $this->request->getPost('commands');
+            $plan_status = $this->request->getPost('plan_status');
+
+            $this->plannCmdsModel->setCmds(['command' => $commands,'plan_id' => $id, 'date' => date("Y-m-d h:i:s"),]);
+            $this->planningModel->updatePlanning(['plan_status' => $plan_status],$id);
         }
 
         $data = [

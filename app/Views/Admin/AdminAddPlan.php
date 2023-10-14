@@ -50,12 +50,12 @@
 
                 <div class="form-group col-md-6">
                     <label>Bill No.</label>
-                    <input type="text" class="form-control" value="<?php if(isset($planed)){ echo $planed['billno']; } ?>" name="billno" required>
+                    <input type="text" class="form-control" value="<?php if(isset($planed)){ echo $planed['billno']; } ?>" name="billno" >
                 </div>
 
                 <div class="form-group col-md-6">
                     <label>No. of Books</label>
-                    <input type="number" class="form-control" value="<?php if(isset($planed)){ echo $planed['noofbooks']; } ?>" min="1" name="noofbooks" required>
+                    <input type="number" class="form-control" value="<?php if(isset($planed)){ echo $planed['noofbooks']; } ?>" min="1" name="noofbooks" >
                 </div>
 
                 <div class="form-group col-md-6">

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use App\Models\StaffModel;
 use App\Models\StudentModel;
+use App\Models\OtherModel;
 
 class Login extends BaseController
 {
@@ -36,7 +37,6 @@ class Login extends BaseController
         }
             
     }
-
 
     public function student(){
         $session = session();  
@@ -141,7 +141,6 @@ class Login extends BaseController
         echo view('Others/fooder');
     }
 
-
     public function Admin2Login()
     {
         $session = session();
@@ -190,6 +189,16 @@ class Login extends BaseController
         echo view('Others/header');
         echo view('Admin/Admin2login');
         echo view('Others/fooder');
+    }
+
+    public function forgetpassword()
+    {
+        $this->otherModel = new OtherModel();
+        if ($this->request->getMethod() === 'post') {
+            
+        }
+
+        echo view('ForgetPassword');
     }
 
 }

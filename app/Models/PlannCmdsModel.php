@@ -16,7 +16,7 @@ class PlannCmdsModel extends Model{
     // Get Admin Detiles
     public function getPlanningCmds($id)
     {
-        return $this->where('id',$id)
+        return $this->where('plan_id',$id)
                     ->findAll();
     }
 

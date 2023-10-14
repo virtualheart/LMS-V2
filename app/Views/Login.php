@@ -36,6 +36,7 @@
                         <div class="form-group pull-right">
                             <input type="submit" class="btn btn-success" value="Login" id="log" name="login">
                             <input type="reset" class="btn btn-danger" value="Clear">
+                            <a href="./forgetpassword" class="float-right mt-2">Forget Password</a>
                         <br>
                         <br>
                         </div>

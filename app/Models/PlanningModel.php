@@ -9,6 +9,7 @@ class PlanningModel extends Model{
     protected $allowedFields = [
         'category',
         'year', 
+        'plan_status',
         'billno', 
         'noofbooks', 
         'amount', 

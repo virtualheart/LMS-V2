@@ -28,7 +28,7 @@
                                             <th>Bill No.</th>
                                             <th title="Num Of Books">NOB</th>
                                             <th>Amount</th>
-                                            <th>Balance</th>
+                                            <!-- <th>Balance</th> -->
                                             <th>Report</th>
                                             <th>Action</th>
                                         </tr>
@@ -41,12 +41,11 @@
                                             <th>Bill No.</th>
                                             <th title="Num Of Books">NOB</th>
                                             <th>Amount</th>
-                                            <th>Balance</th>
+                                            <!-- <th>Balance</th> -->
                                             <th>Report</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
-
                                     <tbody>
                                     <?php $i=1; ?>
 
@@ -59,7 +58,7 @@
                                             <td><?=$plan['billno']; ?></td>
                                             <td><?=$plan['noofbooks']; ?></td>
                                             <td><?=preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,",  $plan['amount']); ?></td>
-                                            <td><?=preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,",  $plan['balance']); ?></td> 
+                                            <!-- <td>< ?=preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,",  $plan['balance']); ?></td>  -->
                                             <td><a class='btn btn-success' href="javascript:void(0);" onClick="popUpWindow('<?=site_url('admin/Plan/report/'.$plan['id'])?>');" title="Report">
                                             <i class='fa fa-file'></i></a></td>
 

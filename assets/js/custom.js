@@ -200,13 +200,7 @@ $(document).ready(function() {
     const table = $('#norTable').DataTable({
         "responsive": true,
         "scrollCollapse": true,
-        "scrollY": '400px',
-        "paging": true,
         "autoWidth": true,
-        "lengthMenu": [
-            [15, 25, 50, 100],
-            [15, 25, 50, 100]
-        ],
         "stateSave": false,
         "responsive": true,
     });
