@@ -20,9 +20,9 @@ class Mail
     {
         $session = session();
 
-        if ($session->get('role') != ("staff" or "admin" or "student")) {
-           return ;
-        }
+        // if ($session->get('role') != ("staff" or "admin" or "student")) {
+        //    return ;
+        // }
 
         $app_name = $this->settingsModel->getAppName();
 

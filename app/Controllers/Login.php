@@ -6,6 +6,7 @@ use App\Models\AdminModel;
 use App\Models\StaffModel;
 use App\Models\StudentModel;
 use App\Models\OtherModel;
+use App\Controllers\Mail;
 
 class Login extends BaseController
 {
@@ -193,12 +194,75 @@ class Login extends BaseController
 
     public function forgetpassword()
     {
+        $session = session();
+        $this->mail = new Mail();
+
         $this->otherModel = new OtherModel();
+        $this->studentModel = new StudentModel();
+        $this->userModel = new StaffModel();
+
         if ($this->request->getMethod() === 'post') {
+            $regno = $this->request->getPost('regno');
+            $email = $this->request->getPost('email');
+
+            $data = $this->otherModel->forgetpassword($regno,$email);
+
+            if ($data) {
+
+                $sid = $data->sid;
+                $stemail = $data->semail;
+                $sname = $data->sname;
+                $role = $data->role;
+                
+                try{
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $newpassword = '';
+
+                    for ($i = 0; $i < 8; $i++) {
+                        $index = rand(0, strlen($characters) - 1);
+                        $newpassword .= $characters[$index];
+                    }
+
+                    // mail
+                    $subject = '(TESTING) DLMS Password Reset request';
+                            
+                    $body = str_replace(
+                        array('{cname}', '{cpassword}'),
+                        array($sname, $newpassword),
+                        file_get_contents(base_url() . 'assets/Template/resetpasswd.phtml')
+                    );
+
+                    // mail trigger (calling send mail function)
+                   if($this->mail->sendmail($stemail,$sname,$subject,$body)){
+                            
+                            $data = [
+                                'spass' => password_hash($newpassword, PASSWORD_DEFAULT),
+                            ];
+
+                        if ($role == 'staff') {
+                            $this->userModel->updateProfile($sid,$data);                           
+                        } elseif ($role == 'student'){
+                            $this->studentModel->updateProfile($sid,$data);
+                        }
+
+                        return redirect()->to('/');
+
+                   }
+
+                } catch(Exception $e){
+                    $session->setFlashdata('msg', 'Email is not being sent. Please contact a librarian for assistance');
+                }
+
+            } else{
+                $session->setFlashdata('msg', 'Incorrect Register Number or Email');
+            }
             
         }
 
+        echo view('Others/header');
         echo view('ForgetPassword');
+        echo view('Others/fooder');
+
     }
 
 }

@@ -62,4 +62,24 @@ class OtherModel extends Model
         return $result;
     }
 
+    public function forgetpassword($user,$mail)
+    {
+        $db = \Config\Database::connect();
+
+        $query = $db->table('staff'); 
+        $query->select('sid, semail, sname, role')
+                    ->Where('regno',$user)
+                    ->Where('semail',$mail);
+
+        $unionQuery = $db->table('students');
+        $unionQuery->select('st_id as sid, stemail as semail, sname, role')
+                    ->Where('regno',$user)
+                    ->Where('stemail',$mail);
+
+        $query->union($unionQuery)->limit(1);
+
+        $result = $query->get();
+        return $result->getRow();
+    }
+
 }
