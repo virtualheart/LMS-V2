@@ -69,7 +69,7 @@ class Activity extends BaseController
                     'required' => 'The Barcode No field is required.'
                 ],
                 'regno' => [
-                    'required' => 'The Reg Number field is required.'
+                    'required' => 'The Register Number field is required.'
                 ],
                 'sname' => [
                     'required' => 'The Std/Staff Name field is required.'
@@ -198,7 +198,7 @@ class Activity extends BaseController
                     'required' => 'The Barcode No field is required.'
                 ],
                 'regno' => [
-                    'required' => 'The Reg Number field is required.'
+                    'required' => 'The Register Number field is required.'
                 ],
                 'sname' => [
                     'required' => 'The Std/Staff Name field is required.'

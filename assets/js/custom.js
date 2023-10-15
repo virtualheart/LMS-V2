@@ -199,8 +199,9 @@ $(document).ready(function() {
     // DataTable initialization
     const table = $('#norTable').DataTable({
         "responsive": true,
-        "scrollCollapse": true,
+        "scrollCollapse": false,
         "autoWidth": true,
+        "lengthChange": false,
         "stateSave": false,
         "responsive": true,
     });
@@ -294,6 +295,11 @@ xmlhttp.send();
 
 function getDetailReturn(str) {
     const fieldIds1 = ["bno", "title", "regno","sname", "aname", "publication","alamara","fineday","fine","rack","request_date"];
+
+    // Check if the pressed key is a special key
+    if (event.key === "Alt" || event.key === "Control" || event.data === "\n" || event.key === "Shift") {
+        return; // Do nothing for special keys
+    }
 
     if (str.length !== 14) {
         clearFormFields(fieldIds1);

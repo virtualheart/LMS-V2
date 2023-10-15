@@ -23,6 +23,7 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
+                                            <th>Plan Id</th>
                                             <th>Category</th>
                                             <th>Year</th>
                                             <th>Bill No.</th>
@@ -36,6 +37,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>S.No</th>
+                                            <th>Plan Id</th>
                                             <th>Category</th>
                                             <th>Year</th>
                                             <th>Bill No.</th>
@@ -53,6 +55,7 @@
 
                                         <tr>
                                             <td><?=$i; ?></td>
+                                            <td>P<?=$plan['id']; ?></td>
                                             <td><?=$plan['category']; ?></td>
                                             <td><?=$plan['year']; ?></td>
                                             <td><?=$plan['billno']; ?></td>

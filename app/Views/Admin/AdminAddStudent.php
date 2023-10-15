@@ -84,11 +84,11 @@
                 <div class="form-group col-md-6">
                     <label>Gender</label>
                     <br>
-                        <input type="radio" id="male" name="gender" value="boy" 
-                        <?php if(isset($student) && $student['gender']=='boy') echo "checked" ?> required>
+                        <input type="radio" id="male" name="gender" value="male" 
+                        <?php if(isset($student) && $student['gender']=='male' || $student['gender']=='boy') echo "checked" ?> required>
                     <label for="male"> Male</label>
-                        <input type="radio" id="female" name="gender" value="girl" 
-                        <?php if(isset($student) && $student['gender']=='girl') echo "checked" ?> required>
+                        <input type="radio" id="female" name="gender" value="female" 
+                        <?php if(isset($student) && $student['gender']=='female' || $student['gender']=='girl') echo "checked" ?> required>
                     <label for="female"> Female</label>
                 </div>
                 <div class=" form-group col-md-6"style="position:relative;top:30px;">

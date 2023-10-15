@@ -3,7 +3,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class StudentModel extends Model{
-    protected $table = 'students std';
+    protected $table = 'students';
     protected $primaryKey = 'st_id';
 
     protected $allowedFields = [
@@ -21,6 +21,7 @@ class StudentModel extends Model{
         'remark',
         'role'
     ];
+
     // Get Total Student Count (Admin/Staff)
     public function getTotalStudents()
     {
@@ -37,7 +38,7 @@ class StudentModel extends Model{
 
     // Show All Student (Admin)
     public function getStudentList($dept,$year){
-        return $this->join('department dd','dd.did=std.did')
+        return $this->join('department dd','dd.did=students.did')
                     ->where('dd.did',$dept)
                     ->Where('year',$year)
                     ->findAll();

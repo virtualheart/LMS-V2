@@ -88,7 +88,7 @@
 
                                 <div class="card shadow mb-4">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="myTable">
+                                <table class="table table-bordered" id="norTable">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>

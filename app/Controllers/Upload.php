@@ -79,7 +79,6 @@ class Upload extends BaseController
 
 private function BookprocessFile($filePath)
 {
-    //  Need code update make easy to upload 
 
     try {
         $spreadsheet = IOFactory::load($filePath);
@@ -93,17 +92,19 @@ private function BookprocessFile($filePath)
         $code =  'GACCA'.date("Y").str_pad($var, 5, '0', STR_PAD_LEFT);
 
         for ($row = 2; $row <= $higestRow; $row++) {
-            $bno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
+            
             $bcode = ++$code;
-            //$bcode = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $bno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
             $title = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
             $aname = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
             $publication = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
             $price = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $Shelf_id = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $language = filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $year_of_publication = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $edition = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $plan_id = ltrim(filter_var($worksheet->getCellByColumnAndRow(10, $row)->getValue(), FILTER_SANITIZE_STRING), 'P');
+            $Shelf_id = ltrim(filter_var($worksheet->getCellByColumnAndRow(11, $row)->getValue(), FILTER_SANITIZE_STRING), 'BR');
             $status = 1;
-
-            // if(is_numeric($price)) 
 
             $data[] = [
                 'bno' => $bno,
@@ -112,6 +113,10 @@ private function BookprocessFile($filePath)
                 'aname' => $aname,
                 'publication' => $publication,
                 'price' => $price,
+                'language' => $language,
+                'year_of_publication' => $year_of_publication,
+                'edition' => $edition,
+                'plan_id' => $plan_id,
                 'Shelf_id' => $Shelf_id,
                 'status' => $status,
             ];
@@ -139,24 +144,22 @@ private function StudentprocessFile($filePath)
 
             $regno = filter_var($worksheet->getCellByColumnAndRow(2, $row)->getValue(), FILTER_SANITIZE_STRING);
             $sname = filter_var($worksheet->getCellByColumnAndRow(3, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $spass = "pass";
-            // $spass = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
             $gender = filter_var($worksheet->getCellByColumnAndRow(4, $row)->getValue(), FILTER_SANITIZE_STRING);
             $stemail = filter_var($worksheet->getCellByColumnAndRow(5, $row)->getValue(), FILTER_SANITIZE_STRING);
             $Contact = filter_var($worksheet->getCellByColumnAndRow(6, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $did = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $year = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
-            $shift = filter_var($worksheet->getCellByColumnAndRow(10, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $did = ltrim(filter_var($worksheet->getCellByColumnAndRow(7, $row)->getValue(), FILTER_SANITIZE_STRING),'C');
+            $year = filter_var($worksheet->getCellByColumnAndRow(8, $row)->getValue(), FILTER_SANITIZE_STRING);
+            $shift = filter_var($worksheet->getCellByColumnAndRow(9, $row)->getValue(), FILTER_SANITIZE_STRING);
             
-            if($gender == "boy" || $gender == "Boy")
+            if($gender == "boy" || $gender == "Boy" || $gender == "male" || $gender == "Male")
                 $image = "assets/student/boy.png";
-            elseif($gender == "Girl" || $gender == "girl")
+            elseif($gender == "Girl" || $gender == "girl" || $gender == "female" || $gender == "Female")
                 $image = 'assets/student/girl.png';
             
             $data[] = [
                 'regno' => $regno,
                 'sname' => $sname,
-                'spass' => password_hash($spass, PASSWORD_DEFAULT),
+                'spass' => password_hash("pass", PASSWORD_DEFAULT),
                 'gender' => $gender,
                 'stemail' => $stemail,
                 'Contact' => $Contact,
@@ -169,8 +172,8 @@ private function StudentprocessFile($filePath)
         }
 
         $this->studentModel->insertstds($data);
-
         return true;
+
     } catch (Exception $e) {
         // session()->setFlashdata('msg',$e);
         return false;

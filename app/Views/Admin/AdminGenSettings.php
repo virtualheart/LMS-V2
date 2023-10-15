@@ -45,6 +45,7 @@
                                 <table class="table table-bordered">
                                 <thead>
                                     <th>S.No</th>
+                                    <th>Class Id</th>
                                     <th>Class</th>
                                     <!-- <th>Update</th>      -->
                                     <th>Delete</th>
@@ -54,7 +55,8 @@
                                     <?php $i=1; foreach ($departments as $department): ?>
                                     <tr>
                                         <td><?=$i++;?></td>
-                                        <td><?= $department['dname'] ?></td>
+                                        <td>C<?=$department['did'] ?></td>
+                                        <td><?=$department['dname'] ?></td>
                                         <!-- <td><a href='#' class='btn btn-success'><span class='fa fa-edit'></span></a></td> -->
                                         <td><center><a href='#' class='btn btn-danger'> <span class='fa fa-trash'></span></a></td>
                                     </tr> 
@@ -147,6 +149,7 @@
                                 <table class="table table-bordered">
                                 <thead>
                                     <th>S.No.</th>
+                                    <th>Rack Id</th>
                                     <th>Berrow No.</th>
                                     <th>Rack No.</th>
                                     <th>Side</th>
@@ -157,6 +160,7 @@
                                     <?php $i=1; foreach ($berrows as $berrow): ?>
                                     <tr>
                                         <td><?=$i++;?></td>
+                                        <td>BR<?= $berrow['id'] ?></td>
                                         <td><?= $berrow['alamara'] ?></td>
                                         <td><?= $berrow['rack'] ?></td>
                                         <td><?= $berrow['side'] ?></td>

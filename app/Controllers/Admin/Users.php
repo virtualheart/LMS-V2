@@ -95,9 +95,9 @@ class users extends BaseController
                 $year = $this->request->getPost('year');
                 $shift = $this->request->getPost('shift');
 
-                if($gender == "boy" || $gender == "Boy")
+                if($gender == "boy" || $gender == "Boy" || $gender == "male" || $gender == "Male")
                     $image = "assets/student/boy.png";
-                elseif($gender == "Girl" || $gender == "girl")
+                elseif($gender == "Girl" || $gender == "girl" || $gender == "female" || $gender == "Female")
                     $image = 'assets/student/girl.png';
     
                 $data = [
