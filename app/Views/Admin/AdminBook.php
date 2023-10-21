@@ -39,6 +39,8 @@
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                  <h6 class="m-0 font-weight-bold text-primary">Add Book</h6>
+                 <a href="<?=site_url('admin/ViewAllBooks')?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-arrow-left fa-sm text-white-50"></i> Back</a>
             </div>
 
             <div class="card-body">

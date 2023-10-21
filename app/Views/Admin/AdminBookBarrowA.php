@@ -36,7 +36,7 @@
                  <h6 class="m-0 font-weight-bold text-primary">Barrow Book</h6>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 1px;">
                 <div class="row">
 
                 <div class="form-group col-md-6">
@@ -85,12 +85,10 @@
                     <label>Remark</label>
                     <input type="text" class="form-control" name="remark" maxlength="499" id="remark">
                 </div>
-                <div class=" form-group col-md-6"style="position:relative;top:30px;">
+                <div class=" form-group card-footer col"style="margin-bottom: 0px;">
                     <label></label>
-                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" id="save" style="margin-left:5px" >                  
+                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" id="save" >                  
                     <input type="button" class="btn btn-danger btn-md" value="Back" >
-                    <br>
-                    <br>
                 </div>              
             </form>
         </div>

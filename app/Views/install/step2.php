@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?=base_url();?>assets/install/css/styles.css" media="all">    
+    <link rel="stylesheet" href="<?=base_url('assets/install/css/styles.css');?>" media="all">    
     <title>LMS-V2 installcation</title>
     <!-- Scripts -->
 <script>

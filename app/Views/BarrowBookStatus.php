@@ -6,19 +6,18 @@
                                 </div>
                                 <div class="card-body">
 
-                                <div class="card shadow mb-4">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="myTable">
+                                <table class="table table-bordered" id="norTable">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Book No</th>
+                                            <th>B.No</th>
                                             <th>Title</th>
-                                            <th>Author Name</th>
+                                            <th>Author</th>
                                             <th>Publication</th>
                                             <th>Date</th>
                                             <th>Fine</th>
-                                            <th>Name</th>
+                                            <!-- <th>Reg No</th> -->
                                             <th>ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
@@ -33,7 +32,7 @@
                                             <th>Publication</th>
                                             <th>Barrowed</th>
                                             <th>Fine</th>
-                                            <th>Name</th>
+                                            <!-- <th>Reg No</th> -->
                                             <th>ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
@@ -53,7 +52,7 @@
                                             <td><?=$books['publication']; ?></td>
                                             <td><?=$books['request_date']; ?></td>
                                             <td><?=$books['fine']; ?></td>
-                                            <td><?=$books['borrower_name']; ?></td>
+                                            <!-- <td>< ?=$books['borrower_regno']; ?></td> -->
                                             <td><?=$books['return_date']; ?></td>
                                             <!-- <td>< ?=$books['alamara']; ?></td> -->
                                             <!-- <td>< ?=$books['rack']; ?></td>  -->
@@ -66,7 +65,4 @@
                             </div>
                         </div>
                     </div>
-
-
-
 </div>

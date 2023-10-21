@@ -132,7 +132,7 @@ class Activity extends BaseController
                             // mail
                             $subject = '(TESTING) You borrowed a book from CA GAC-7 library';
                             
-                            $body = str_replace(array('{name}', '{caname}', '{ctitle}', '{cpublic}', '{crdate}', '{cetdate}'),array($sname, $aname, $title, $publication, date("d-M-Y", strtotime($request_date)), date("d-M-Y", strtotime($return_date)), ),file_get_contents(base_url().'assets/Template/mail.phtml'));
+                            $body = str_replace(array('{name}', '{caname}', '{ctitle}', '{cpublic}', '{crdate}', '{cetdate}'),array($sname, $aname, $title, $publication, date("d-M-Y", strtotime($request_date)), date("d-M-Y", strtotime($return_date)), ),file_get_contents(base_url('assets/Template/mail.phtml')));
 
                             // mail trigger (calling send mail function)
                            // $this->mail->sendmail($res['email'],$sname,$subject,$body);

@@ -6,7 +6,7 @@ $errors=false;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?=base_url();?>assets/install/css/styles.css" media="all">    
+    <link rel="stylesheet" href="<?=base_url('assets/install/css/styles.css');?>" media="all">    
     <title>LMS-V2 installcation</title>
     <!-- Scripts -->
 <script>
@@ -69,9 +69,9 @@ $errors=false;
                             
                             <div class="card__image">
                                 <?php if($errors==true){?>
-                                    <img src="<?=base_url();?>assets/install/images/server_error.png" alt="">
+                                    <img src="<?=base_url('assets/install/images/server_error.png');?>" alt="">
                                 <?php } else { ?>
-                                    <img src="<?=base_url();?>assets/install/images/server_success.png" alt="">
+                                    <img src="<?=base_url('assets/install/images/server_success.png');?>" alt="">
                                 <?php } ?>
                             </div>
                             <div class="card__content">

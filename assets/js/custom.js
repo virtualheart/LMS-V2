@@ -107,45 +107,6 @@ $(document).ready(function() {
     });
 
 
-// 
-
-
-// $(document).ready(function() {
-//   $('#uploadForm').on('submit', function(e) {
-//     e.preventDefault(); // Prevent the form from submitting normally
-
-//     var formData = new FormData(this);
-
-//     $.ajax({
-//       url: 'Upload/upload/Book', // URL to your CodeIgniter controller method for handling the upload
-//       type: 'POST',
-//       data: formData,
-//       dataType: 'json',
-//       processData: false,
-//       contentType: false,
-//       xhr: function() {
-//         var xhr = new window.XMLHttpRequest();
-
-//         // Upload progress
-//         xhr.upload.addEventListener('progress', function(event) {
-//           if (event.lengthComputable) {
-//             var percent = Math.round((event.loaded / event.total) * 100);
-//             $('#progress').text('Upload progress: ' + percent + '%');
-//           }
-//         }, false);
-
-//         return xhr;
-//       },
-//       success: function(response) {
-//         $('#response').text(response.message);
-//       },
-//       error: function(xhr, status, error) {
-//         $('#response').text('Error: ' + error);
-//       }
-//     });
-//   });
-// });
-
 // $(document).ready(function() {
 //   // Check if the current page is the specific page where you want to hide the sidebar
 //   if (window.location.pathname.includes("/index.php/admin/ViewAllBooks") || window.location.pathname.includes("/index.php/books/status")) {

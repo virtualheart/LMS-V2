@@ -5,6 +5,10 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+DROP DATABASE IF EXISTS `sinpro`;
+CREATE DATABASE `sinpro` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
+USE `sinpro`;
+
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -49,7 +53,8 @@ INSERT INTO `barrow_books` (`sbid`, `sid`, `bid`, `request_date`, `return_date`,
 (98,	29,	7,	'2023-10-01 03:09:57',	'2023-10-02',	'2023-10-01 08:42:34',	1,	'student',	'',	1),
 (99,	29,	8,	'2023-10-01 03:11:51',	'2023-10-02',	'2023-10-01 09:32:04',	1,	'student',	NULL,	1),
 (100,	29,	8,	'2023-10-01 03:14:39',	'2023-10-02',	'2023-10-01 09:32:04',	1,	'student',	NULL,	1),
-(101,	29,	4,	'2023-10-01 04:02:32',	'2023-10-02',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1);
+(101,	29,	4,	'2023-10-01 04:02:32',	'2023-10-02',	'2023-10-01 09:32:44',	1,	'student',	NULL,	1),
+(102,	29,	1,	'2023-10-14 06:08:30',	'2023-10-15',	'0000-00-00 00:00:00',	0,	'student',	'',	1);
 
 DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
@@ -71,7 +76,7 @@ CREATE TABLE `books` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `books` (`bid`, `bno`, `plan_id`, `bcode`, `title`, `aname`, `publication`, `price`, `year_of_publication`, `language`, `edition`, `shelf_id`, `remark`, `status`) VALUES
-(1,	'M0001',	1,	'GACCA202300001',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	NULL,	'',	1,	'',	1),
+(1,	'M0001',	1,	'GACCA202300001',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	NULL,	'',	1,	'',	0),
 (2,	'M0002',	1,	'GACCA202300002',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'2002',	NULL,	'1',	1,	'yea',	1),
 (3,	'M0003',	1,	'GACCA202300003',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	NULL,	'',	1,	'',	1),
 (4,	'M0004',	1,	'GACCA202300004',	'A Guide to Expert System',	'D.A.Wasterman',	'Pearson',	'295',	'',	NULL,	'',	1,	'',	1),
@@ -962,6 +967,7 @@ CREATE TABLE `lib_planning` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(45) NOT NULL,
   `year` varchar(17) NOT NULL,
+  `plan_status` varchar(33) NOT NULL,
   `billno` varchar(99) NOT NULL,
   `noofbooks` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
@@ -971,21 +977,21 @@ CREATE TABLE `lib_planning` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `lib_planning` (`id`, `category`, `year`, `billno`, `noofbooks`, `amount`, `balance`, `remark`, `status`) VALUES
-(1,	'Non -Plan',	'2004-2004',	'N/A',	413,	110230,	0,	'Transferred from Computer Science Dept. dt. 27.7.16  (2 books missing from CS Dept. 411 received)',	1),
-(2,	'Non -Plan',	'2016-2017',	'1401',	56,	20000,	0,	'',	1),
-(3,	'Non -Plan',	'2016-2017',	'1428',	65,	20000,	0,	'',	1),
-(4,	'Non -Plan',	'2017-2018',	'1587',	34,	10000,	0,	'',	1),
-(5,	'Non -Plan',	'2018-2019',	'1781',	39,	10000,	0,	'',	1),
-(6,	'Non -Plan',	'2019-2020',	'SINV000156',	17,	9500,	0,	'',	1),
-(7,	'UGC -Autonomous',	'2019-2020',	'SINV000212',	24,	6000,	0,	'',	1),
-(8,	'Non -Plan',	'2020-2021',	'SINV00029',	19,	9000,	0,	'',	1),
-(9,	'Library fund',	'2020-2021',	'SINV0002',	63,	20000,	0,	'',	1),
-(10,	'UGC -Autonomous',	'2020-2021',	'TEBWW16022018',	51,	30000,	0,	'',	1),
-(11,	'Non -Plan',	'2021-2022',	'SINV00038',	12,	4000,	0,	'',	1),
-(12,	'Non -Plan',	'2021-2022',	'IN1142',	19,	4000,	0,	'',	1),
-(13,	'Non -Plan',	'2021-2022',	'411',	33,	12650,	0,	'',	1),
-(14,	'Non -Plan',	'2022-2023',	'538',	15,	6500,	0,	'',	1);
+INSERT INTO `lib_planning` (`id`, `category`, `year`, `plan_status`, `billno`, `noofbooks`, `amount`, `balance`, `remark`, `status`) VALUES
+(1,	'Non -Plan',	'2004-2004',	'Waiting for requester ',	'N/A',	413,	110230,	0,	'Transferred from Computer Science Dept. dt. 27.7.16  (2 books missing from CS Dept. 411 received)',	1),
+(2,	'Non -Plan',	'2016-2017',	'Planing ',	'1401',	56,	20000,	0,	'',	1),
+(3,	'Non -Plan',	'2016-2017',	'Planing ',	'1428',	65,	20000,	0,	'',	1),
+(4,	'Non -Plan',	'2017-2018',	'Waiting for Appeal',	'1587',	34,	10000,	0,	'',	1),
+(5,	'Non -Plan',	'2018-2019',	'Ordering',	'1781',	39,	10000,	0,	'',	1),
+(6,	'Non -Plan',	'2019-2020',	'Planing ',	'SINV000156',	17,	9500,	0,	'',	1),
+(7,	'UGC -Autonomous',	'2019-2020',	'Planing ',	'SINV000212',	24,	6000,	0,	'',	1),
+(8,	'Non -Plan',	'2020-2021',	'Planing ',	'SINV00029',	19,	9000,	0,	'',	1),
+(9,	'Library fund',	'2020-2021',	'Planing ',	'SINV0002',	63,	20000,	0,	'',	1),
+(10,	'UGC -Autonomous',	'2020-2021',	'Planing ',	'TEBWW16022018',	51,	30000,	0,	'',	1),
+(11,	'Non -Plan',	'2021-2022',	'Planing ',	'SINV00038',	12,	4000,	0,	'',	1),
+(12,	'Non -Plan',	'2021-2022',	'Planing ',	'IN1142',	19,	4000,	0,	'',	1),
+(13,	'Non -Plan',	'2021-2022',	'Planing ',	'411',	33,	12650,	0,	'',	1),
+(14,	'Non -Plan',	'2022-2023',	'Planing ',	'538',	15,	6500,	0,	'',	1);
 
 DROP TABLE IF EXISTS `pln_commands`;
 CREATE TABLE `pln_commands` (
@@ -997,6 +1003,23 @@ CREATE TABLE `pln_commands` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `pln_commands` (`id`, `plan_id`, `date`, `command`, `status`) VALUES
+(1,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(5,	4,	'2023-10-13 23:34:36',	'principal',	0),
+(7,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(8,	4,	'2023-10-13 23:34:36',	'principal',	0),
+(10,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(11,	4,	'2023-10-13 23:34:36',	'principal',	0),
+(12,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(13,	4,	'2023-10-13 23:34:36',	'principal',	0),
+(17,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(18,	4,	'2023-10-13 23:34:36',	'principal',	0),
+(19,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(20,	4,	'2023-10-13 23:34:36',	'principal',	0),
+(21,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(22,	4,	'2023-10-13 23:34:36',	'principal',	0),
+(23,	4,	'0000-00-00 00:00:00',	'ordered form mini store ',	0),
+(24,	4,	'2023-10-13 23:34:36',	'principal',	0);
 
 DROP TABLE IF EXISTS `request_mgs`;
 CREATE TABLE `request_mgs` (
@@ -1016,7 +1039,8 @@ CREATE TABLE `request_mgs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `request_mgs` (`id`, `requester_id`, `receiver_id`, `messagee`, `bcode`, `is_seen`, `is_seen_admin`, `req_role`, `rec_role`, `rec_date`, `remark`, `status`) VALUES
-(63,	1,	3,	'The Book Barcode: GACCA202300001 wanted to admin admin.',	'GACCA202300001',	1,	1,	'admin',	'staff',	'2023-09-26',	NULL,	1);
+(63,	1,	3,	'The Book Barcode: GACCA202300001 wanted to admin admin.',	'GACCA202300001',	1,	1,	'admin',	'staff',	'2023-09-26',	NULL,	1),
+(64,	82,	3,	'The Book Barcode: GACCA202300001 wanted to student DHANAJAYAN  K.',	'GACCA202300001',	0,	0,	'student',	'staff',	'2023-10-15',	NULL,	1);
 
 DELIMITER ;;
 
@@ -1072,7 +1096,9 @@ INSERT INTO `shelf` (`id`, `alamara`, `rack`, `count`, `side`, `barrowed_list`, 
 (5,	'B2',	'R1',	'20',	'Front',	'0',	1),
 (6,	'B2',	'R1',	'20',	'Back',	'0',	1),
 (7,	'B2',	'R2',	'20',	'Front',	'0',	1),
-(8,	'B2',	'R2',	'20',	'Back',	'0',	1);
+(8,	'B2',	'R2',	'20',	'Back',	'0',	1),
+(14,	'B3',	'R1',	'',	'Front',	'',	1),
+(15,	'B3',	'R1',	'',	'Back',	'',	1);
 
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
@@ -1125,7 +1151,7 @@ CREATE TABLE `students` (
   `regno` varchar(24) NOT NULL,
   `sname` varchar(150) NOT NULL,
   `spass` varchar(150) NOT NULL,
-  `gender` enum('boy','girl') NOT NULL,
+  `gender` enum('boy','girl','male','female') NOT NULL,
   `stemail` varchar(200) DEFAULT NULL,
   `Contact` varchar(12) DEFAULT NULL,
   `did` int(11) NOT NULL,
@@ -1139,6 +1165,29 @@ CREATE TABLE `students` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `students` (`st_id`, `regno`, `sname`, `spass`, `gender`, `stemail`, `Contact`, `did`, `year`, `shift`, `image`, `Validity`, `remark`, `role`) VALUES
-(29,	'123',	'123',	'$2y$10$dHVbR5ktBfTnvMukbs6rUuoN.jokcQBJBpWJ4bbWdq6NKS3TSaKpu',	'boy',	'k.dhanajayan1999@gmail.com',	'123',	1,	'2023',	'I',	'assets/student/boy.png',	'0000-00-00',	'Pending 5 rs',	'student');
+(78,	'22PCA242501',	'ANANDHARUBAN  T',	'$2y$10$eKM6vsz6UTBk4SUja8QB0.kVEFHBICTb1XshulWb5lInJ.J5r7jja',	'male',	'ANANDHARUBAN@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(79,	'22PCA242502',	'ARUN  A',	'$2y$10$QWM1uIJ5atUEpgSUxRoL1e1aZJexDnBUm9yd8uMlAmedp3E8eH0bG',	'male',	'ARUN@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(80,	'22PCA242503',	'ARUNKUMAR  A',	'$2y$10$zVzp/9Mz22TsRf8J0w5SCu5Hh/1rp/KkJ9Sv4gFtA7qJ9kyQ/aggC',	'male',	'ARUNKUMAR@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(81,	'22PCA242504',	'BALASRIPATHY S',	'$2y$10$YIuehMJ4mOWAmMJzSMJGj.dvp.eAtxilTlF9j/Dcmy0by7fJx7v2u',	'male',	'BALASRIPATHY@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(82,	'22PCA242505',	'DHANAJAYAN  K',	'$2y$10$tEEqsnYj1WLbN4zpiR2II.b9KHXD7QNKeQjL0wslehf.n56aKiXtS',	'male',	'k.dhanajayan1999@gmail.com',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(83,	'22PCA242506',	'GOKUL  R',	'$2y$10$DvmLfqmgDjgHrVJZ7ZvyKuq2qLMiXgRsm7Am/ZJlhBpU4MSHFZO4q',	'male',	'GOKUL@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(84,	'22PCA242507',	'GOKUL  S',	'$2y$10$MHT3y/.l3w7H7AOC3oxJAuRH4awYCljGZK1hduBHu1PX4dukh416i',	'male',	'GOKUL@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(85,	'22PCA242508',	'JAGANNATHAN  M',	'$2y$10$YfL0jks6TvApud9T8w026OJvNi5cCeYDcoiVDNY6Wi9RXVo5UvKhy',	'male',	'JAGANNATHAN@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(86,	'22PCA242509',	'KARTHICK  P',	'$2y$10$FHnScO4404rs3L97ZXtSwug7QJlxrCxyVhxqssTMJb3b/RQk/bLIa',	'male',	'KARTHICK@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(87,	'22PCA242510',	'KHADERBASHA  K',	'$2y$10$b/IkswfrVaQOozustzLqyOxkSYKt.Yc/Cfq.qhLeE68z.mMhK6VEm',	'male',	'KHADERBASHA@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(88,	'22PCA242511',	'MANIKANDAN  V',	'$2y$10$JRfYex7Zft85RmyzyDCv0eACBXi7WhUNXJztvXnq6uGeasq02VWgq',	'male',	'MANIKANDAN@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(89,	'22PCA242512',	'MANIKANDAN  V',	'$2y$10$GKP92Tb/boU.uDzfGCKAm.U42uL1UA.SIAI5OVLAHEm0.kbGof7SK',	'male',	'MANIKANDAN@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(90,	'22PCA242513',	'PASUPATHI G',	'$2y$10$RLQYcJHMpAG4S09OzbepdeXzr4AMsoCW5qqihUit7k.IScP6ZtuK.',	'male',	'PASUPATHI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(91,	'22PCA242514',	'RANJITH R',	'$2y$10$P9r4qkniT4DRNFnsi6yC0OEUcQ8oq.Rvo5Rk6DpH80IDW9GlvV6Uy',	'male',	'RANJITH@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(92,	'22PCA242515',	'SARANKUMAR M',	'$2y$10$jgEHofyRpR7odlkFprwzieGTU/LQKGtYHA/81qCnm9Cq11YNlrcgi',	'male',	'SARANKUMAR@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(93,	'22PCA242516',	'SARANRAJU  J',	'$2y$10$Pq9/quIar7IRySft//YgVuECSwewPS3M5W11T6P/IsCQofkzRvGTG',	'male',	'SARANRAJU@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(94,	'22PCA242517',	'SUBASH S',	'$2y$10$pyY3C.e8u.k66EvpL.ItHuxdMChAkBUPfxfI3RT0FyEyffjWSrBPm',	'male',	'SUBASH@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(95,	'22PCA242518',	'VIGNESH C',	'$2y$10$SNI1LmuWMp7vABDtdv1pUO2uMwldDMkgDXJ78lhvBGlOwAI24uZdK',	'male',	'VIGNESH@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(96,	'22PCA242519',	'VIGNESH  S',	'$2y$10$hlds/.xngn44wYqKNZBYf.nZsdcX9yQCOoCiQNoN5fwtJernr3PQy',	'male',	'VIGNESH@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/boy.png',	NULL,	NULL,	'student'),
+(97,	'22PCA242520',	'JANANI  M',	'$2y$10$2Ef0gtxhvqqAHoJgBQ.Tp.yENAaoTB9T5vLyg4R5eU9cYIP6Tq8Y6',	'female',	'JANANI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/girl.png',	NULL,	NULL,	'student'),
+(98,	'22PCA242521',	'SHALINI  M',	'$2y$10$Xd4Dqvqa0bmM3dX/j/4ise1../O3Ak5iqjGGqltO5aGrODbRRlE/G',	'female',	'SHALINI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/girl.png',	NULL,	NULL,	'student'),
+(99,	'22PCA242522',	'SWATHI  K',	'$2y$10$GgapifXjnu3dO/G1u/q7Ouf6jtKQ0u8A/zAtNsOrN5C9BAUC4TgOW',	'female',	'SWATHI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/girl.png',	NULL,	NULL,	'student'),
+(100,	'22PCA242523',	'TAMILSELVI  S',	'$2y$10$PNZY06nFtkbU1BEEIM3bGe65ZKmLIaSc6Eamsitv2jLFZ5vjLPmjK',	'female',	'TAMILSELVI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/girl.png',	NULL,	NULL,	'student'),
+(101,	'22PCA242524',	'VAISHNAVI J',	'$2y$10$DWWepf0jVudyfDZZ9h/qpunYT0KdV5J1JcAlkYAtF3Q9nZlDr3f.6',	'female',	'VAISHNAVI@GAC.COM',	'9876543210',	2,	'2022',	'I',	'assets/student/girl.png',	NULL,	NULL,	'student');
 
--- 2023-10-05 18:51:19
+-- 2023-10-19 23:53:34

@@ -26,6 +26,7 @@ http://localhost/code/index.php/admin/home
 http://localhost/code/index.php/admin/Activity/barrow
 http://localhost/code/index.php/admin/Activity/return
 http://localhost/code/index.php/books/status
+http://localhost/code/index.php/books/barrow
 http://localhost/code/index.php/admin/Uploadbooks
 http://localhost/code/index.php/Admin/Book/book/Add/New
 http://localhost/code/index.php/admin/ViewAllBooks
@@ -47,6 +48,7 @@ http://localhost/code/index.php/admin/plan
 http://localhost/code/index.php/admin/plan/planning/new/add
 http://localhost/code/index.php/admin/plan/planning/update/<id>
 http://localhost/code/index.php/admin/Plan/report/<id>
+http://localhost/code/index.php/Login/forgetpassword
 
 API
 http://localhost/code/index.php/api/login

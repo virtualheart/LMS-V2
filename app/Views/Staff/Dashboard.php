@@ -68,8 +68,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Total Students</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalStudents?></div>
+                                                Total Request</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$totalRequest?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
@@ -86,7 +86,6 @@
                                 </div>
                                 <div class="card-body">
 
-                                <div class="card shadow mb-4">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="norTable">
                                     <thead>
@@ -135,7 +134,6 @@
                         </div>
                     </div>
        
-        </div>
     </div>
 
        

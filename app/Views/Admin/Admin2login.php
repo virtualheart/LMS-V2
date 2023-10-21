@@ -1,7 +1,7 @@
             <div class="col-md-4 offset-md-4" style="margin-top: 30px;">
                 <form method="POST" >
                     <div class="box1">
-                        <center><img src="<?php echo base_url(); ?>/assets/logo.png" align="logo" width="70px" ></center>
+                        <center><img src="<?php echo base_url('/assets/logo.png'); ?>" align="logo" width="70px" ></center>
 
                         <h3 class="page-header text-info text-center">Admin Login</h3>
                         <div class="form-group">

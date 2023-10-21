@@ -11,12 +11,14 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Book No</th>
+                                            <th>B.No</th>
                                             <th>Title</th>
-                                            <th>Author Name</th>
+                                            <th>Author</th>
                                             <th>Publication</th>
-                                            <th>Barrow Date</th>
-                                            <th>Return Date</th>
+                                            <th>Date</th>
+                                            <th>Fine</th>
+                                            <th>Reg No</th>
+                                            <th>ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
                                         </tr>
@@ -28,8 +30,10 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Barrow Date</th>
-                                            <th>Return Date</th>
+                                            <th>Barrowed</th>
+                                            <th>Fine</th>
+                                            <th>Reg No</th>
+                                            <th>ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
                                         </tr>
@@ -47,7 +51,9 @@
                                             <td><?=$books['aname']; ?></td>
                                             <td><?=$books['publication']; ?></td>
                                             <td><?=$books['request_date']; ?></td>
-                                            <td><?=$books['returned_date']; ?></td>
+                                            <td><?=$books['fine']; ?></td>
+                                            <td><?=$books['borrower_regno']; ?></td>
+                                            <td><?=$books['return_date']; ?></td>
                                             <!-- <td>< ?=$books['alamara']; ?></td> -->
                                             <!-- <td>< ?=$books['rack']; ?></td>  -->
                                         </tr>         
@@ -59,7 +65,4 @@
                             </div>
                         </div>
                     </div>
-
-
-
 </div>

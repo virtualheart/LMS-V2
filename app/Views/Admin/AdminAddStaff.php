@@ -22,9 +22,11 @@
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                  <h6 class="m-0 font-weight-bold text-primary">Add Staff</h6>
+                  <a href="<?=site_url('admin/users/staffs')?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-arrow-left fa-sm text-white-50"></i> Back</a>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 1px;">
                 <div class="row">
                 
                 <div class="form-group col-md-6">
@@ -68,13 +70,11 @@
                         <?php if(isset($staff) && $staff['gender']=='female') echo "checked" ?> required>
                     <label for="female"> Female</label>
                 </div>
-                <div class=" form-group col-md-6"style="position:relative;top:30px;">
+                <div class=" form-group card-footer col" style="margin-bottom: 0px;">
                     <label></label>
-                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" style="margin-left:5px">                  
+                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save">
                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">
                     <input type="reset" class="btn btn-danger btn-md d-none" id="resetButton">
-                    <br>
-                    <br>
                 </div>              
             </form>
         </div>

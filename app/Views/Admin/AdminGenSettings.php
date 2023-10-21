@@ -24,7 +24,7 @@
                         <div class="row">
                             <!-- Left Column - Form -->
                             <div class="col-md-6">
-                                <form method="POST" >
+                                <form method="POST" id="bookForm">
 
                                 <div class="card-body">
                                 <div class="form-group">
@@ -72,7 +72,7 @@
                         <div class="row">
                             <!-- Left Column - Form -->
                             <div class="col-md-6">
-                            <form method="POST" >
+                            <form method="POST" id="bookForm">
 
                                 <div class="card-body">
                                 <div class="form-group">
@@ -115,7 +115,7 @@
                         <div class="row">
                             <!-- Left Column - Form -->
                             <div class="col-md-6">
-                                <form method="POST">
+                                <form method="POST" id="bookForm">
 
                                 <div class="card-body">
 

@@ -8,10 +8,13 @@ $appLogo = $settingsModel->getAppLogo();
 $session = session();
 
 $uri = uri_string();
+$uri = rtrim($uri, '/');
+
 $requestModel = new RequestModel();
 
 $data['req'] = $requestModel->getAllBookRequest();
 
+date_default_timezone_set("Asia/Kolkata");
 
 ?>
 
@@ -23,7 +26,7 @@ $data['req'] = $requestModel->getAllBookRequest();
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?php if ($uri=='admin/Uploadbooks/importpreview' || $uri=='admin/ViewAllBooks') echo 'toggled'; ?>" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('/admin/home'); ?>">
@@ -53,13 +56,13 @@ $data['req'] = $requestModel->getAllBookRequest();
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item <?php if($uri=="#" || $uri=="#") echo "active"; ?>">
+            <li class="nav-item <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return" || $uri=="books/status") echo "active"; ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseactivity"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa fa-universal-access"></i>
                     <span>Libary activity</span>
                 </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return" || $uri=="books/status" ) echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Book Entry:</h6> -->
                         <a class="collapse-item <?php if($uri=="admin/Activity/barrow") echo "active"; ?>" href="<?=site_url('admin/Activity/barrow') ?>">Book Barrow</a>
@@ -78,8 +81,8 @@ $data['req'] = $requestModel->getAllBookRequest();
                 </a>
                 <div id="collapseBooks" class="collapse <?php if($uri=="admin/Uploadbooks" || $uri=="Admin/Book/book/Add/New") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item <?php if($uri=="admin/Uploadbooks") echo "active"; ?>" href="<?=site_url('admin/Uploadbooks')?>">Upload Books</a>
                         <a class="collapse-item <?php if($uri=="Admin/Book/book/Add/New") echo "active"; ?>" href="<?=site_url('Admin/Book/book/Add/New')?>">Add Books</a>
+                        <a class="collapse-item <?php if($uri=="admin/Uploadbooks") echo "active"; ?>" href="<?=site_url('admin/Uploadbooks')?>">Upload Books</a>
                         <a class="collapse-item <?php if($uri=="admin/ViewAllBooks") echo "active"; ?>" href="<?=site_url('admin/ViewAllBooks')?>">View/Edit Books</a>
                     </div>
                 </div>
@@ -197,7 +200,7 @@ $data['req'] = $requestModel->getAllBookRequest();
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+<!--                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -209,17 +212,23 @@ $data['req'] = $requestModel->getAllBookRequest();
                             </div>
                         </div>
                     </form>
+ -->
+                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <?="Date: ".date("d-m-Y \/ \T\i\m\\e \: h:ia")?>
+                        </div>
+                    </div>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
+<!--                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-                            <!-- Dropdown - Messages -->
+ -->                            <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -292,7 +301,7 @@ $data['req'] = $requestModel->getAllBookRequest();
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$session->get('name')?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="<?php if (false){ } else { echo base_url()."/assets/admin.png"; } ?>">
+                                    src="<?=base_url("/assets/admin.png")?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

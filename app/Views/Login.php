@@ -2,7 +2,7 @@
                 <form method="post">
                     <div class="box1">
 
-                        <center><img src="<?php echo base_url(); ?>/assets/logo.png" align="logo" width="70px" ></center>
+                        <center><img src="<?php echo base_url('/assets/logo.png'); ?>" align="logo" width="70px" ></center>
 
                         <?php if(uri_string()=="Login/student") {?>
                             <h3 class="page-header text-info text-center">Student Login</h3>
@@ -50,5 +50,3 @@
 
             </div>
         </div>
-
-

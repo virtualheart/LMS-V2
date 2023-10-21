@@ -3,7 +3,7 @@ namespace App\Models;
 use CodeIgniter\Model;
   
 class BooksModel extends Model{
-    protected $table = 'books bk';
+    protected $table = 'books';
     protected $primaryKey = 'bid';
     
     protected $allowedFields = [
@@ -30,7 +30,7 @@ class BooksModel extends Model{
     // Display All Book(All Users)
     public function getBooksList()
     {
-        return $this->select('bk.bno,bk.bcode,bk.title,bk.aname,bk.publication,bk.price,bk.status,sf.alamara,sf.rack')
+        return $this->select('books.bno,books.bcode,books.title,books.aname,books.publication,books.price,books.status,sf.alamara,sf.rack')
                     ->join('shelf sf','sf.id=shelf_id')
                     ->findAll();
     }

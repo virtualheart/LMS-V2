@@ -85,11 +85,15 @@ class Books extends BaseController
     {
         $session = Session();
 
+        if ($session->get('role') != ("admin")) {
+            return redirect()->to('/');
+        }
+
         $data['books'] = $this->barrowBooksModel->getBarrowedBooks();
 
         echo view('Others/header');
         echo view('Admin/Adminsidebar');        
-        echo view('BarrowBookStatus',$data);
+        echo view('Admin/AdminBarrowStatus',$data);
         echo view('Others/fooder');
     }
 

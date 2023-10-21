@@ -3,8 +3,6 @@
 namespace App\Controllers\student;
 use App\Controllers\BaseController;
 use App\Models\BooksModel;
-use App\Models\StudentModel;
-use App\Models\StaffModel;
 use App\Models\BarrowBooksModel;
 use App\Models\RequestModel;
 
@@ -14,7 +12,6 @@ class Dashboard extends BaseController
     {
         $this->session = session();
         $this->bookModel = new BooksModel();
-        $this->studentModel = new StudentModel();
         $this->barrowBooksModel = new BarrowBooksModel();
         $this->requestModel = new RequestModel();
     }

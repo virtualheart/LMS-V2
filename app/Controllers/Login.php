@@ -229,7 +229,7 @@ class Login extends BaseController
                     $body = str_replace(
                         array('{cname}', '{cpassword}'),
                         array($sname, $newpassword),
-                        file_get_contents(base_url() . 'assets/Template/resetpasswd.phtml')
+                        file_get_contents(base_url('assets/Template/resetpasswd.phtml'))
                     );
 
                     // mail trigger (calling send mail function)

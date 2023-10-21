@@ -3,14 +3,14 @@
 namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Controllers\Upload;
-use App\Models\BooksModel;
+use App\Models\StudentModel;
 
-class Uploadbooks extends BaseController
+class Uploadstudents extends BaseController
 {
     public function __construct()
     {
         $this->upload = new Upload();
-        $this->booksModel = new BooksModel();
+        $this->StudentModel = new StudentModel();
     }
         
     public function index()
@@ -29,7 +29,8 @@ class Uploadbooks extends BaseController
         if ($this->request->getMethod() === "post") {
             $file = $this->request->getFile('file');
             if ($file->isValid() && !$file->hasMoved()) {
-                if($file->getClientExtension() === 'xlsx' || $file->getClientExtension() === 'csv'){
+
+                if(strtolower($file->getClientExtension()) === 'xlsx' || strtolower($file->getClientExtension()) === 'csv'){
 
                     // Move the file to a temporary directory
                     $destination = WRITEPATH . 'uploads/';
@@ -39,7 +40,7 @@ class Uploadbooks extends BaseController
                     $session->set('imported_file', $destination . $file->getName());
                     
                     // Redirect to the preview page
-                    return redirect()->to('admin/Uploadbooks/importpreview');
+                    return redirect()->to('admin/Uploadstudents/importpreview');
                 } else{
                     $session->setFlashdata('msg', 'Only upload excal(xlsx) file format');
                 }
@@ -49,7 +50,7 @@ class Uploadbooks extends BaseController
         }
 
         echo view('Others/header');
-        echo View('Admin/AdminBookUpload', $data);
+        echo View('Admin/AdminStudentUpload', $data);
         echo view('Others/fooder');
     }
 
@@ -66,10 +67,10 @@ class Uploadbooks extends BaseController
         $importedFilePath = $session->get('imported_file');
 
         // Process the file and prepare data for preview
-        $data['records'] = $this->upload->BookprocessFile($importedFilePath);
+        $data['records'] = $this->upload->StudentprocessFile($importedFilePath);
         
         echo view('Others/header');
-        echo View('Admin/AdminBookUpload2', $data);
+        echo View('Admin/AdminStudentUpload2', $data);
         echo view('Others/fooder');
 
     }
@@ -82,10 +83,10 @@ class Uploadbooks extends BaseController
         $importedFilePath = $session->get('imported_file');
 
         // Process and import the data
-        $importedData = $this->upload->BookprocessFile($importedFilePath);
+        $importedData = $this->upload->StudentprocessFile($importedFilePath);
 
         // Insert the data into your database
-        $this->booksModel->insertBooks($importedData);
+        $this->StudentModel->insertstds($importedData);
         $data = [
             'count' => count($importedData),
         ];
@@ -94,7 +95,7 @@ class Uploadbooks extends BaseController
         $session->remove('   imported_file');
         
         echo view('Others/header');
-        echo View('Admin/AdminBookUpload3', $data);
+        echo View('Admin/Uploadstudents3', $data);
         echo view('Others/fooder');
 
     }
@@ -103,7 +104,7 @@ class Uploadbooks extends BaseController
     {
         $session = session();
         $session->remove('imported_file');
-        return redirect()->to('/admin/Uploadbooks');
+        return redirect()->to('/admin/Uploadstudents');
     }
 
 }

@@ -58,11 +58,11 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                     <i class="fa fa-book"></i>
                     <span>Books</span>
                 </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="books/returned" || $uri=="books/barrowed") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="books/status" || $uri=="books/returned" || $uri=="books/barrowed") echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item <?php if($uri=="books/status") echo "active"; ?>" href="<?=site_url('books/status') ?>">Books Status</a>
                         <a class="collapse-item <?php if($uri=="books/barrowed") echo "active"; ?>" href="<?=site_url('books/barrowed') ?>" >Barrow Book List</a>
-                        <a class="collapse-item <?php if($uri=="books/barrowed") echo "active"; ?>" href="<?=site_url('books/barrowed') ?>">Return Book History</a>
+                        <a class="collapse-item <?php if($uri=="books/returned") echo "active"; ?>" href="<?=site_url('books/returned') ?>">Return Book History</a>
                     </div>
                 </div>
             </li>
@@ -131,7 +131,7 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -142,18 +142,24 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
+
+                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <?="Date: ".date("d-m-Y \/ \T\i\m\\e \: h:ia")?>
+                        </div>
+                    </div>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+<!--                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-                            <!-- Dropdown - Messages -->
+ -->                            <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -170,8 +176,6 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                                 </form>
                             </div>
                         </li>
-
-
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -228,7 +232,7 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$session->get('name')?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="<?php if ($session->get('image')){ echo base_url().$session->get('image'); } else { echo base_url()."./assets/admin.png"; } ?>">
+                                    src="<?php if ($session->get('image')){ echo base_url($session->get('image')); } else { echo base_url("./assets/admin.png"); } ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

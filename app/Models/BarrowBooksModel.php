@@ -26,7 +26,7 @@ class BarrowBooksModel extends Model{
 
     // Get all Barrow Book list
     public function getBarrowedBooks(){
-        return $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS fine,COALESCE(st.role, sf.role) AS borrower_role,COALESCE(st.sname, sf.sname) AS borrower_name')
+        return $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0) * se.fine,0) AS fine,COALESCE(st.role, sf.role) AS borrower_role,COALESCE(st.sname, sf.sname) AS borrower_name,COALESCE(st.regno, sf.regno) AS borrower_regno')
                     ->join('books bk','bk.bid=sbb.bid')
                     ->join('students st','sbb.sid=st.st_id', 'LEFT')
                     ->join('staff sf','sbb.sid=sf.sid', 'LEFT')
@@ -37,7 +37,7 @@ class BarrowBooksModel extends Model{
 
     // Staff or Student barrowed book list 
     public function getBarrowedBookbyUser($id,$role){
-        $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0 * se.fine),0) AS fine')
+        $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0) * se.fine,0) AS fine')
                     ->join('books bk','bk.bid=sbb.bid')
                     ->join('settings se','1=1') 
                     ->where('sid',$id)

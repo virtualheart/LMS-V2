@@ -25,7 +25,7 @@
                  <h6 class="m-0 font-weight-bold text-primary">App Settings</h6>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 1px;">
                 <div class="row">
                 
                 <div class="form-group col-md-6">
@@ -57,14 +57,11 @@
                     <input type="number" class="form-control" value="<?php if(isset($appsetting)){ echo $appsetting['fine_std_days']; } ?>" name="fine_std_days" required> 
                 </div>
 
-                <div class=" form-group col-md-6"style="position:relative;top:30px;">
-                    <label></label>
-                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" style="margin-left:5px">                  
+                <div class=" form-group card-footer col"style="margin-bottom: 0px;">
+                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save">                  
                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">
                     <input type="reset" class="btn btn-danger btn-md d-none" id="resetButton">
-                    <br>
-                    <br>
-                </div>              
+                </div>
             </form>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?= view('Admin/Adminsidebar') ?>
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Import Books</h1>
+        <h1 class="h3 mb-0 text-gray-800">Import Students</h1>
     </div>
 
    <?php if (session()->getFlashdata('msg')) : ?>
@@ -16,12 +16,14 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Upload a File</h6>
+            <a href="<?=site_url('admin/users/students')?>" class="btn-lg float-right btn btn-sm btn-primary shadow-sm mr-2"><i class="fas fa-arrow-left fa-sm text-white-50 "></i> Back</a>
+
         </div>
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="card-body">
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <p>Please Upload Excel in Given Format <a href="<?=base_url('assets/sample/sample_books.xlsx')?>" target="_blank">Sample xlsx Format</a></p>
+                        <p>Please Upload Excel in Given Format <a href="<?=base_url('assets/sample/sample_student.xlsx')?>" target="_blank">Sample xlsx Format</a></p>
                     </div>
                     <div class="col-sm-12 mb-sm-0">
                         <label for="fileInput">

@@ -24,16 +24,16 @@
                  <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 1px;">
                 <div class="row">
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Reg No</label>
                     <input type="text" class="form-control" value="<?=$profile['regno']?>" name="regno" readonly
                     ="yes" autocomplete="off">
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Name</label>
                     <input type="text" class="form-control" value="<?=$profile['sname']?>" name="sname" id="sname" readonly="true">
                 </div>
@@ -47,33 +47,31 @@
                     <input type="text" class="form-control" value="" name="dept" id="dept" readonly="true">
                 </div> -->
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Password</label>
                     <input type="password" class="form-control"  placeholder="*****" name="apass" id="apass" >
                 </div>
                 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Confirm Password</label>
                     <input type="password" class="form-control" placeholder="*****" name="capass" id="capass" >
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Email</label>
                     <input type="email" class="form-control" value="<?=$profile['semail']?>" placeholder="studnet@gmail.com" name="mail" id="mail" >
                 </div>
                 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Contact No</label>
                     <input type="number" class="form-control" value="<?=$profile['contact']?>" placeholder="9876543210" name="contactno" maxlength="10" pattern="[1-9]{1}[0-9]{9}">
                 </div>
                 
-                <div class=" form-group col-md-5"style="position:relative;top:30px;">
+                <div class=" form-group card-footer col" style="margin-bottom: 0px;">
                     <label></label>
-                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" style="margin-left:5px">                  
+                    <input type="submit" class="btn btn-primary btn-md " name="save" value="Save" >                  
                     <input type="button" class="btn btn-danger btn-md" value="Clear" data-toggle="modal" data-target="#clearModal">
                     <input type="reset" class="btn btn-danger btn-md d-none" id="resetButton">
-                    <br>
-                    <br>
                 </div>              
             </form>
         </div>
