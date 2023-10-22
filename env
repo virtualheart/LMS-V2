@@ -11,24 +11,16 @@
 #--------------------------------------------------------------------
 
 #--------------------------------------------------------------------
-# APPLICATION DETILES
-#--------------------------------------------------------------------
-
-# app_name = 'GAS-7 LMS'
-# app_logourl = '/assets/logo.png'
-
-#--------------------------------------------------------------------
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
- CI_ENVIRONMENT = development
 # CI_ENVIRONMENT = production
 
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
 
-app.baseURL = 'http://localhost/code/'
+# app.baseURL = ''
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
@@ -38,19 +30,13 @@ app.baseURL = 'http://localhost/code/'
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = db_hname
-# database.default.database = db_name
-# database.default.username = db_uname
-# database.default.password = db_password
-# database.default.port = db_port
+# database.default.hostname = localhost
+# database.default.database = ci4
+# database.default.username = root
+# database.default.password = root
 # database.default.DBDriver = MySQLi
-
-# database.default.hostname = db_ hname
-# database.default.database = db_ name
-# database.default.username = db_ uname
-# database.default.password = db_ password
-# database.default.port = db_ port
-# database.default.DBDriver = MySQLi
+# database.default.DBPrefix =
+# database.default.port = 3306
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4_test

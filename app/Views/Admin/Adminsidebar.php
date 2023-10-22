@@ -14,7 +14,6 @@ $requestModel = new RequestModel();
 
 $data['req'] = $requestModel->getAllBookRequest();
 
-date_default_timezone_set("Asia/Kolkata");
 
 ?>
 

@@ -13,8 +13,6 @@ $requestModel = new RequestModel();
 
 $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get('role'));
 
-date_default_timezone_set("Asia/Kolkata");
-
 ?>
 
 <!--  

@@ -25,6 +25,8 @@ class Uploadbooks extends BaseController
             return redirect()->to('/');
         }
 
+        $session->remove('imported_file');
+
         if ($this->request->getMethod() === "post") {
             $file = $this->request->getFile('file');
             if ($file->isValid() && !$file->hasMoved()) {

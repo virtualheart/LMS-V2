@@ -9,7 +9,6 @@ class Plan extends BaseController
 {
     public function __construct()
     {
-        date_default_timezone_set("Asia/Kolkata");
         $this->planningModel = new PlanningModel();
         $this->plannCmdsModel = new PlannCmdsModel();
     }
