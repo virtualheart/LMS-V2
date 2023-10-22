@@ -95,10 +95,13 @@ class users extends BaseController
                 $year = $this->request->getPost('year');
                 $shift = $this->request->getPost('shift');
 
-                if($gender == "boy" || $gender == "Boy" || $gender == "male" || $gender == "Male")
+                if($gender == "male" || $gender == "Male")
                     $image = "assets/student/boy.png";
-                elseif($gender == "Girl" || $gender == "girl" || $gender == "female" || $gender == "Female")
+                elseif($gender == "female" || $gender == "Female")
                     $image = 'assets/student/girl.png';
+                else
+                    $image = 'assets/student/boy.png';
+
     
                 $data = [
                     'regno' => $regno,
@@ -147,10 +150,12 @@ class users extends BaseController
                 $year = $this->request->getPost('year');
                 $shift = $this->request->getPost('shift');
 
-                if($gender == "boy" || $gender == "Boy")
+                if($gender == "male" || $gender == "Male")
                     $image = "assets/student/boy.png";
-                elseif($gender == "Girl" || $gender == "girl")
+                elseif($gender == "female" || $gender == "Female")
                     $image = 'assets/student/girl.png';
+                else
+                    $image = 'assets/student/boy.png';
     
                 $data = [
                     'regno' => $regno,
