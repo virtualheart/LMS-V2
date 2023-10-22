@@ -59,6 +59,18 @@ class BarrowBooksModel extends Model{
         return $results;
     }
 
+    // Staff or Student All barrowed and retuned book list 
+    public function getAllBookbyUser($id,$role){
+        $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0) * se.fine,0) AS fine')
+                    ->join('books bk','bk.bid=sbb.bid')
+                    ->join('settings se','1=1') 
+                    ->where('sid',$id)
+                    ->where('role',$role)
+                    ->get();
+        $results = $query->getResultArray();
+        return $results;
+    }
+
     // Staff or Studnet Due fine amount
     public function getFineAmount($id,$role){
         /** IFNULL - when return null replace 0

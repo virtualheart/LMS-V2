@@ -44,7 +44,7 @@
 
                 <div class="form-group col-md-6">
                     <label>Reg Number</label>
-                    <input type="text" class="form-control" value="" name="regno" id="regno" onkeyup="getUserDetile(this.value)" oninput="this.value = this.value.toUpperCase()" required pattern="[a-zA-Z0-9]+">
+                    <input type="text" class="form-control" value="" name="regno" id="regno" autocomplete="off" onkeyup="getUserDetile(this.value)" oninput="this.value = this.value.toUpperCase()" required pattern="[a-zA-Z0-9]+">
                 </div>
                 
                 <div class="form-group col-md-6">

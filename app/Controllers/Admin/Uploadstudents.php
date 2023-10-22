@@ -20,7 +20,6 @@ class Uploadstudents extends BaseController
         set_time_limit(120); 
 
         $session = session();
-        $data = [];
 
         if ($session->get('role')!="admin") {
             return redirect()->to('/');
@@ -50,7 +49,7 @@ class Uploadstudents extends BaseController
         }
 
         echo view('Others/header');
-        echo View('Admin/AdminStudentUpload', $data);
+        echo View('Admin/AdminStudentUpload');
         echo view('Others/fooder');
     }
 

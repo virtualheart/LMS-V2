@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="card-footer" style="margin-bottom: 0px;">
-                <button type="submit" class="btn btn-success btn-user float-right mb-3">Upload Books</button>
+                <button type="submit" class="btn btn-success btn-user float-right mb-3">Upload Student</button>
             </div>
         </form>
     </div>

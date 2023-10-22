@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -11,14 +10,14 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>B.No</th>
+                                            <th title="Book Number">B.No</th>
                                             <th>Title</th>
                                             <th>Author</th>
                                             <th>Publication</th>
                                             <th>Date</th>
                                             <th>Fine</th>
                                             <th>Reg No</th>
-                                            <th>ETA</th>
+                                            <th title="Estimated time of arrival">ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
                                         </tr>
@@ -26,14 +25,14 @@
                                     <tfoot>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Book No</th>
+                                            <th title="Book Number">B.No</th>
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
                                             <th>Barrowed</th>
                                             <th>Fine</th>
                                             <th>Reg No</th>
-                                            <th>ETA</th>
+                                            <th title="Estimated time of arrival">ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
                                         </tr>

@@ -106,6 +106,8 @@ class Upload
                     $image = "assets/student/boy.png";
                 elseif($gender == "Girl" || $gender == "girl" || $gender == "female" || $gender == "Female")
                     $image = 'assets/student/girl.png';
+                else
+                    $image = 'assets/boy.png';
                 
                 $data[] = [
                     'regno' => $regno,

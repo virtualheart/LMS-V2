@@ -20,7 +20,6 @@ class Uploadbooks extends BaseController
         set_time_limit(120); 
 
         $session = session();
-        $data = [];
 
         if ($session->get('role')!="admin") {
             return redirect()->to('/');
@@ -49,7 +48,7 @@ class Uploadbooks extends BaseController
         }
 
         echo view('Others/header');
-        echo View('Admin/AdminBookUpload', $data);
+        echo View('Admin/AdminBookUpload');
         echo view('Others/fooder');
     }
 

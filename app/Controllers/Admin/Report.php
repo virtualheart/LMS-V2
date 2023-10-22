@@ -34,7 +34,7 @@ class Report extends BaseController
 
         $stddata = [
             'student' => $this->studentModel->getProfile($id),
-            'books' => $this->barrowBooksModel->getBarrowedBookbyUser($id,'student'),
+            'books' => $this->barrowBooksModel->getAllBookbyUser($id,'student'),
         ];
 
         echo view('Others/header');
