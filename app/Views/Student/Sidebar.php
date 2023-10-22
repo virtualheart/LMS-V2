@@ -107,9 +107,32 @@ date_default_timezone_set("Asia/Kolkata");
                         <a class="collapse-item <?php if($uri=="Student/Profile") echo "active"; ?>" href="<?=site_url('Student/Profile')?>">Profile</a>
                  </div>
             </li>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+            
+            <!-- Heading -->
+            <!-- <div class="sidebar-heading">
+                Help's
+            </div> -->
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- <li class="nav-item < ?php if($uri=="Student/Profile") echo "active"; ?>">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseHelps" aria-expanded="true"
+                    aria-controls="collapseHelps">
+                    <i class="fa fa-question-circle"></i>
+                    <span>Help</span>
+                </a>
+                <div id="collapseHelps" class="collapse <?php if($uri=="Student/query") echo "show"; ?>" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        < !-- <a class="collapse-item" href="#">Settings</a> -- >
+                        <a class="collapse-item < ?php if($uri=="Student/query") echo "active"; ?>" href="< ?=site_url('Student/query')?>">Raise a query</a>
+                 </div>
+            </li> -->
+
+            <!-- Divider -->
+            <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

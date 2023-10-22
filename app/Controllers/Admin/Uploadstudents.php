@@ -78,6 +78,10 @@ class Uploadstudents extends BaseController
     {
         $session = session();
 
+        if ($session->get('role')!="admin" || !$session->get('imported_file')) {
+            return redirect()->to('/');
+        }
+
         // Retrieve the file path from session or database
         $importedFilePath = $session->get('imported_file');
 
@@ -86,6 +90,7 @@ class Uploadstudents extends BaseController
 
         // Insert the data into your database
         $this->StudentModel->insertstds($importedData);
+
         $data = [
             'count' => count($importedData),
         ];
@@ -94,9 +99,8 @@ class Uploadstudents extends BaseController
         $session->remove('   imported_file');
         
         echo view('Others/header');
-        echo View('Admin/Uploadstudents3', $data);
+        echo View('Admin/AdminStudentUpload3', $data);
         echo view('Others/fooder');
-
     }
 
     public function importcancel()
