@@ -1,4 +1,4 @@
-        <div id="particles-js"></div>
+        <!-- <div id="particles-js"></div> -->
             <div class="col-md-4 offset-md-4">
                 <form method="POST" >
                     <div class="box1">
@@ -36,7 +36,7 @@
                     </div>              
                 </form>
             </div>
-<style>
+<!-- <style>
 
 canvas {
     display: block;
@@ -200,4 +200,4 @@ canvas {
    },
    "retina_detect": true
 });
-</script>
+</script> -->

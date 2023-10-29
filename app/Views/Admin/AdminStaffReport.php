@@ -18,35 +18,36 @@
                     <tbody>
                         <tr>
                             <td>Reg. No.</td>
-                            <td><?=$student['regno']?></td>
+                            <td><?=$staff['regno']?></td>
                         </tr>                        
                         <tr>
                             <td>Student Name</td>
-                            <td><?=$student['sname']?></td>
+                            <td><?=$staff['sname']?></td>
+                        </tr>                                                
+                        <tr>
+                            <td>Designation</td>
+                            <td><?=$staff['designation']?></td>
+                        </tr>                        
+                                               
+                        <tr>
+                            <td>Gender</td>
+                            <td><?=$staff['gender']?></td>
                         </tr>                        
                         <tr>
-                            <td>Department Name & shift</td>
-                            <td><?=$student['dname'].' - '.$student['shift']?></td>
+                            <td>Email</td>
+                            <td><?=$staff['semail']?></td>
                         </tr>
 
                         <tr>
                             <td>Contact</td>
-                            <td><?=$student['Contact']?></td>
+                            <td><?=$staff['contact']?></td>
                         </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><?=$student['stemail']?></td>
-                        </tr>                        
                        
-                        <tr>
-                            <td>year Of Joining</td>
-                            <td><?=$student['year']?></td>
-                        </tr>
-                        <tr>
+                          <tr>
                             <td>Remark</td>
                             <td>
                                 <form method="POST">
-                                    <input type="text" name="remark" class="form-control" value="<?=$student['remark']?>">
+                                    <input type="text" name="remark" class="form-control" value="<?=$staff['remark']?>">
                                     <input type="submit" value="save" class="btn btn-primary btn-md d-print-none">
                                 </form>
                             </td>

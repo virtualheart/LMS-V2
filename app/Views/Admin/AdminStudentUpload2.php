@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <!-- Display the preview data here in a table -->
-            <table class="table" id="norTable">
+            <table class="table" id="norTablewp">
                    <thead>
                         <tr>
                             <th title="Register Number">Reg.no</th>

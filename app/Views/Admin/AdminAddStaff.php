@@ -63,10 +63,10 @@
                 <div class="form-group col-md-6">
                     <label>Gender</label>
                     <br>
-                        <input type="radio" id="male" name="gender" value="male" 
+                        <input type="radio" id="male" name="gender" value="Male" 
                         <?php if(isset($staff) && $staff['gender']=='male') echo "checked" ?> required>
                     <label for="male"> Male</label>
-                        <input type="radio" id="female" name="gender" value="female" 
+                        <input type="radio" id="female" name="gender" value="Female" 
                         <?php if(isset($staff) && $staff['gender']=='female') echo "checked" ?> required>
                     <label for="female"> Female</label>
                 </div>

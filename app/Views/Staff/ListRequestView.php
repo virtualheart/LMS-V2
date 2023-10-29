@@ -12,7 +12,7 @@
 
                                 <div class="card shadow mb-4">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="norTable">
+                                <table class="table table-bordered" id="norTablewp">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>

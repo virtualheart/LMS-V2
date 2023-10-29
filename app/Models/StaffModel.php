@@ -28,7 +28,8 @@ class StaffModel extends Model{
 
     // Get Staff detiles (Admin/Staff)
     public function getStaffProfile($id){
-        $result = $this->where('sid',$id)
+        $result = $this->join('designation','designation.id=designid')
+                        ->where('sid',$id)
                         ->first();
         return $result;
     }

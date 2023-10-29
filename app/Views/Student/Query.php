@@ -34,7 +34,7 @@
         </div>
     </div>
 
-        <table class="table table-bordered" id="norTable">
+        <table class="table table-bordered" id="norTablewop">
             <thead>
                 <th>Query Id</th>
                 <th>Query</th>

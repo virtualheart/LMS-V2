@@ -129,7 +129,7 @@ $(document).ready(function() {
 });
 
 
-// Datatables 
+// Datatables page with print
 $(document).ready(function() {
 
     // DataTable initialization
@@ -158,13 +158,30 @@ $(document).ready(function() {
 // normal Datatables 
 $(document).ready(function() {
     // DataTable initialization
-    const table = $('#norTable').DataTable({
+    const table = $('#norTablewp').DataTable({
         "responsive": true,
         "scrollCollapse": false,
         "autoWidth": true,
         "lengthChange": false,
         "stateSave": false,
         "responsive": true,
+    });
+
+});
+
+// normal Datatables without pageing
+$(document).ready(function() {
+    // DataTable initialization
+    const table = $('#norTablewop').DataTable({
+        "responsive": true,
+        "scrollCollapse": false,
+        "autoWidth": true,
+        "lengthChange": false,
+        "stateSave": false,
+        "responsive": true,
+        "info": false,
+        "ordering": false,
+        "paging": false
     });
 
 });

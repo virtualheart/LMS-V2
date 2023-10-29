@@ -7,7 +7,7 @@
                                 <div class="card-body">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="norTable">
+                                <table class="table table-bordered" id="norTablewp">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
@@ -17,6 +17,7 @@
                                             <th>Publication</th>
                                             <th>Barrow Date</th>
                                             <th>Return Date</th>
+                                            <th>Fine</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
                                         </tr>
@@ -30,6 +31,7 @@
                                             <th>Publication</th>
                                             <th>Barrow Date</th>
                                             <th>Return Date</th>
+                                            <th>Fine</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
                                         </tr>
@@ -48,6 +50,7 @@
                                             <td><?=$books['publication']; ?></td>
                                             <td><?=$books['request_date']; ?></td>
                                             <td><?=$books['returned_date']; ?></td>
+                                            <td><?=$books['fine']; ?></td>
                                             <!-- <td>< ?=$books['alamara']; ?></td> -->
                                             <!-- <td>< ?=$books['rack']; ?></td>  -->
                                         </tr>         

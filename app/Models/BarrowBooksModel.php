@@ -50,7 +50,9 @@ class BarrowBooksModel extends Model{
 
     // Staff or Student return book list 
     public function getReturnedBookbyUser($id,$role){
-        $query = $this->join('books bk','bk.bid=sbb.bid')
+        $query = $this->select('bno,title,aname,publication,request_date,returned_date,IFNULL(GREATEST(DATEDIFF(`returned_date`, `return_date`), 0) * `se`.`fine`, 0) AS fine')
+                    ->join('books bk','bk.bid=sbb.bid')
+                    ->join('settings se','1=1') 
                     ->where('sid',$id)
                     ->where('role',$role)
                     ->where('is_returned',1)
@@ -59,9 +61,12 @@ class BarrowBooksModel extends Model{
         return $results;
     }
 
+//IFNULL(CASE WHEN `is_returned` = 1 THEN GREATEST(DATEDIFF(`returned_date`, `return_date`), 0) * `se`.`fine` ELSE GREATEST(DATEDIFF(CURDATE(), `return_date`), 0) * `se`.`fine` END, 0) AS fine 
+
+
     // Staff or Student All barrowed and retuned book list 
     public function getAllBookbyUser($id,$role){
-        $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0) * se.fine,0) AS fine')
+        $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(CASE WHEN `is_returned` = 1 THEN GREATEST(DATEDIFF(`returned_date`, `return_date`), 0) * `se.fine` ELSE GREATEST(DATEDIFF(CURDATE(), `return_date`), 0) * `se`.`fine` END, 0) AS fine')
                     ->join('books bk','bk.bid=sbb.bid')
                     ->join('settings se','1=1') 
                     ->where('sid',$id)

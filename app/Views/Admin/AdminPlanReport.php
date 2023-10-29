@@ -38,10 +38,14 @@
                             <td><?=preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,",  $plan['amount']); ?></td>
                         </tr>                        
                         <tr>
+                            <td>Status</td>
+                            <td><?=$plan['plan_status']?></td>
+                        </tr>
+                        <tr>
                             <td>Remark</td>
                             <td><?=$plan['remark']?></td>
                         </tr>
-                       
+
                         <!-- <tr>
                             <td>Balance</td>
                             <td>
@@ -72,7 +76,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="table-responsive">
-                                <table class="table table-bordered" id="norTable">
+                                <table class="table table-bordered" id="norTablewop">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
