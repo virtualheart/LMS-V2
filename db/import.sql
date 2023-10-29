@@ -38,12 +38,14 @@ DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
   `bid` int(11) NOT NULL AUTO_INCREMENT,
   `bno` varchar(20) NOT NULL,
+  `plan_id` int(11) NOT NULL,
   `bcode` varchar(26) NOT NULL,
   `title` varchar(150) NOT NULL,
   `aname` varchar(150) NOT NULL,
   `publication` varchar(150) NOT NULL,
   `price` varchar(150) NOT NULL,
   `year_of_publication` varchar(150) DEFAULT NULL,
+  `language` varchar(150) DEFAULT NULL,
   `edition` varchar(24) DEFAULT NULL,
   `shelf_id` int(11) DEFAULT NULL,
   `remark` varchar(500) DEFAULT NULL,
@@ -77,6 +79,33 @@ INSERT INTO `designation` (`id`, `designation`) VALUES
 (3,	'Lecturer'),
 (4,	'Guest Lecture');
 
+DROP TABLE IF EXISTS `lib_planning`;
+CREATE TABLE `lib_planning` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(45) NOT NULL,
+  `year` varchar(17) NOT NULL,
+  `plan_status` varchar(33) NOT NULL,
+  `billno` varchar(99) NOT NULL,
+  `noofbooks` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `balance` int(11) NOT NULL DEFAULT 0,
+  `remark` varchar(500) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+DROP TABLE IF EXISTS `pln_commands`;
+CREATE TABLE `pln_commands` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plan_id` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `command` varchar(999) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
 DROP TABLE IF EXISTS `request_mgs`;
 CREATE TABLE `request_mgs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -94,15 +123,20 @@ CREATE TABLE `request_mgs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+
+DELIMITER ;;
+
 CREATE TRIGGER `prevent_duplicate_roles` BEFORE INSERT ON `request_mgs` FOR EACH ROW
-  BEGIN
-      DECLARE existing_role VARCHAR(12);
-      SELECT `req_role` INTO existing_role FROM `request_mgs` WHERE `requester_id` = NEW.`requester_id` AND `receiver_id` = NEW.`receiver_id` AND `req_role` = NEW.`req_role` AND `BCODE` = NEW.`bcode` AND `is_seen` != 1;
-      IF existing_role IS NOT NULL THEN
-          SIGNAL SQLSTATE '45000'
-          SET MESSAGE_TEXT = 'Already Requested';
-      END IF;
-  END;
+BEGIN
+    DECLARE existing_role VARCHAR(12);
+    SELECT `req_role` INTO existing_role FROM `request_mgs` WHERE `requester_id` = NEW.`requester_id` AND `receiver_id` = NEW.`receiver_id` AND `req_role` = NEW.`req_role` AND `BCODE` = NEW.`bcode`  AND `is_seen`!=1;
+    IF existing_role IS NOT NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Already Requested';
+    END IF;
+END;;
+
+DELIMITER ;
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
@@ -122,7 +156,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `settings` (`id`, `app_name`, `app_decp`, `app_logo`, `fine`, `fine_stf_days`, `fine_std_days`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `smtp_sec_type`) VALUES
-(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	5,	1,	1,	'',	'',	'',	'',	'');
+(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	2,	10,	7,	'smtp.gmail.com',	'465',	'LMS@gmail.com',	'NNNNNNNNN',	'ssl');
 
 DROP TABLE IF EXISTS `shelf`;
 CREATE TABLE `shelf` (
@@ -136,15 +170,6 @@ CREATE TABLE `shelf` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `shelf` (`id`, `alamara`, `rack`, `count`, `side`, `barrowed_list`, `status`) VALUES
-(1,	'B1',	'R1',	'20',	'Front',	'0',	1),
-(2,	'B1',	'R1',	'20',	'Back',	'0',	1),
-(3,	'B1',	'R2',	'20',	'Front',	'0',	1),
-(4,	'B1',	'R2',	'20',	'Back',	'0',	1),
-(5,	'B2',	'R1',	'20',	'Front',	'0',	1),
-(6,	'B2',	'R1',	'20',	'Back',	'0',	1),
-(7,	'B2',	'R2',	'20',	'Front',	'0',	1),
-(8,	'B2',	'R2',	'20',	'Back',	'0',	1);
 
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
@@ -156,7 +181,7 @@ CREATE TABLE `staff` (
   `did` int(11) NOT NULL,
   `designid` int(11) NOT NULL,
   `contact` varchar(150) NOT NULL,
-  `gender` enum('male','female') NOT NULL,
+  `gender` enum('Male','Female') NOT NULL,
   `image` varchar(300) NOT NULL,
   `Validity` date DEFAULT NULL,
   `remark` varbinary(500) DEFAULT NULL,
@@ -176,6 +201,8 @@ CREATE TABLE `staff_department` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `staff_department` (`id`, `s_d_name`) VALUES
+(1,	'Computer Application');
 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
@@ -183,7 +210,7 @@ CREATE TABLE `students` (
   `regno` varchar(24) NOT NULL,
   `sname` varchar(150) NOT NULL,
   `spass` varchar(150) NOT NULL,
-  `gender` enum('boy','girl') NOT NULL,
+  `gender` enum('boy','girl','male','female') NOT NULL,
   `stemail` varchar(200) DEFAULT NULL,
   `Contact` varchar(12) DEFAULT NULL,
   `did` int(11) NOT NULL,
@@ -197,4 +224,17 @@ CREATE TABLE `students` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 
--- 2023-10-02 16:03:17
+DROP TABLE IF EXISTS `tbl_query`;
+CREATE TABLE `tbl_query` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `query_id` varchar(22) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `query` varchar(999) NOT NULL,
+  `role` varchar(22) NOT NULL,
+  `is_resolved` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+-- 2023-10-29 06:24:51
