@@ -16,8 +16,8 @@
                         <div class="alert alert-warning">
                             <?= session()->getFlashdata('msg') ?>
                         </div>
-                            <?php session()->remove('msg'); ?>
                     <?php endif;?>
+                    <?php session()->remove('msg'); ?>
                             <label>Regester No</label>
                             <input type="text" class="form-control" name="regno" placeholder="Reg No" required>
                         </div>

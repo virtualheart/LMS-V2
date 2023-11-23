@@ -156,7 +156,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `settings` (`id`, `app_name`, `app_decp`, `app_logo`, `fine`, `fine_stf_days`, `fine_std_days`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `smtp_sec_type`) VALUES
-(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	2,	10,	7,	'smtp.gmail.com',	'465',	'LMS@gmail.com',	'NNNNNNNNN',	'ssl');
+(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	2,	10,	7,	'smtp.gmail.com',	'465',	'computersearch4@gmail.com',	'ahjivkwizjqsytuk',	'ssl');
 
 DROP TABLE IF EXISTS `shelf`;
 CREATE TABLE `shelf` (
@@ -170,6 +170,18 @@ CREATE TABLE `shelf` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+INSERT INTO `shelf` (`id`, `alamara`, `rack`, `count`, `side`, `barrowed_list`, `status`) VALUES
+(1,	'B1',	'R1',	'20',	'Front',	'0',	1),
+(2,	'B1',	'R1',	'20',	'Back',	'0',	1),
+(3,	'B1',	'R2',	'20',	'Front',	'0',	1),
+(4,	'B1',	'R2',	'20',	'Back',	'0',	1),
+(5,	'B2',	'R1',	'20',	'Front',	'0',	1),
+(6,	'B2',	'R1',	'20',	'Back',	'0',	1),
+(7,	'B2',	'R2',	'20',	'Front',	'0',	1),
+(8,	'B2',	'R2',	'20',	'Back',	'0',	1),
+(14,	'B3',	'R1',	'',	'Front',	'',	1),
+(15,	'B3',	'R1',	'',	'Back',	'',	1),
+(16,	'B4',	'R1',	'',	'Front',	'',	1);
 
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
@@ -237,4 +249,4 @@ CREATE TABLE `tbl_query` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 
--- 2023-10-29 06:24:51
+-- 2023-11-23 03:07:03

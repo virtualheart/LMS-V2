@@ -4,6 +4,10 @@
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">General Setting</h6>
+                    <div class="">
+                        <a href="<?=site_url('Admin/settings/backup')?>" class="btn-lg float-right btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> DB Backup</a>
+                    </div>
+
             </div>
 
             <ul class="nav nav-tabs ml-2" role="tablist" id="list-tab">

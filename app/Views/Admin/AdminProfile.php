@@ -18,9 +18,8 @@
                 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                 	</button>
     			</div>
-        		<?php session()->remove('msg'); ?>
 			<?php endif; ?>
-  
+            <?php session()->remove('msg'); ?>
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                  <h6 class="m-0 font-weight-bold text-primary">Admin Profile</h6>

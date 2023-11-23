@@ -16,7 +16,6 @@
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
-
                 </div>
                 <?php session()->remove('msg'); ?>
             <?php elseif (session()->getFlashdata('msg') == "Updated Successfully.") : ?>
@@ -26,7 +25,6 @@
                         </button>
 
                 </div>
-                <?php session()->remove('msg'); ?>
             <?php elseif (session()->getFlashdata('msg') == "Updated Failed.") : ?>
                 <div class="alert alert-warning alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
@@ -34,8 +32,8 @@
                         </button>
 
                 </div>
-                <?php session()->remove('msg'); ?>
             <?php endif; ?>            
+            <?php session()->remove('msg'); ?>
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                  <h6 class="m-0 font-weight-bold text-primary">Add Book</h6>

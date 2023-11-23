@@ -24,8 +24,9 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                 </div>
-                <?php session()->remove('msg'); ?>
-            <?php endif; ?> 
+            <?php endif; ?>
+            <php session()->remove('msg') ?>;
+
                 <!-- Book unavaliable toasr -->
               <div id="NoBookAlert"></div>
                 <!-- end of Book unavaliable toasr -->

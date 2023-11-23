@@ -10,7 +10,7 @@
                         <div class="alert alert-warning">
                             <?= session()->getFlashdata('msg') ?>
                         </div>
-                            <?php session()->remove('msg'); ?>                          
+                        <?php session()->remove('msg'); ?>
                     <?php endif;?>
                             <label>User Name</label>
                             <input type="text" class="form-control" name="username" placeholder="Username" required>

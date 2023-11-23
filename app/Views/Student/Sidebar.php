@@ -169,7 +169,67 @@ $data['req'] = $requestModel->getBookRequest(session()->get('id'),session()->get
                     </form> -->
                     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <?="Date: ".date("d-m-Y \/ \T\i\m\\e \: h:ia")?>
+                                                        <!--  -->
+                            <script>
+                                var mydate=new Date()
+                                var year=mydate.getYear()
+                                if (year < 1000)
+                                    year+=1900
+                                var day=mydate.getDay()
+                                var month=mydate.getMonth()
+                                var daym=mydate.getDate()
+                                if (daym<10)
+                                    daym="0"+daym
+                                var dayarray=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+                                var montharray=new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+                                document.write("<font face='Arial'><b style='font-size:12px;'>"+dayarray[day]+", "+montharray[month]+" "+daym+", "+year+"</b></font>")
+                            </script>&nbsp;
+                            <span id="digitalclock" style="font-size:20px;"></span>
+
+                                <script>
+                                var alternate=0
+                                var standardbrowser=!document.all&&!document.getElementById
+
+                                if (standardbrowser)
+                                    document.write('<form name="tick"><input type="text" name="tock" size="11"></form>')
+
+                                function show(){
+                                    if (!standardbrowser)
+                                        var clockobj=document.getElementById? document.getElementById("digitalclock") : document.all.digitalclock
+                                        var Digital=new Date()
+                                        var hours=Digital.getHours()
+                                        var minutes=Digital.getMinutes()
+                                        var dn="AM"
+
+                                        if (hours==12) dn="PM" 
+                                            if (hours>12){
+                                                dn="PM"
+                                                hours=hours-12
+                                            }
+                                            if (hours==0) hours=12
+                                                if (hours.toString().length==1)
+                                                    hours="0"+hours
+                                            if (minutes<=9)
+                                                minutes="0"+minutes
+
+                                            if (standardbrowser){
+                                                if (alternate==0)
+                                                    document.tick.tock.value=hours+":"+minutes+""+dn
+                                                else
+                                                    document.tick.tock.value=hours+" "+minutes+""+dn
+                                            } else {
+                                                if (alternate==0)
+                                                    clockobj.innerHTML=hours+":"+minutes+""+"<sup style='font-size:70%'>"+dn+"</sup>"
+                                                else
+                                                    clockobj.innerHTML=hours+":"+minutes+""+"<sup style='font-size:70%'>"+dn+"</sup>"
+                                            }
+                                    alternatee=(alternate==0)? 1 : 0
+                                    setTimeout("show()",1000)
+                                }
+                                window.onload=show
+                                </script>
+                            <!--  -->
+                            <!-- < ?="Date: ".date("d-m-Y \/ \T\i\m\\e \: h:ia")?> -->
                         </div>
                     </div>
 

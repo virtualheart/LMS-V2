@@ -158,5 +158,44 @@ class Settings extends BaseController
         echo View('Admin/AdminGenSettings',$data);
         echo view('Others/fooder');
     }
+
+    public function backup()
+    {        
+
+        $session = session();
+        
+        if ($session->get('role') !="admin") {
+            return redirect()->to('/');
+        }
+
+        if($this->request->getMethod() === 'post'){
+            // Replace with your own database configuration
+            $db_host = getenv('database.default.hostname');
+            $db_user = getenv('database.default.username');
+            $db_pass = getenv('database.default.password');
+            $db_name = getenv('database.default.database');
+            $fileWpath = 'backups/' . 'backup_' . date('Y-m-d_H-i-s') . '.sql';
+
+            // Build the command to run mysqldump
+            $command = "mysqldump -u {$db_user} -p{$db_pass} -h {$db_host} {$db_name} > " . WRITEPATH  . $fileWpath ;
+
+            // Run the command
+            // echo $command;
+            exec($command, $output, $returnVar);
+
+            // Check if the backup was successful
+            if ($returnVar === 0) {
+                $session->setFlashdata('msg','Backup created successfully. <b>'.$fileWpath . '</b>');
+            } else {
+                $session->setFlashdata('msg','Backup creation failed. Error: ' . implode("\n", $output));
+            }
+        }
+
+        helper('filesystem');
+
+        echo view('Others/header');
+        echo view('Admin/AdminBackup');
+        echo view('Others/fooder');
+    }
     
 }

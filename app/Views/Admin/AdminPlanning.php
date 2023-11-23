@@ -14,8 +14,9 @@
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                 </div>
-             <?php endif; ?>   
-            <?php session()->remove('msg'); ?>
+             <?php endif; ?>
+             <?php session()->remove('msg'); ?>
+
             <a href="<?=site_url('admin/plan/planning/new/add')?>" class="btn-lg float-right btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add New</a>
                         <div class="card-body">
                             <div class="table-responsive">
