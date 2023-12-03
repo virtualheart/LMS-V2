@@ -969,7 +969,7 @@ INSERT INTO `lib_planning` (`id`, `category`, `year`, `plan_status`, `billno`, `
 (11,	'Non -Plan',	'2021-2022',	'Planing ',	'SINV00038',	12,	4000,	0,	'',	1),
 (12,	'Non -Plan',	'2021-2022',	'Planing ',	'IN1142',	19,	4000,	0,	'',	1),
 (13,	'Non -Plan',	'2021-2022',	'Planing ',	'411',	33,	12650,	0,	'',	1),
-(14,	'Non -Plan',	'2022-2023',	'Verification',	'538',	15,	6500,	0,	'',	1),
+(14,	'Non -Plan',	'2022-2023',	'Verification',	'538',	15,	6500,	0,	'',	1);
 
 DROP TABLE IF EXISTS `pln_commands`;
 CREATE TABLE `pln_commands` (
@@ -1058,7 +1058,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `settings` (`id`, `app_name`, `app_decp`, `app_logo`, `fine`, `fine_stf_days`, `fine_std_days`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `smtp_sec_type`) VALUES
-(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	2,	10,	7,	'smtp.gmail.com',	'465',	'computersearch4@gmail.com',	'ahjivkwizjqsytuk',	'ssl');
+(1,	'GAC-CA LMS',	'In principle and reality, libraries are life-enhancing palaces of wonder',	'assets/logo.png',	2,	10,	7,	'smtp.gmail.com',	'465',	'computersearch4@gmail.com',	'nulllllll',	'ssl');
 
 DROP TABLE IF EXISTS `shelf`;
 CREATE TABLE `shelf` (
