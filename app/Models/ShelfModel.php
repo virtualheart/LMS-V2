@@ -12,7 +12,7 @@ class ShelfModel extends Model{
         'count',
         'side',
         'count',
-        'barrowed_list',
+        'borrowed_list',
         'status'
     ];
 

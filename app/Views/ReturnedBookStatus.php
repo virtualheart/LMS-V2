@@ -2,7 +2,7 @@
 <div class="container-fluid">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Barrowed Books</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Borrowed Books</h6>
                                 </div>
                                 <div class="card-body">
 
@@ -15,7 +15,7 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Barrow Date</th>
+                                            <th>Borrow Date</th>
                                             <th>Return Date</th>
                                             <th>Fine</th>
                                             <!-- <th>Alamara</th> -->
@@ -29,7 +29,7 @@
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Barrow Date</th>
+                                            <th>Borrow Date</th>
                                             <th>Return Date</th>
                                             <th>Fine</th>
                                             <!-- <th>Alamara</th> -->

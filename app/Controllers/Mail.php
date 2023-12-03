@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 
 use App\Models\SettingsModel;
-use App\Models\BarrowBooksModel;
+use App\Models\BorrowBooksModel;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -13,7 +13,7 @@ class Mail
     public function __construct()
     {
         $this->settingsModel = new SettingsModel();
-        $this->barrowBooksModel = new BarrowBooksModel();
+        $this->borrowBooksModel = new BorrowBooksModel();
     }
 
     public function sendmail($getmail,$sname,$subject,$body)

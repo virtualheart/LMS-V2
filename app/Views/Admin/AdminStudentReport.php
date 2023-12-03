@@ -63,6 +63,7 @@
                                             <th>Author Name</th>
                                             <th>Publication</th>
                                             <th>Borrowed Date</th>
+                                            <th>Returned Date</th>
                                             <th>Fine</th>
 
                                         </tr>
@@ -75,6 +76,7 @@
                                             <th>Author Name</th>
                                             <th>Publication</th>
                                             <th>Borrowed Date</th>
+                                            <th>Returned Date</th>
                                             <th>Fine</th>
                                         </tr>
                                     </tfoot>
@@ -91,6 +93,7 @@
                                             <td><?=$books['aname']; ?></td>
                                             <td><?=$books['publication']; ?></td>
                                             <td><?=$books['request_date']; ?></td>
+                                            <td><?php if($books['returned_date'] === "0000-00-00 00:00:00") { echo "Nill"; } else { echo $books['returned_date']; } ?></td>
                                             <td><?=$books['fine']; ?></td>
                                         </tr>         
 

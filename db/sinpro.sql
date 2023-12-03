@@ -18,8 +18,8 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `aname`, `apass`, `a_mail`, `role`) VALUES
 (1,	'admin',	'$2y$10$KKFV7E0T5D8t5B/LKHY3ousRnWbRVloYhYN2Gq/5/ITcforJETRle',	'admin@admin.com',	'admin');
 
-DROP TABLE IF EXISTS `barrow_books`;
-CREATE TABLE `barrow_books` (
+DROP TABLE IF EXISTS `borrow_books`;
+CREATE TABLE `borrow_books` (
   `sbid` int(11) NOT NULL AUTO_INCREMENT,
   `sid` int(11) NOT NULL,
   `bid` int(11) NOT NULL,
@@ -923,8 +923,8 @@ CREATE TABLE `department` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `department` (`did`, `dname`) VALUES
-(1,	'B.C.A.Computer application'),
-(2,	'M.C.A.Computer application'),
+(1,	'B.C.A.Computer applications'),
+(2,	'M.C.A.Computer applications'),
 (3,	'Ph.D.');
 
 DROP TABLE IF EXISTS `designation`;
@@ -1067,12 +1067,12 @@ CREATE TABLE `shelf` (
   `rack` varchar(10) NOT NULL,
   `count` varchar(10) NOT NULL,
   `side` varchar(10) NOT NULL,
-  `barrowed_list` varchar(512) NOT NULL,
+  `borrowed_list` varchar(512) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `shelf` (`id`, `alamara`, `rack`, `count`, `side`, `barrowed_list`, `status`) VALUES
+INSERT INTO `shelf` (`id`, `alamara`, `rack`, `count`, `side`, `borrowed_list`, `status`) VALUES
 (1,	'B1',	'R1',	'20',	'Front',	'0',	1),
 (2,	'B1',	'R1',	'20',	'Back',	'0',	1),
 (3,	'B1',	'R2',	'20',	'Front',	'0',	1),
@@ -1128,7 +1128,7 @@ CREATE TABLE `staff_department` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 INSERT INTO `staff_department` (`id`, `s_d_name`) VALUES
-(1,	'Computer Application');
+(1,	'Computer Applications');
 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (

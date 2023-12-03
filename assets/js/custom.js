@@ -76,7 +76,7 @@ $(document).ready(function() {
                     render: function (data, type, row) {
 
                         if (row.status == 1 && role == "admin") {
-                            return "<a class='btn btn-success' href='" + `${baseUrl}` + "/admin/Activity/barrow/" + row.bcode + "'><i class='fa fa-check'></i></a>";
+                            return "<a class='btn btn-success' href='" + `${baseUrl}` + "/admin/Activity/borrow/" + row.bcode + "'><i class='fa fa-check'></i></a>";
                         } else if (row.status == 1) {
                             return "<a class='btn btn-success' href='#'><i class='fa fa-check'></i></a>";
                         } else {
@@ -209,7 +209,7 @@ function showpwd() {
 }
 
 
-function getDetailBarrow(str) {
+function getDetailBorrow(str) {
     const fieldIds = ["bno", "title", "aname", "publication","price"];
 
     // Check if the pressed key is a special key
@@ -266,7 +266,7 @@ xmlhttp.onreadystatechange = function () {
     }
 };
 
-xmlhttp.open("GET", `${baseUrl}/Admin/Book/book/Barrow/${str}`, true);
+xmlhttp.open("GET", `${baseUrl}/Admin/Book/book/Borrow/${str}`, true);
 xmlhttp.send();
 
 }

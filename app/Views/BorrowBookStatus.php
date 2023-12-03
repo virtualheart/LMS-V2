@@ -1,7 +1,8 @@
+
 <div class="container-fluid">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Barrowed Books</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Borrowed Books</h6>
                                 </div>
                                 <div class="card-body">
 
@@ -14,9 +15,9 @@
                                             <th>Title</th>
                                             <th>Author</th>
                                             <th>Publication</th>
-                                            <th>Date</th>
+                                            <th>Borrowed</th>
                                             <th>Fine</th>
-                                            <th>Reg No</th>
+                                            <!-- <th>Reg No</th> -->
                                             <th title="Estimated time of arrival">ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
@@ -25,13 +26,13 @@
                                     <tfoot>
                                         <tr>
                                             <th>S.No</th>
-                                            <th title="Book Number">B.No</th>
+                                            <th title="Book Number">Book No</th>
                                             <th>Title</th>
                                             <th>Author Name</th>
                                             <th>Publication</th>
-                                            <th>Barrowed</th>
+                                            <th>Borrowed</th>
                                             <th>Fine</th>
-                                            <th>Reg No</th>
+                                            <!-- <th>Reg No</th> -->
                                             <th title="Estimated time of arrival">ETA</th>
                                             <!-- <th>Alamara</th> -->
                                             <!-- <th>Rack</th> -->
@@ -51,7 +52,7 @@
                                             <td><?=$books['publication']; ?></td>
                                             <td><?=$books['request_date']; ?></td>
                                             <td><?=$books['fine']; ?></td>
-                                            <td><?=$books['borrower_regno']; ?></td>
+                                            <!-- <td>< ?=$books['borrower_regno']; ?></td> -->
                                             <td><?=$books['return_date']; ?></td>
                                             <!-- <td>< ?=$books['alamara']; ?></td> -->
                                             <!-- <td>< ?=$books['rack']; ?></td>  -->

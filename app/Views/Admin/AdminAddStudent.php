@@ -70,7 +70,7 @@
 
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Swift</label>
+                    <label>shift</label>
                     <select class="form-control" name="shift" required>                                      
                         <option value="">Select Shift</option>                       
                         <option value='I' <?php if(isset($student) && $student['shift']=='I') echo "selected" ?>>I</option>                        

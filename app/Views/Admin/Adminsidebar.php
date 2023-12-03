@@ -55,16 +55,16 @@ $data['req'] = $requestModel->getAllBookRequest();
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return" || $uri=="books/status") echo "active"; ?>">
+            <li class="nav-item <?php if($uri=="admin/Activity/borrow" || $uri=="admin/Activity/return" || $uri=="books/status") echo "active"; ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseactivity"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa fa-universal-access"></i>
                     <span>Libary activity</span>
                 </a>
-                <div id="collapseactivity" class="collapse <?php if($uri=="admin/Activity/barrow" || $uri=="admin/Activity/return" || $uri=="books/status" ) echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseactivity" class="collapse <?php if($uri=="admin/Activity/borrow" || $uri=="admin/Activity/return" || $uri=="books/status" ) echo "show"; ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Book Entry:</h6> -->
-                        <a class="collapse-item <?php if($uri=="admin/Activity/barrow") echo "active"; ?>" href="<?=site_url('admin/Activity/barrow') ?>">Book Barrow</a>
+                        <a class="collapse-item <?php if($uri=="admin/Activity/borrow") echo "active"; ?>" href="<?=site_url('admin/Activity/borrow') ?>">Book Borrow</a>
                         <a class="collapse-item <?php if($uri=="admin/Activity/return") echo "active"; ?>" href="<?=site_url('admin/Activity/return') ?>">Book Return</a>
                         <a class="collapse-item <?php if($uri=="books/status") echo "active"; ?>" href="<?=site_url('books/status') ?>">Books Status</a>
                     </div>

@@ -5,7 +5,7 @@
                     <a class="nav-link active" id="list-home-list" data-toggle="tab" href="#list-home" role="tab" aria-controls="home">All</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="list-profile-list" data-toggle="tab" href="#list-profile" role="tab" aria-controls="profile">Barrowed</a>
+                    <a class="nav-link" id="list-profile-list" data-toggle="tab" href="#list-profile" role="tab" aria-controls="profile">Borrowed</a>
                 </li>
             </ul> -->
 

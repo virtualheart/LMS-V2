@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class OtherModel extends Model
 
 {
-    // Using Ajax / Book Barrow / Book Return
+    // Using Ajax / Book Borrow / Book Return
     public function getUserDet($u) {
 
     $db = \Config\Database::connect();

@@ -16,7 +16,7 @@
                                             <th>Contact</th>
                                             <th title="Year of joining">YOJ</th>
                                             <th>Department</th>
-                                            <th>Swift</th>
+                                            <th>shift</th>
                                             <th>Report</th>
                                             <th>Action</th>
                                         </tr>
@@ -30,7 +30,7 @@
                                             <th>Contact</th>
                                             <th title="Year of joining">YOJ</th>
                                             <th>Department</th>
-                                            <th>Swift</th>
+                                            <th>shift</th>
                                             <th>Report</th>
                                             <th>Action</th>
                                         </tr>
@@ -71,7 +71,7 @@ function popUpWindow(URLStr, left, top, width, height){
         if(!popUpWin.closed) popUpWin.close();
     }
     
-    popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width='+800+',height='+620+',left='+left+', top='+top+',screenX='+left+',screenY='+top+'');
+    popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,fullscreen=yes,left='+left+', top='+top+',screenX='+left+',screenY='+top+'');
 }
 </script>
 

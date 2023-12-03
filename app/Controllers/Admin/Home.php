@@ -4,7 +4,7 @@ namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\StudentModel;
 use App\Models\BooksModel;
-use App\Models\BarrowBooksModel;
+use App\Models\BorrowBooksModel;
 use App\Models\StaffModel;
 
 use App\Models\OtherModel;
@@ -16,7 +16,7 @@ class Home extends BaseController
         $this->studentModel = new StudentModel();
         $this->staffModel = new StaffModel();
         $this->bookModel = new BooksModel();
-        $this->barrowBooksModel = new BarrowBooksModel();
+        $this->borrowBooksModel = new BorrowBooksModel();
     }
         
     public function index()
@@ -32,13 +32,13 @@ class Home extends BaseController
             'totalBooks' => $this->bookModel->getTotalBooks(),
             'totalStudents' => $this->studentModel->getTotalStudents(),
             'totalStaff' => $this->staffModel->getTotalStaff(),
-            'barrowBooks' => $this->barrowBooksModel->getBarrowedBookscount(),
+            'borrowBooks' => $this->borrowBooksModel->getBorrowedBookscount(),
         ];
 
         $chart = [
-            'staff' => $this->barrowBooksModel->getBarrowedBookcountbyRole("staff"),
-            'student' => $this->barrowBooksModel->getBarrowedBookcountbyRole("student"),
-            'datevice' => $this->barrowBooksModel->getBarrowedBookMonth()
+            'staff' => $this->borrowBooksModel->getBorrowedBookcountbyRole("staff"),
+            'student' => $this->borrowBooksModel->getBorrowedBookcountbyRole("student"),
+            'datevice' => $this->borrowBooksModel->getBorrowedBookMonth()
         ];
         
            

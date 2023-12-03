@@ -35,7 +35,7 @@ class BooksModel extends Model{
                     ->findAll();
     }
 
-    // Get Book Detiles For Barrow/Return Entry
+    // Get Book Detiles For Borrow/Return Entry
     public function getBookDetail($bcode)
     {
         return $this->Where('bcode', $bcode)

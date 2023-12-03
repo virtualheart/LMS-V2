@@ -3,7 +3,7 @@
 namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\BooksModel;
-use App\Models\BarrowBooksModel;
+use App\Models\BorrowBooksModel;
 use App\Models\OtherModel;
 use App\Models\ShelfModel;
 use App\Models\PlanningModel;
@@ -13,7 +13,7 @@ class Book extends BaseController
     public function __construct()
     {
         $this->booksModel = new BooksModel();
-        $this->barrowbooksModel = new BarrowBooksModel();
+        $this->borrowbooksModel = new BorrowBooksModel();
         $this->otherModel = new OtherModel();
         $this->shelfModel = new ShelfModel();
         $this->planningModel = new PlanningModel();
@@ -148,14 +148,14 @@ class Book extends BaseController
             echo view('Admin/AdminBook',$data);
             echo view('Others/fooder');
 
-        }elseif ($activity=="Barrow") {
+        }elseif ($activity=="Borrow") {
 
             $response = $this->booksModel->getBookDetail($bcode);
             $jsonResponse = json_encode($response);
             return $this->response->setJSON($jsonResponse);
 
         }elseif ($activity=="Return") {
-            $response = $this->barrowbooksModel->getBarrowBookDetails($bcode);
+            $response = $this->borrowbooksModel->getBorrowBookDetails($bcode);
             if(!empty($response)){
                 $responseArray = json_decode(json_encode($response), true);
                 $userDetails = $this->otherModel->getUserDet2($responseArray['sid'],$responseArray['role']);
@@ -165,7 +165,7 @@ class Book extends BaseController
                 $jsonResponse = json_encode($responseArray);
                 return $this->response->setJSON($jsonResponse);
             }
-            return $this->response->setStatusCode(204)->setJSON('{"mgs": "Book Not barrowed"}');
+            return $this->response->setStatusCode(204)->setJSON('{"mgs": "Book Not borrowed"}');
         } else{
             $data = [
                 'message' => ' Controller or its method is not found'

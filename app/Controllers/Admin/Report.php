@@ -4,7 +4,7 @@ namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\StudentModel;
 use App\Models\StaffModel;
-use App\Models\BarrowBooksModel;
+use App\Models\BorrowBooksModel;
 
 class Report extends BaseController
 {
@@ -12,7 +12,7 @@ class Report extends BaseController
     {
         $this->studentModel = new StudentModel();
         $this->staffModel = new StaffModel();
-        $this->barrowBooksModel = new BarrowBooksModel();
+        $this->borrowBooksModel = new BorrowBooksModel();
     }
         
     public function student($id)
@@ -36,7 +36,7 @@ class Report extends BaseController
 
         $stddata = [
             'student' => $this->studentModel->getProfile($id),
-            'books' => $this->barrowBooksModel->getAllBookbyUser($id,'student'),
+            'books' => $this->borrowBooksModel->getAllBookbyUser($id,'student'),
         ];
 
         echo view('Others/header');
@@ -66,7 +66,7 @@ class Report extends BaseController
 
         $stddata = [
             'staff' => $this->staffModel->getStaffProfile($id),
-            'books' => $this->barrowBooksModel->getAllBookbyUser($id,'staff'),
+            'books' => $this->borrowBooksModel->getAllBookbyUser($id,'staff'),
         ];
 
         echo view('Others/header');

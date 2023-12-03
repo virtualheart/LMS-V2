@@ -2,8 +2,8 @@
 namespace App\Models;  
 use CodeIgniter\Model;
   
-class BarrowBooksModel extends Model{
-    protected $table = 'barrow_books sbb';
+class BorrowBooksModel extends Model{
+    protected $table = 'borrow_books sbb';
     protected $primaryKey = 'sbid';
     
     protected $allowedFields = [
@@ -19,13 +19,13 @@ class BarrowBooksModel extends Model{
     ];
 
     // For admin dashboard count
-    public function getBarrowedBookscount(){
+    public function getBorrowedBookscount(){
         return $this->where('is_returned',0)
                     ->countAllResults();
     }
 
-    // Get all Barrow Book list
-    public function getBarrowedBooks(){
+    // Get all Borrow Book list
+    public function getBorrowedBooks(){
         return $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0) * se.fine,0) AS fine,COALESCE(st.role, sf.role) AS borrower_role,COALESCE(st.sname, sf.sname) AS borrower_name,COALESCE(st.regno, sf.regno) AS borrower_regno')
                     ->join('books bk','bk.bid=sbb.bid')
                     ->join('students st','sbb.sid=st.st_id', 'LEFT')
@@ -35,8 +35,8 @@ class BarrowBooksModel extends Model{
                     ->FindAll();
     }
 
-    // Staff or Student barrowed book list 
-    public function getBarrowedBookbyUser($id,$role){
+    // Staff or Student borrowed book list 
+    public function getBorrowedBookbyUser($id,$role){
         $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(GREATEST(DATEDIFF(CURDATE(), return_date), 0) * se.fine,0) AS fine')
                     ->join('books bk','bk.bid=sbb.bid')
                     ->join('settings se','1=1') 
@@ -64,9 +64,9 @@ class BarrowBooksModel extends Model{
 //IFNULL(CASE WHEN `is_returned` = 1 THEN GREATEST(DATEDIFF(`returned_date`, `return_date`), 0) * `se`.`fine` ELSE GREATEST(DATEDIFF(CURDATE(), `return_date`), 0) * `se`.`fine` END, 0) AS fine 
 
 
-    // Staff or Student All barrowed and retuned book list 
+    // Staff or Student All borrowed and retuned book list 
     public function getAllBookbyUser($id,$role){
-        $query = $this->select('bno,title,aname,publication,request_date,return_date,IFNULL(CASE WHEN `is_returned` = 1 THEN GREATEST(DATEDIFF(`returned_date`, `return_date`), 0) * `se.fine` ELSE GREATEST(DATEDIFF(CURDATE(), `return_date`), 0) * `se`.`fine` END, 0) AS fine')
+        $query = $this->select('bno,title,aname,publication,request_date,return_date,returned_date,IFNULL(CASE WHEN `is_returned` = 1 THEN GREATEST(DATEDIFF(`returned_date`, `return_date`), 0) * `se`.`fine` ELSE GREATEST(DATEDIFF(CURDATE(), `return_date`), 0) * `se`.`fine` END, 0) AS fine')
                     ->join('books bk','bk.bid=sbb.bid')
                     ->join('settings se','1=1') 
                     ->where('sid',$id)
@@ -93,8 +93,8 @@ class BarrowBooksModel extends Model{
         return $result->getRow()->total_fine;
     }
 
-    // Admin Barrow entry detiles 
-    public function getBarrowBookDetails($bcode)
+    // Admin Borrow entry detiles 
+    public function getBorrowBookDetails($bcode)
     {
         $query = $this->select('sbb.sid,sbb.return_date, sbb.bid, sbb.request_date, sbb.role, sb.bno, sb.bcode, sb.title, sb.aname, sf.alamara, sf.rack, sb.price,sb.publication, GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0) as fineday, (se.fine * GREATEST(DATEDIFF(CURDATE(), sbb.return_date), 0)) as fine ')
                     ->join('books sb', 'sb.bid = sbb.bid')
@@ -108,8 +108,8 @@ class BarrowBooksModel extends Model{
         return $query->getRow();
     }
 
-    // Admin Barrow entry user detiles
-    public function getBarrowedUserId($bcode)
+    // Admin Borrow entry user detiles
+    public function getBorrowedUserId($bcode)
     {
         return $this->select('sbb.sid,sbb.role')
                     ->join('books sb', 'sb.bid = sbb.bid')
@@ -117,8 +117,8 @@ class BarrowBooksModel extends Model{
                     ->first();
     }
 
-    // (Admin Dashboard chart) getting Staff and Student barrow book count
-    public function getBarrowedBookcountbyRole($role)
+    // (Admin Dashboard chart) getting Staff and Student borrow book count
+    public function getBorrowedBookcountbyRole($role)
     {
         return $this->where('role',$role)
                     ->like('request_date',date('Y-m'))
@@ -126,7 +126,7 @@ class BarrowBooksModel extends Model{
     }
 
     // (Admin Dashboard chart) current month Book borrow entry count 
-    public function getBarrowedBookMonth()
+    public function getBorrowedBookMonth()
     {
            $query = $this->db->query("
             SELECT
@@ -135,20 +135,20 @@ class BarrowBooksModel extends Model{
                 SELECT 1 AS m UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6
                 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
             ) AS months
-            LEFT JOIN barrow_books ON MONTH(request_date) = months.m AND YEAR(request_date) = YEAR(CURDATE())
+            LEFT JOIN borrow_books ON MONTH(request_date) = months.m AND YEAR(request_date) = YEAR(CURDATE())
             GROUP BY months.m
         ");
 
         return array_column($query->getResultArray(), 'count');
     }
 
-    // insert Book barrow entry 
-    public function setBarroeBook($data){
+    // insert Book borrow entry 
+    public function setBorrowBook($data){
         $this->insert($data);
         return true;
     }
 
-    // update Book barrow entry (Returned)
+    // update Book borrow entry (Returned)
     public function setBookreturn($bid,$data){
         $this->where('bid',$bid)
              ->set($data)

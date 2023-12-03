@@ -5,7 +5,7 @@ namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\BooksModel;
 use App\Models\OtherModel;
-use App\Models\BarrowBooksModel;
+use App\Models\BorrowBooksModel;
 use App\Models\SettingsModel;
 use App\Controllers\Mail;
 use CodeIgniter\HTTP\RequestInterface;
@@ -18,7 +18,7 @@ class Activity extends BaseController
         date_default_timezone_set("Asia/Kolkata");
 
         $this->booksModel = new BooksModel();
-        $this->barrowbooksModel = new BarrowBooksModel();
+        $this->borrowbooksModel = new BorrowBooksModel();
         $this->otherModel = new OtherModel();
         $this->settingsModel = new SettingsModel();
         $this->mail = new Mail();
@@ -27,7 +27,7 @@ class Activity extends BaseController
 
     }
 
-    public function Barrow($var = null)
+    public function Borrow($var = null)
     {
         $session = session();
 
@@ -126,7 +126,7 @@ class Activity extends BaseController
 
                 if ($book['status']==1) {
 
-                    if($this->barrowbooksModel->setBarroeBook($data)){
+                    if($this->borrowbooksModel->setBorrowBook($data)){
                         $this->booksModel->updateBook($bcode,['status' => 0]);
                         try{
                             // mail
@@ -141,9 +141,9 @@ class Activity extends BaseController
 
                         }
 
-                        $session->setFlashdata('msg', 'Book Barrowed.');
+                        $session->setFlashdata('msg', 'Book Borrowed.');
                     } else{
-                        $session->setFlashdata('msg', 'Book Barrowed Failed.');
+                        $session->setFlashdata('msg', 'Book Borrowed Failed.');
                     }
 
                 } else{
@@ -159,12 +159,12 @@ class Activity extends BaseController
             helper(['form']);
             echo view('Others/header');
         if($var==null){
-            echo view('Admin/AdminBookBarrow');
+            echo view('Admin/AdminBookBorrow');
         } else{
             $data = [
                 'BooksData' => $this->booksModel->getBookDetail($var),
             ];
-            echo view('Admin/AdminBookBarrowA',$data);
+            echo view('Admin/AdminBookBorrowA',$data);
         }
             echo view('Others/fooder');
     }
@@ -216,7 +216,7 @@ class Activity extends BaseController
                 
                 $book = $this->booksModel->getBookDetail($bcode);
 
-                if ($this->barrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d h:i:s"),'remark' => $remark ])) {
+                if ($this->borrowbooksModel->setBookreturn($book['bid'],['is_returned' => 1,'returned_date' => date("Y-m-d h:i:s"),'remark' => $remark ])) {
                     $this->booksModel->updateBook($bcode,['status' => 1]);
                         $session->setFlashdata('msg', 'Book return Successfully.');
                 } else{

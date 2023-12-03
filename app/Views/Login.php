@@ -51,6 +51,12 @@
 
             </div>
         </div>
+        <a href="<?=site_url('about')?>" 
+           style="position: fixed; bottom: 30px; right: 30px; box-shadow: 2px 2px 24px #444; border-radius: 25px; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background-color: #0072C6; cursor: pointer;" 
+           target="_blank"
+           title="About Me">
+            <i class="fa fa-info" style="color: white;"></i>
+        </a>
 <!-- <style>
 
 canvas {
@@ -107,7 +113,7 @@ canvas {
 }
 </style>
 
-<script src="<?=base_url('assets/js/particles.min.js')?>"></script> 
+<script src="< ?=base_url('assets/js/particles.min.js')?>"></script> 
 
 <script type="text/javascript">
     particlesJS("particles-js", {

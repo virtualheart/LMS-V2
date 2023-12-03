@@ -1,18 +1,18 @@
 <?= view('Admin/Adminsidebar') ?>
 
 	<div class="container-fluid">
-    	<!-- <h1 class="h3 mb-4 text-gray-800">Barrow Book</h1> -->
+    	<!-- <h1 class="h3 mb-4 text-gray-800">Borrow Book</h1> -->
     <?= validation_list_errors() ?>
 
         <form method="POST" id="bookForm">
-            <?php if (session()->getFlashdata('msg') == "Book Barrowed.") : ?>
+            <?php if (session()->getFlashdata('msg') == "Book Borrowed.") : ?>
                 <div class="alert alert-success alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                       </button>
                 </div>
                 <?php session()->remove('msg'); ?>
-            <?php elseif (session()->getFlashdata('msg') == "Book Barrowed Failed.") : ?>
+            <?php elseif (session()->getFlashdata('msg') == "Book Borrowed Failed.") : ?>
                 <div class="alert alert-warning alert-dismissible">
                     <div class="text-center"><?= session()->getFlashdata('msg') ?></div>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -33,7 +33,7 @@
                    <!--  -->
         <div class="card shadow mb-2">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                 <h6 class="m-0 font-weight-bold text-primary">Barrow Book</h6>
+                 <h6 class="m-0 font-weight-bold text-primary">Borrow Book</h6>
             </div>
 
             <div class="card-body" style="padding-bottom: 1px;">

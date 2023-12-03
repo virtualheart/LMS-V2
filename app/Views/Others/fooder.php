@@ -3,7 +3,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Department of Computer Application</span>
+                        <span>Copyrights &copy; Department of Computer Applications</span>
                     </div>
                 </div>
             </footer>

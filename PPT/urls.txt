@@ -2,7 +2,7 @@ Student URL
 http://localhost/code/index.php/Login/student
 http://localhost/code/index.php/student/Dashboard
 http://localhost/code/index.php/books/status
-http://localhost/code/index.php/books/barrowed
+http://localhost/code/index.php/books/borrowed
 http://localhost/code/index.php/books/returned
 http://localhost/code/index.php/student/ListRequest
 http://localhost/code/index.php/student/ListRequest/history
@@ -13,7 +13,7 @@ Staff URL
 http://localhost/code/index.php/Login/Staff
 http://localhost/code/index.php/staff/Dashboard
 http://localhost/code/index.php/books/status
-http://localhost/code/index.php/books/barrowed
+http://localhost/code/index.php/books/borrowed
 http://localhost/code/index.php/books/returned
 http://localhost/code/index.php/staff/ListRequest
 http://localhost/code/index.php/staff/ListRequest/history
@@ -23,10 +23,10 @@ http://localhost/code/index.php/logout/
 Admin URL
 http://localhost/code/index.php/Login/Admin2login
 http://localhost/code/index.php/admin/home
-http://localhost/code/index.php/admin/Activity/barrow
+http://localhost/code/index.php/admin/Activity/borrow
 http://localhost/code/index.php/admin/Activity/return
 http://localhost/code/index.php/books/status
-http://localhost/code/index.php/books/barrow
+http://localhost/code/index.php/books/borrow
 http://localhost/code/index.php/admin/Uploadbooks
 http://localhost/code/index.php/Admin/Book/book/Add/New
 http://localhost/code/index.php/admin/ViewAllBooks
@@ -55,7 +55,7 @@ http://localhost/code/index.php/api/login
 http://localhost/code/index.php/api/getBooksListAPI
 http://localhost/code/index.php/Admin/Book/book/Return/<bcode>
 http://localhost/code/index.php/Admin/Book/getUserDet/<user>
-http://localhost/code/index.php/Admin/Book/book/Barrow/<bcode>
+http://localhost/code/index.php/Admin/Book/book/Borrow/<bcode>
 
 class
 sendmail(<mail>,<name>,<subject>,<htmlbody>) 

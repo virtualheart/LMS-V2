@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\BooksModel;
 use App\Models\RequestModel;
-use App\Models\BarrowBooksModel;
+use App\Models\BorrowBooksModel;
 use App\Models\OtherModel;
 
 class Books extends BaseController
@@ -12,7 +12,7 @@ class Books extends BaseController
     public function __construct()
     {        
         $this->requestModel = new RequestModel();
-        $this->barrowBooksModel = new BarrowBooksModel();
+        $this->borrowBooksModel = new BorrowBooksModel();
         $this->otherModel = new OtherModel();
         $this->booksModel = new BooksModel();
     }
@@ -58,12 +58,12 @@ class Books extends BaseController
             
             $data = [
                 'requester_id' => $session->get('id'),
-                'receiver_id' => $this->barrowBooksModel->getBarrowedUserId($bcode)['sid'],
+                'receiver_id' => $this->borrowBooksModel->getBorrowedUserId($bcode)['sid'],
                 'messagee' => "The Book Barcode: " . $bcode . " wanted to " . $session->get('role') ." " . $session->get('name') . ".",
                 'bcode' => $bcode,
                 'is_seen' => 0,
                 'is_seen_admin' => 0,
-                'rec_role' => $this->barrowBooksModel->getBarrowedUserId($bcode)['role'],
+                'rec_role' => $this->borrowBooksModel->getBorrowedUserId($bcode)['role'],
                 'req_role' => $session->get('role'),
                 'rec_date' => date('Y-m-d'),
                 'status' => 1
@@ -81,7 +81,7 @@ class Books extends BaseController
         }
     }
 
-    public function barrow()
+    public function borrow()
     {
         $session = Session();
 
@@ -89,23 +89,23 @@ class Books extends BaseController
             return redirect()->to('/');
         }
 
-        $data['books'] = $this->barrowBooksModel->getBarrowedBooks();
+        $data['books'] = $this->borrowBooksModel->getBorrowedBooks();
 
         echo view('Others/header');
         echo view('Admin/Adminsidebar');        
-        echo view('Admin/AdminBarrowStatus',$data);
+        echo view('Admin/AdminBorrowStatus',$data);
         echo view('Others/fooder');
     }
 
-    public function barrowed()
+    public function borrowed()
     {
         $session = Session();
 
-        $data['books'] = $this->barrowBooksModel->getBarrowedBookbyUser($session->get("id"),$session->get("role"));
+        $data['books'] = $this->borrowBooksModel->getBorrowedBookbyUser($session->get("id"),$session->get("role"));
 
         echo view('Others/header');
         echo view('Student/Sidebar');        
-        echo view('BarrowBookStatus',$data);
+        echo view('BorrowBookStatus',$data);
         echo view('Others/fooder');
 
     }
@@ -115,7 +115,7 @@ class Books extends BaseController
         $session = Session();
 
         $data = [
-            'books' => $this->barrowBooksModel->getReturnedBookbyUser($session->get("id"),$session->get("role"))
+            'books' => $this->borrowBooksModel->getReturnedBookbyUser($session->get("id"),$session->get("role"))
         ];
 
         echo view('Others/header');

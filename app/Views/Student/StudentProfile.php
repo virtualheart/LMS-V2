@@ -1,7 +1,7 @@
 <?= view('Student/Sidebar') ?>
 
 	<div class="container-fluid">
-    	<!-- <h1 class="h3 mb-4 text-gray-800">Barrow Book</h1> -->
+    	<!-- <h1 class="h3 mb-4 text-gray-800">Borrow Book</h1> -->
 
         <form method="POST" id="bookForm">
             <?php if (session()->getFlashdata('msg') == "Profile Update Successfully.") : ?>
